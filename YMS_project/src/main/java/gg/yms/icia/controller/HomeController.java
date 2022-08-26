@@ -1,4 +1,4 @@
-package gg.yms.icia;
+package gg.yms.icia.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
