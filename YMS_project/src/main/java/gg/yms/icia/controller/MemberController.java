@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import gg.yms.icia.bean.Member;
 import gg.yms.icia.service.MemberMM;
 
-
 @Controller
 public class MemberController {
 
@@ -85,6 +84,13 @@ public class MemberController {
 	// 비밀번호 변경
 	@PostMapping(value = "/mmResetPw")
 	public ModelAndView mmResetPw(@ModelAttribute Member mb) {
+		mav = mm.mmResetPw(mb);
+		return mav;
+	}
+
+	// 비밀번호 변경2
+	@PostMapping(value = "/mmResetPw2")
+	public ModelAndView mmResetPw2(@ModelAttribute Member mb) {
 		mav = mm.mmResetPw(mb);
 		return mav;
 	}
