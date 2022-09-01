@@ -94,4 +94,11 @@ public class MemberController {
 		mav = mm.mmResetPw(mb);
 		return mav;
 	}
+	
+	// 비밀번호 변경2
+	@PostMapping(value = "/mmResetPw2222222")
+	public ModelAndView mmResetPw22222222(@ModelAttribute Member mb) {
+		mav = mm.mmResetPw(mb);
+		return mav;
+	}
 }
