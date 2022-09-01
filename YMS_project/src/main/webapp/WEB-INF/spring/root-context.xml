@@ -6,26 +6,32 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"
-			value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url"
-			value="jdbc:oracle:thin:@yms_medium?TNS_ADMIN=C:\전자지갑" />
-		<property name="username" value="admin" />
-		<property name="password" value="YMSghkdlxld1!" />
+	<bean id="dataSource"   
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+      <property name="url" value="jdbc:log4jdbc:oracle:thin:@pxztjzu6fss1iw6s_high?TNS_ADMIN=C:/e_wallet/Wallet_PXZTJZU6FSS1IW6S/" />
+      <property name="username" value="admin" />
+      <property name="password" value="Woals15666!!" />
 	</bean>
-
+	
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
 			value="classpath:/mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath:/mapper/*.xml" />
 	</bean>
 
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
+	
+	<!-- IMemberDao 인터페이스 검색을 패키지 등록 -->
+	<!-- 인테페이스와 매퍼를 이용해서 DAO구현체를 생성 IoC컨테이너에 등록 -->	
+	<mybatis-spring:scan base-package="gg.yms.icia.dao"/>
+	
+	
+	
 	
 </beans>

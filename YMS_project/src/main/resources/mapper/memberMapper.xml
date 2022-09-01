@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gg.yms.icia.dao.IMemberDao">
+	
+	
+	<insert id="mmJoin" parameterType="Member">
+		INSERT INTO MEMBER VALUES(#{m_id}, #{m_pw}, #{m_name}, #{m_phoneNum}, #{m_birth}, #{m_summonerName}, default, default, default)
+	</insert>
+	
+	<select id="mmLogin" parameterType="Member"  resultType="boolean">
+		SELECT COUNT(*) FROM MEMBER WHERE M_ID=#{m_id} AND M_PW=#{m_pw}
+	</select>
+	
+	<select id="mmSearchMember" parameterType="Member"  resultType="Member">
+		SELECT * FROM MEMBER WHERE M_NAME=#{m_name} AND M_BIRTH=#{m_birth} AND M_PHONENUM=#{m_phoneNum}
+	</select>
+	
+	<update id="mmResetPw" parameterType="Member" >
+		UPDATE MEMBER SET M_PW=#{m_pw} WHERE M_ID=#{m_id}
+	</update>
+	
+</mapper>

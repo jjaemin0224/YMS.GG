@@ -8,7 +8,8 @@
 <title>Home</title>
 </head>
 <body>
-	<h1> Hello world! </h1>
-	<P> The time on the server is ${serverTime}.</P> 
+	<a href="mmLoginMv">로그인</a>
+	<a href="mmJoinMv">회원가입</a>
+	<a href="mmLogout">로그아웃</a>
 </body>
 </html>

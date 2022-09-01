@@ -10,8 +10,7 @@
 		<typeAlias alias="Reply" type="com.board.icia.bean.Reply"/>
 		<typeAlias alias="Member" type="com.board.icia.bean.Member"/>
 		<typeAlias alias="BoardFile" type="com.board.icia.entity.BoardFile"/> -->
-		<!-- <package name="com.board.icia.entity"/>
-		<package name="com.board.icia.bean"/> -->
+		<package name="gg.yms.icia.bean"/>
 	</typeAliases>
 	<!--  <typeHandlers></typeHandlers>  -->
 </configuration>
