@@ -1,6 +1,7 @@
 package gg.yms.icia.dao;
 
 import gg.yms.icia.bean.Member;
+import gg.yms.icia.bean.Withdrawal;
 
 public interface IMemberDao {
 
@@ -15,6 +16,14 @@ public interface IMemberDao {
 	boolean mmResetPw(Member mb);
 
 	boolean cmMyInfoUpdate(Member mb);
+
+	boolean cmMyInfoPwUpdate(Member mb);
+
+	boolean cmMyInfoDelete(Member mb);
+
+	boolean cmInsertWithdrawal(Withdrawal wd);
+
+	boolean cmCashCharge(Member mb);
 
 	
 

@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import gg.yms.icia.bean.Member;
+import gg.yms.icia.bean.Withdrawal;
 import gg.yms.icia.dao.IMemberDao;
 
 @Service
@@ -183,5 +184,63 @@ public class MemberMM {
 		}
 		return mav;
 	}
+
+	public ModelAndView cmMyInfoPwUpdate(Member mb, HttpSession session) {
+		mav = new ModelAndView();
+		mb.setM_id(getSessionId(session));
+		
+		if (mDao.cmMyInfoPwUpdate(mb)) {
+			mav = cmMyPageMv(session);
+		}
+		else {
+			mav.addObject("msg", "비밀번호변경 실패");
+			mav.setViewName("member/cm/myInfoPwUpdate");
+		}
+		return mav;
+		
+	}
+
+	public ModelAndView cmMyInfoDelete(Member mb, Withdrawal wd, HttpSession session) {
+		mav = new ModelAndView();
+		String view = null;
+		String m_id = getSessionId(session);
+		mb.setM_id(m_id);
+		wd.setWd_id(m_id);
+		
+		if (mDao.mmLogin(mb)) {
+			if (mDao.cmMyInfoDelete(mb)) {
+				if (mDao.cmInsertWithdrawal(wd)) {
+					session.invalidate();
+					view = "member/cm/withdrawalSuccess";
+				}
+			}
+		}
+		else {
+			view = "member/cm/myInfoDelete";
+			mav.addObject("msg", "비밀번호불일치");
+		}
+		mav.setViewName(view);
+		
+		return mav;
+	}
+
+	public ModelAndView cmCashCharge(Member mb, HttpSession session) {
+		mav = new ModelAndView();
+		mb.setM_id(getSessionId(session));
+		String view = null;
+		
+		if (mDao.cmCashCharge(mb)) {
+			view = "main";
+		}
+		else {
+			view = "member/cm/cashCharge";
+			mav.addObject("msg", "캐시충전실패");
+		}
+		mav.setViewName(view);
+		
+		return mav;
+	}
+	
+	
 
 }

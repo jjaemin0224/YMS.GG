@@ -14,6 +14,7 @@
 	비밀번호 : <input type="text" id="m_pw" name="m_pw"> <br>
  	이름 : <input type="text" id="m_name" name="m_name"> <br>
 	소환사명 : <input type="text" id="m_summonerName" name="m_summonerName"> <br>
+	이메일 : <input type="text" id="m_email" name="m_email"> <br>
 	생일 : <input type="text" id="m_birth" name="m_birth"> <br>
 	전화번호 : <input type="text" id="m_phoneNum" name="m_phoneNum"> <br>
 	<input type="submit" value="회원가입"> <br>

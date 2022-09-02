@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import gg.yms.icia.bean.Member;
+import gg.yms.icia.bean.Withdrawal;
 import gg.yms.icia.service.MemberMM;
 
 @Controller
@@ -116,6 +117,44 @@ public class MemberController {
 		mav = mm.cmMyInfoUpdate(mb, session);
 		return mav;
 	}
-	
-	
+
+	// 마이페이지 비밀번호 변경 페이지 이동
+	@RequestMapping(value = "/cmMyInfoPwUpdateMv", method = RequestMethod.GET)
+	public String cmMyInfoPwUpdateMv() {
+		return "member/cm/myInfoPwUpdate";
+	}
+
+	// 마이페이지 비밀번호 변경
+	@PostMapping(value = "/cmMyInfoPwUpdate")
+	public ModelAndView cmMyInfoPwUpdate(@ModelAttribute Member mb, HttpSession session) {
+		mav = mm.cmMyInfoPwUpdate(mb, session);
+		return mav;
+	}
+
+	// 마이페이지 회원탈퇴 페이지 이동
+	@RequestMapping(value = "/cmMyInfoDeleteMv", method = RequestMethod.GET)
+	public String cmMyInfoDeleteMv() {
+		return "member/cm/myInfoDelete";
+	}
+
+	// 마이페이지 회원탈퇴
+	@PostMapping(value = "/cmMyInfoDelete")
+	public ModelAndView cmMyInfoDelete(@ModelAttribute Member mb, @ModelAttribute Withdrawal wd, HttpSession session) {
+		mav = mm.cmMyInfoDelete(mb, wd, session);
+		return mav;
+	}
+
+	// 내캐시충전 페이지 이동
+	@RequestMapping(value = "/cmCashChargeMv", method = RequestMethod.GET)
+	public String cmCashChargeMv() {
+		return "member/cm/cashCharge";
+	}
+
+	// 내캐시충전
+	@PostMapping(value = "/cmCashCharge")
+	public ModelAndView cmCashCharge(@ModelAttribute Member mb, HttpSession session) {
+		mav = mm.cmCashCharge(mb,session);
+		return mav;
+	}
+
 }

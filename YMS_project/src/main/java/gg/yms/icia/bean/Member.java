@@ -15,6 +15,7 @@ public class Member {
 	private String m_name;
 	private String m_phoneNum;
 	private String m_birth;
+	private String m_email;
 	private String m_summonerName;
 	private String m_rating;
 	private int m_cash;

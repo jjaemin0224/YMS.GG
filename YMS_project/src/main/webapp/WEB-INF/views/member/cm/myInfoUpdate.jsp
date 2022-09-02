@@ -9,17 +9,18 @@
 <body>
 <h1>myInfoUpdate.jsp(공통)</h1>
 <a href="main">홈으로</a>
-<a href="cmLogout">로그아웃</a>
+<a href="cmLogout">로그아웃</a> <br>
 
 
-id : ${member.m_id}
-name : ${member.m_name}
-birth : ${member.m_birth}
+id : ${member.m_id}  <br>
+name : ${member.m_name} <br>
 
 <form action="cmMyInfoUpdate" method="post">
 	<input type="text" name="m_summonerName" value="${member.m_summonerName}">
+	<input type="text" name="m_birth" value="${member.m_birth}">
 	<input type="text" name="m_phoneNum" value="${member.m_phoneNum}">
-	<input type="submit" value="회원정보수정">
+	<input type="text" name="m_email" value="${member.m_email}">
+	<input type="submit" value="확인">
 </form>
 
 </body>
