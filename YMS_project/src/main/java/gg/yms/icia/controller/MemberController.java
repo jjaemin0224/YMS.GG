@@ -48,13 +48,6 @@ public class MemberController {
 		return mav;
 	}
 
-	// 로그아웃
-	@RequestMapping(value = "/mmLogout", method = RequestMethod.GET)
-	public ModelAndView mmLogout(HttpSession session) {
-		mav = mm.Logout(session);
-		return mav;
-	}
-
 	// 아이디 찾기 페이지로 이동
 	@RequestMapping(value = "/mmSearchIdMv", method = RequestMethod.GET)
 	public String mmSearchIdMv() {
@@ -88,10 +81,41 @@ public class MemberController {
 		return mav;
 	}
 
-	// 비밀번호 변경2
-	@PostMapping(value = "/mmResetPw2")
-	public ModelAndView mmResetPw2(@ModelAttribute Member mb) {
-		mav = mm.mmResetPw(mb);
+//	(공통회원)---------------------------------------------------------------------------------------------------------------------
+
+	// 로그아웃
+	@RequestMapping(value = "/cmLogout", method = RequestMethod.GET)
+	public ModelAndView cmLogout(HttpSession session) {
+		mav = mm.cmLogout(session);
 		return mav;
 	}
+
+	// 마이페이지 이동
+	@RequestMapping(value = "/cmMyPageMv", method = RequestMethod.GET)
+	public ModelAndView cmMyPageMv(HttpSession session) {
+		mav = mm.cmMyPageMv(session);
+		return mav;
+	}
+
+	// 회원정보수정 전 로그인 페이지 이동
+	@RequestMapping(value = "/cmMyInfoLoginMv", method = RequestMethod.GET)
+	public String cmMyInfoLoginMv() {
+		return "member/cm/myInfoLogin";
+	}
+
+	// 회원정보수정 전 로그인
+	@PostMapping(value = "/cmMyInfoLogin")
+	public ModelAndView cmMyInfoLogin(@ModelAttribute Member mb, HttpSession session) {
+		mav = mm.cmMyInfoLogin(mb, session);
+		return mav;
+	}
+
+	// 회원정보수정
+	@PostMapping(value = "/cmMyInfoUpdate")
+	public ModelAndView cmMyInfoUpdate(@ModelAttribute Member mb, HttpSession session) {
+		mav = mm.cmMyInfoUpdate(mb, session);
+		return mav;
+	}
+	
+	
 }

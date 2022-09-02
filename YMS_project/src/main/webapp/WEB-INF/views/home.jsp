@@ -10,6 +10,12 @@
 <body>
 	<a href="mmLoginMv">로그인</a>
 	<a href="mmJoinMv">회원가입</a>
-	<a href="mmLogout">로그아웃</a>
+	
+	
+	<br>
+	<a href="main">홈으로</a>
+	<a href="cmLogout">로그아웃</a>
+	<a href="cmMyPageMv">마이페이지</a>
+	
 </body>
 </html>

@@ -4,7 +4,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="gg.yms.icia.dao.IMemberDao">
-	
+
+	<select id="getMemberInfo" parameterType="String"  resultType="Member">
+		SELECT * FROM MEMBER WHERE M_ID=#{m_id}
+	</select>
 	
 	<insert id="mmJoin" parameterType="Member">
 		INSERT INTO MEMBER VALUES(#{m_id}, #{m_pw}, #{m_name}, #{m_phoneNum}, #{m_birth}, #{m_summonerName}, default, default, default)
@@ -20,6 +23,10 @@
 	
 	<update id="mmResetPw" parameterType="Member" >
 		UPDATE MEMBER SET M_PW=#{m_pw} WHERE M_ID=#{m_id}
+	</update>
+	
+	<update id="cmMyInfoUpdate" parameterType="Member" >
+		UPDATE MEMBER SET M_SUMMONERNAME=#{m_summonerName}, M_PHONENUM=#{m_phoneNum} WHERE M_ID=#{m_id}
 	</update>
 	
 </mapper>
