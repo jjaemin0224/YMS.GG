@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,39 +8,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>보드리스트</h1>
-<div id="bbBoardTable"></div>
+   <h1>보드리스트</h1>
+   <div id="bbBoardTable"></div>
 
-${bbList}
-${paging}
+   <table>
+      <tr>
+         <th>글번호</th>
+         <th>작성자</th>
+         <th>제목</th>
+         <th>날짜</th>
 
-<script type="text/javascript">
-	$(function(){
-		var bbList = ${bbList};
-		console.log(bbList);		
-		//var $table = $('<table border="1">');
-		//var $trH = $('<tr></tr>');
-		//$('<td>').text('글번호').appendTo($trH);
-		//$('<td>').text('작성자').appendTo($trH);
-		//$('<td>').text('제목').appendTo($trH);
-		//$('<td>').text('작석날짜').appendTo($trH);
-		//$('<td>').text('좋아요').appendTo($trH);
-		//trH.appendTo($table);
-		
-		//for (var i = 0; i < bbList.length; i++){
-			//var $tr=$('<tr></tr>');
-			//$('<td>').text(${bbList[i].bb_postNum}).appendTo($tr);
-			//$('<td>').text(${bbList[i].bb_postNum}).appendTo($tr);
-			//$('<td>').text(${bbList[i].bb_postNum}).appendTo($tr);
-			//$('<td>').text(${bbList[i].bb_postNum}).appendTo($tr);
-			//$('<td>').text(${bbList[i].bb_postNum}).appendTo($tr);
-			//$tr.appendTo($table);
-		//}
-		//$table.appendTo("#bbBoardTable");
-	}); // end ready
-	
-
-</script>
-
+      </tr>
+      <c:forEach var="list" items="${bbList}">
+         <tr>
+            <td>${list.bb_postNum}</td>
+            <td>${list.bb_id}</td>
+            <td> <a href="bbBoardView?bb_postNum=${list.bb_postNum}">${list.bb_title}</a></td>
+            <td>${list.bb_date}</td>
+      </c:forEach>
+   </table>
+   ${paging}
 </body>
 </html>

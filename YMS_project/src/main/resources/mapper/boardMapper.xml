@@ -16,7 +16,7 @@
 		<![CDATA[
 			SELECT * FROM (
             	SELECT ROWNUM RN, B.*
-            	FROM (SELECT * FROM BullentinBoard ORDER BY BB_POSTNUM DESC) B
+            	FROM (SELECT * FROM BulletinBoard ORDER BY BB_POSTNUM DESC) B
             	WHERE ROWNUM<=#{pageNum}*10  
             	)
          	WHERE RN>=#{pageNum}*10-9
@@ -25,7 +25,27 @@
 	</select>
 	
 	<select id="getBoardCount" resultType="int">
-		SELECT COUNT(*) FROM BULLENTINBOARD
+		SELECT COUNT(*) FROM BULLETINBOARD
 	</select>
+	
+	<select id="bbBoardView" parameterType="Integer" resultType="Board">
+		SELECT * FROM BULLETINBOARD
+		WHERE BB_POSTNUM = #{bb_postNum}
+	</select>
+	
+	<insert id="bbBoardWrite" parameterType="Board">
+		INSERT INTO BULLETINBOARD VALUES(bb_postNum_SEQ.nextval, #{bb_id}, #{bb_title}, #{bb_content}, default, default, null)
+	</insert>
+	
+	<select id="bbReplyView" parameterType="Integer" resultType="BbReply">
+		SELECT * FROM BBREPLY
+		WHERE BBR_POSTNUM = #{bb_postNum}
+	</select>
+	
+	<insert id="bbReplyInsert" parameterType="BbReply">
+		INSERT INTO BBREPLY VALUES(#{bbr_postNum}, BBREPLY_SEQ.NEXTVAL, #{bbr_content}, #{bbr_id}, SYSDATE)
+	</insert>
+	
+
 
 </mapper>
