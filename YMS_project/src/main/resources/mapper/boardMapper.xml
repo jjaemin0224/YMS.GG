@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gg.yms.icia.dao.IBoardDao">
+
+	<select id="bbBulletinBoardList" parameterType="Integer"
+		resultType="Board">
+		<!-- <![CDATA[ SELECT * FROM BLIST WHERE RN>=#{pageNum}*10-9 AND RN<=#{pageNum}*10 
+			]]> -->
+		<!-- 게시글이 많을 때 속도를 업하기 위해 -->
+		<!-- /*+INDEX_DESC(B PK_B_NUM)*/ : 인덱스를 타고 내림차순 검색 -->
+		<!-- 시너님 또는 원 테이블명을 쓰던지 일치해야 함. -->
+		<!-- 서브쿼리에서 WHERE가 SELECT보다 먼저처리되므로 RN별칭 쓰면 안됨 -->
+		<![CDATA[
+			SELECT * FROM (
+            	SELECT ROWNUM RN, B.*
+            	FROM (SELECT * FROM BullentinBoard ORDER BY BB_POSTNUM DESC) B
+            	WHERE ROWNUM<=#{pageNum}*10  
+            	)
+         	WHERE RN>=#{pageNum}*10-9
+		]]>
+
+	</select>
+	
+	<select id="getBoardCount" resultType="int">
+		SELECT COUNT(*) FROM BULLENTINBOARD
+	</select>
+
+</mapper>

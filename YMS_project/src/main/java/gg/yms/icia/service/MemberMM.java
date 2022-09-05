@@ -1,5 +1,7 @@
 package gg.yms.icia.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import gg.yms.icia.bean.Feedback;
 import gg.yms.icia.bean.Member;
 import gg.yms.icia.bean.Withdrawal;
 import gg.yms.icia.dao.IMemberDao;
@@ -241,6 +244,6 @@ public class MemberMM {
 		return mav;
 	}
 	
-	
+
 
 }

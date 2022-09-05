@@ -26,5 +26,8 @@
 <a href="cmMyInfoPwUpdateMv">비밀번호변경</a>
 <a href="cmMyInfoDeleteMv">회원탈퇴</a>
 <a href="cmCashChargeMv">캐시충전</a>
+<a href="gmFeedbackMv">내 피드백</a>
+
+
 </body>
 </html>

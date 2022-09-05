@@ -7,6 +7,7 @@
 
 	<select id="mainChampList" resultType="ChampImg">
 		SELECT CH_IMG_CHAMPIONID, CH_IMG_IMG1 FROM CHAMPIMG
+		ORDER BY CH_IMG_CHAMPIONNAMEKR
 	</select>
 	
 </mapper>

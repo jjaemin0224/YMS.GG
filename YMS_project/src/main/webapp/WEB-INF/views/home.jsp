@@ -19,6 +19,7 @@
 	<a href="cmMyPageMv">마이페이지</a>
 	<a href="cmCashChargeMv">캐시충전</a>
 	
+	<a href="bbBulletinBoardMv">자유게시판</a>
 	
 	
 	<div id="mainMiddle">
