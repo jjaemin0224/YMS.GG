@@ -280,6 +280,7 @@ a span:nth-child(4){
                 Join
             </a>
           
+         
         </header>
 
 	<br>

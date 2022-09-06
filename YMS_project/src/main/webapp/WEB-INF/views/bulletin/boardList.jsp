@@ -267,6 +267,8 @@ code {
 	<a href="main"><img src="resources/img/yms.png" style="width: 100px; height: 100px;" ></a>
 	</div>
 	
+	
+
 	 <div class="buttons">
         <button class="fill">전적 검색</button>
         <button class="pulse">챔피언 분석</button>
