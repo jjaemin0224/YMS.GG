@@ -21,6 +21,11 @@
 	
 	<a href="bbBulletinBoardMv">자유게시판</a>
 	
+	<form name="grSearchFrm" action="grSearch" method="get">
+		<input type="text" name="gr_summonerName">
+		<input type="submit">
+	</form>
+	
 	
 	<div id="mainMiddle">
 		<div id="mainChampList"></div>
