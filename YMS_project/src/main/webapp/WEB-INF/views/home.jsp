@@ -14,6 +14,7 @@
   box-shadow: inset 0 0 0 2em var(--hover);
 }
 
+
 .pulse:hover,
 .pulse:focus {
   -webkit-animation: pulse 1s;

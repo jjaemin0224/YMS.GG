@@ -19,6 +19,7 @@ body {
   background: linear-gradient(#252a37,#252a37);
 }
 
+
 .login-box {
   position: absolute;
   top: 50%;

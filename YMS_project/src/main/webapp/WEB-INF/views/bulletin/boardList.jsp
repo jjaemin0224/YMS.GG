@@ -14,6 +14,7 @@ a:link {
 	color: black;
 }
 
+
 a:visited {
 	text-decoration: none;
 }
