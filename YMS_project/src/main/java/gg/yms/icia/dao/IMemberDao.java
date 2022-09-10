@@ -24,6 +24,8 @@ public interface IMemberDao {
 	boolean cmInsertWithdrawal(Withdrawal wd);
 
 	boolean cmCashCharge(Member mb);
+	
+	int mmIdCheck (Member mb);
 
 	
 

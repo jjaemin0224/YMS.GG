@@ -137,7 +137,6 @@ body {
 
 	<a href="main"><img src="resources/img/yms.png" style = "width:200px; height:200px"></a>
 
-
 	<div class="login-box">
 		<h2>Login</h2>
 		<form name="mmLoginFrm" action="mmLogin" method="post">

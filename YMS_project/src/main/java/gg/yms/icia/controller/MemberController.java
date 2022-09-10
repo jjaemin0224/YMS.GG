@@ -4,10 +4,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,7 +38,16 @@ public class MemberController {
 		mav = mm.mmJoin(mb);
 		return mav;
 	}
-
+	
+	//아이디 중복 체크
+	 @ResponseBody // 값 변환을 위해 꼭 필요함
+		@GetMapping("/mmIdCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
+		public String mmIdCheck(@ModelAttribute Member mb) {
+			int result = mm.mmIdCheck(mb); // 중복확인한 값을 int로 받음
+			System.out.println("resultttt:" + result);
+			return Integer.toString(result); 
+		}
+ 
 	// 로그인 페이지로 이동
 	@RequestMapping(value = "/mmLoginMv", method = RequestMethod.GET)
 	public String mmLoginMv() {
@@ -80,6 +92,23 @@ public class MemberController {
 	public ModelAndView mmResetPw(@ModelAttribute Member mb) {
 		mav = mm.mmResetPw(mb);
 		return mav;
+	}
+	
+	// 휴대폰 인증 이동
+	@RequestMapping(value = "/mmPhoneCheckMv", method = RequestMethod.GET)
+	public String mmPhoneCheckMv() {
+		return "member/phoneCertification";
+	}
+	
+	// 휴대폰 인증
+	@RequestMapping(value = "/mmPhoneCheck",  method = RequestMethod.GET)
+	@ResponseBody
+	public String sendSMS(@RequestParam("m_phoneNum") String userPhoneNumber) { // 휴대폰 문자보내기
+		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
+		System.out.println(randomNumber);
+		mm.mmCertifiedPhoneNumber(userPhoneNumber,randomNumber);
+		
+		return Integer.toString(randomNumber);
 	}
 
 //	(공통회원)---------------------------------------------------------------------------------------------------------------------
@@ -156,6 +185,12 @@ public class MemberController {
 		mav = mm.cmCashCharge(mb, session);
 		return mav;
 	}
-
+	
+	//카카오페이
+	@RequestMapping(value = "/cmKakaoPay", method = RequestMethod.GET)
+	public ModelAndView cmKakaoPay(@ModelAttribute Member mb, HttpSession session) {
+		mav = mm.cmKakaoPay(mb,session);
+		return mav;
+	}
 
 }

@@ -1,9 +1,11 @@
 package gg.yms.icia.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +15,8 @@ import gg.yms.icia.bean.Feedback;
 import gg.yms.icia.bean.Member;
 import gg.yms.icia.bean.Withdrawal;
 import gg.yms.icia.dao.IMemberDao;
+import net.nurigo.java_sdk.api.Message;
+import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 @Service
 public class MemberMM {
@@ -120,6 +124,30 @@ public class MemberMM {
 
 		mav.setViewName(view);
 		return mav;
+	}
+	
+	//휴대폰 인증
+	public void mmCertifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
+		String api_key = "NCS4TFIUH8KX0ZMV";
+	    String api_secret = "NOLQQZAPE0GE3GTCYBGWPF6ITU4ERB0U";
+	    Message coolsms = new Message(api_key, api_secret);
+
+	    HashMap<String, String> params = new HashMap<String, String>();
+	    params.put("to", userPhoneNumber);   
+	    System.out.println(userPhoneNumber);
+	    params.put("from", "01030982596");    
+	    params.put("type", "SMS");
+	    params.put("text", "[yms.gg] 인증번호는" + "["+randomNumber+"]" + "입니다."); // 문자 내용 입력
+	    params.put("app_version", "test app 1.2"); // application name and version
+
+	    try {
+	        JSONObject obj = (JSONObject) coolsms.send(params);
+	        System.out.println(obj.toString());
+	      } catch (CoolsmsException e) {
+	        System.out.println(e.getMessage());
+	        System.out.println(e.getCode());
+	      }
+		
 	}
 
 //	(공통회원)-----------------------------------------------------------------------------------------------------------------
@@ -233,13 +261,35 @@ public class MemberMM {
 		String view = null;
 		
 		if (mDao.cmCashCharge(mb)) {
-			view = "main";
+			view = "home";
 		}
 		else {
 			view = "member/cm/cashCharge";
 			mav.addObject("msg", "캐시충전실패");
 		}
 		mav.setViewName(view);
+		
+		return mav;
+	}
+	
+	//아이디 중복체크
+	public int mmIdCheck(Member mb) {
+		int result = mDao.mmIdCheck(mb);
+		System.out.println("resultMM: " + result);
+		return result;
+	}
+	
+	//카카오페이
+	public ModelAndView cmKakaoPay(Member mb, HttpSession session) {
+		mav = new ModelAndView();
+		Member member = getMemberInfo(session);
+		
+		member.getM_name();
+		member.getM_email();
+		member.getM_phoneNum();
+		member.getM_cash();
+		
+		mav.addObject("member", member);
 		
 		return mav;
 	}
