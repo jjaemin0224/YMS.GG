@@ -144,6 +144,9 @@ code {
     box-sizing: border-box;
 }
 header{
+	position:absolute;
+	top:10px;
+	right:1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -254,6 +257,19 @@ a span:nth-child(4){
         bottom: 100%;
     }
 }
+
+.img{
+    position: absolute;
+    top: 180px;
+    left: 40%;
+}
+
+.buttons{
+    position: absolute;
+    top: 600px;
+    left: 18%;
+}
+
 </style>
 
 <body>
@@ -284,14 +300,14 @@ a span:nth-child(4){
           
          
         </header>
-		<img src="resources/img/yms.png">
+		<img src="resources/img/yms.png" class="img">
 	<div class="buttons">
         <button class="fill">전적 검색</button>
         <button class="pulse">챔피언 분석</button>
         <button class="close">챔피언 추천</button>
         <button class="raise">쿨타임 계산기</button>
         <button onclick="location.href='bbBulletinBoardMv'" class="up">자유 게시판</button>
-        <button class="slide">팀원 찾기</button>
+        <button onclick="location.href='TsbList'" class="slide">팀원 찾기</button>
         <button class="offset">소환사 분석</button>
       </div>
 	

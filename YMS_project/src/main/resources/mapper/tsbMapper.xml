@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gg.yms.icia.dao.TsbDao">
+
+	<!-- 글 목록 -->
+	<select id ="getTsbList" parameterType = "Integer" resultType= "Tsb_Board">
+		<![CDATA[
+			SELECT * FROM (
+            	SELECT ROWNUM RN, TEAM_SEARCH_BOARD.*
+            	FROM (SELECT * FROM TEAM_SEARCH_BOARD ORDER BY TSB_POSTNUM DESC) TEAM_SEARCH_BOARD
+            	WHERE ROWNUM<=#{pageNum}*10  
+            	)
+         	WHERE RN>=#{pageNum}*10-9
+		]]>
+	</select>
+	
+	<!-- 정렬 글 목록 -->
+	<select id="getTsbListSort" 
+		resultType="Tsb_Board">
+		<![CDATA[
+			SELECT * FROM (
+            	SELECT ROWNUM RN, TEAM_SEARCH_BOARD.*
+            	FROM (SELECT * FROM TEAM_SEARCH_BOARD WHERE (TSB_LANE = #{lane} AND TSB_QUE =#{que} AND TSB_TIER =#{tier} )ORDER BY TSB_POSTNUM DESC) TEAM_SEARCH_BOARD
+            	WHERE ROWNUM<=#{pageNum}*10  
+            	)
+         	WHERE RN>=#{pageNum}*10-9
+		]]>
+	</select>
+	
+	
+	<select id="getBoardCount" resultType="int">
+		SELECT COUNT(*) FROM TEAM_SEARCH_BOARD
+	</select>
+	
+	<select id="getSortBoardCount" resultType="int">
+		SELECT COUNT(*) FROM TEAM_SEARCH_BOARD WHERE (TSB_LANE = #{lane} AND TSB_QUE =#{que} AND TSB_TIER =#{tier})
+	</select>
+	
+	
+	<!-- 글 작성 -->
+	<insert id = "tsbWrite" parameterType = "String" >
+		INSERT INTO TEAM_SEARCH_BOARD
+		VALUES(tsb_seq.nextval ,#{tsb_id}, #{tsb_title},  #{tsb_contents} , #{tsb_que},#{tsb_tier},#{tsb_lane}, #{tsb_time} , #{tsb_voice} , default)
+ 
+		
+	</insert>
+	
+	<!-- 글 조회 -->
+	<select id = "getTsb" parameterType ="int" resultType = "Tsb_Board" > 
+		SELECT * FROM TEAM_SEARCH_BOARD WHERE TSB_POSTNUM = #{tsb_postnum}
+	</select>
+	
+	<!-- 글 삭제 -->
+	<delete id = "tsbDelete" parameterType = "int" >
+		DELETE FROM TEAM_SEARCH_BOARD WHERE TSB_POSTNUM = ${tsb_postnum}
+	</delete>
+	
+	<!-- 페이징 게시물 총 개수 -->
+	 <select id="getTotal" resultType="int">
+    
+        SELECT COUNT(*) FROM TEAM_SEARCH_BOARD
+    
+    </select>
+</mapper>

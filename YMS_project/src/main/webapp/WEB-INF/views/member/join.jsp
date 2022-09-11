@@ -171,7 +171,7 @@ p {
 				<span id="m_emailCheckMsg"></span>
 			</div>
 			<div class="user-box">
-				<input type="date" id="m_birth" name="m_birth"  required=""> <label>생년월일</label>
+				<input type="text" id="m_birth" name="m_birth"  required=""> <label>생년월일(6자리)</label>
 				<span id="m_birthCheckMsg"></span>
 			</div>
 			<div class="user-box">

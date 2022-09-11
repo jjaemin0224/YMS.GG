@@ -457,16 +457,17 @@ top {
            
 
 				<div class="login-box">
-				<form name="cmCashChargeFrm" id="cmKakaoPay" action="cmKakaoPay" method="post">
-					<div class="user-box">
-							<input type="text"  id="m_cash" name="m_cash" required=""> <label>캐시 가격</label> 
-						<button class="button" id="cashChargeBtn" type="button">
-					<span>확인</span>
-				</button>
-			</div>
-			
-			
-			</form>
+				<form name="cmKakaoPayFrm" id="cmKakaoPay" action="cmKakaoPay" method="post">
+				   <input type="radio" class="m_cash" name="m_cash" value="1000"> <span>1,000원</span> <br>
+				   <input type="radio" class="m_cash" name="m_cash" value="3000"> <span>3,000원</span> <br>
+				   <input type="radio" class="m_cash" name="m_cash" value="5000"> <span>5,000원</span> <br>
+				   <input type="radio" class="m_cash" name="m_cash" value="10000"> <span>10,000원</span> <br>
+				   <input type="radio" class="m_cash" name="m_cash" value="30000"> <span>30,000원</span> <br>
+				   <input type="radio" class="m_cash" name="m_cash" value="50000"> <span>50,000원</span> <br>
+				   <br> <input type="button" id="cashChargeBtn" value="충전">
+
+				</form>
+
 				</div>
 		</div><!--content-->
     </div><!--wrapper-->
@@ -497,37 +498,43 @@ top {
             <p style="color:white;">&#169; <a href="#" style="color:#0AE618">우리는</a><a href="#" style="color:#0AE618">성공할꺼에요</a>. 아마도요? <a href="#" style="color:#0AE618">모두</a> | <a href="#" style="color:#0AE618">화이팅</a> | <a href="#" style="color:#0AE618">ㅋㅋㅋ</a></p>
 
 
+
 <script type="text/javascript">
 var buyer_name = '${member.m_id}';
 var buyer_email = '${member.m_email}';
 var buyer_tel = '${member.m_phoneNum}';
-var buyer_cash = $('#m_cash').val();
-console.log(buyer_cash);
+
+console.log($('input[name="m_cash"]:checked').val());
 var { IMP } = window;
 IMP.init('imp16447358');
 $("#cashChargeBtn").click(function () {
-	IMP.request_pay({
-		pg : 'kakaopay',
-	    pay_method : 'card',
-	    name : 'yms.gg 캐시충전',
-	    amount : $('#m_cash').val(),
-	    buyer_email : buyer_email,
-	    buyer_name : buyer_name,
-	    buyer_tel : buyer_tel, 
+   var buyer_cash = $('input[name="m_cash"]:checked').val();
+   IMP.request_pay({
+      pg : 'kakaopay',
+       pay_method : 'card',
+       name : 'yms.gg 캐시충전',
+       amount : buyer_cash,
+       buyer_email : buyer_email,
+       buyer_name : buyer_name,
+       buyer_tel : buyer_tel, 
 
-	}, function(rsp) {
-		console.log(rsp);
-	    if ( rsp.success ) {
-	    	var msg = '결제가 완료되었습니다.';
-	        msg += '결제 금액 : ' + rsp.paid_amount +'원';
-	        $("#cmKakaoPay").attr("action","cmCashCharge").submit();
-	    } else {
-	    	 var msg = '결제에 실패하였습니다.';
-	         msg += '에러내용 : ' + rsp.error_msg;
-	    }
-	    alert(msg);
-	});
+   }, function(rsp) {
+      console.log(rsp);
+       if ( rsp.success ) {
+          var msg = '결제가 완료되었습니다.';
+           msg += '결제 금액 : ' + rsp.paid_amount +'원';
+           
+           $("#cmKakaoPay").submit();
+           
+       } else {
+           var msg = '결제에 실패하였습니다.';
+            msg += '에러내용 : ' + rsp.error_msg;
+       }
+       alert(msg);
+   });
+   
 });
+
 </script>
 
         </div><!--content-->

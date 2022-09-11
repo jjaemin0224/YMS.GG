@@ -21,176 +21,174 @@ import gg.yms.icia.service.MemberMM;
 @Controller
 public class MemberController {
 
-	@Autowired
-	private MemberMM mm;
+   @Autowired
+   private MemberMM mm;
 
-	ModelAndView mav;
+   ModelAndView mav;
 
-	// 회원가입 페이지로 이동
-	@RequestMapping(value = "/mmJoinMv", method = RequestMethod.GET)
-	public String mmJoinMv() {
-		return "member/join";
-	}
+   // 회원가입 페이지로 이동
+   @RequestMapping(value = "/mmJoinMv", method = RequestMethod.GET)
+   public String mmJoinMv() {
+      return "member/join";
+   }
 
-	// 회원가입
-	@PostMapping(value = "/mmJoin")
-	public ModelAndView mmJoin(@ModelAttribute Member mb) {
-		mav = mm.mmJoin(mb);
-		return mav;
-	}
-	
-	//아이디 중복 체크
-	 @ResponseBody // 값 변환을 위해 꼭 필요함
-		@GetMapping("/mmIdCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
-		public String mmIdCheck(@ModelAttribute Member mb) {
-			int result = mm.mmIdCheck(mb); // 중복확인한 값을 int로 받음
-			System.out.println("resultttt:" + result);
-			return Integer.toString(result); 
-		}
+   // 회원가입
+   @PostMapping(value = "/mmJoin")
+   public ModelAndView mmJoin(@ModelAttribute Member mb) {
+      mav = mm.mmJoin(mb);
+      return mav;
+   }
+   
+   //아이디 중복 체크
+    @ResponseBody // 값 변환을 위해 꼭 필요함
+      @GetMapping("/mmIdCheck") // 아이디 중복확인을 위한 값으로 따로 매핑
+      public String mmIdCheck(@ModelAttribute Member mb) {
+         int result = mm.mmIdCheck(mb); // 중복확인한 값을 int로 받음
+         System.out.println("resultttt:" + result);
+         return Integer.toString(result); 
+      }
  
-	// 로그인 페이지로 이동
-	@RequestMapping(value = "/mmLoginMv", method = RequestMethod.GET)
-	public String mmLoginMv() {
-		return "member/login";
-	}
+   // 로그인 페이지로 이동
+   @RequestMapping(value = "/mmLoginMv", method = RequestMethod.GET)
+   public String mmLoginMv() {
+      return "member/login";
+   }
 
-	// 로그인
-	@PostMapping(value = "/mmLogin")
-	public ModelAndView mmLogin(@ModelAttribute Member mb, HttpSession session, RedirectAttributes attr) {
-		mav = mm.mmLogin(mb, session, attr);
-		return mav;
-	}
+   // 로그인
+   @PostMapping(value = "/mmLogin")
+   public ModelAndView mmLogin(@ModelAttribute Member mb, HttpSession session, RedirectAttributes attr) {
+      mav = mm.mmLogin(mb, session, attr);
+      return mav;
+   }
 
-	// 아이디 찾기 페이지로 이동
-	@RequestMapping(value = "/mmSearchIdMv", method = RequestMethod.GET)
-	public String mmSearchIdMv() {
-		return "member/searchId";
-	}
+   // 아이디 찾기 페이지로 이동
+   @RequestMapping(value = "/mmSearchIdMv", method = RequestMethod.GET)
+   public String mmSearchIdMv() {
+      return "member/searchId";
+   }
 
-	// 아이디 찾기
-	@PostMapping(value = "/mmSearchId")
-	public ModelAndView mmSearchId(@ModelAttribute Member mb) {
-		mav = mm.mmSearchId(mb);
-		return mav;
-	}
+   // 아이디 찾기
+   @PostMapping(value = "/mmSearchId")
+   public ModelAndView mmSearchId(@ModelAttribute Member mb) {
+      mav = mm.mmSearchId(mb);
+      return mav;
+   }
 
-	// 비밀번호 찾기 페이지로 이동
-	@RequestMapping(value = "/mmSearchPwMv", method = RequestMethod.GET)
-	public String mmSearchPwMv() {
-		return "member/searchPw";
-	}
+   // 비밀번호 찾기 페이지로 이동
+   @RequestMapping(value = "/mmSearchPwMv", method = RequestMethod.GET)
+   public String mmSearchPwMv() {
+      return "member/searchPw";
+   }
 
-	// 비밀번호 찾기
-	@PostMapping(value = "/mmSearchPw")
-	public ModelAndView mmSearchPw(@ModelAttribute Member mb) {
-		mav = mm.mmSearchPw(mb);
-		return mav;
-	}
+   // 비밀번호 찾기
+   @PostMapping(value = "/mmSearchPw")
+   public ModelAndView mmSearchPw(@ModelAttribute Member mb) {
+      mav = mm.mmSearchPw(mb);
+      return mav;
+   }
 
-	// 비밀번호 변경
-	@PostMapping(value = "/mmResetPw")
-	public ModelAndView mmResetPw(@ModelAttribute Member mb) {
-		mav = mm.mmResetPw(mb);
-		return mav;
-	}
-	
-	// 휴대폰 인증 이동
-	@RequestMapping(value = "/mmPhoneCheckMv", method = RequestMethod.GET)
-	public String mmPhoneCheckMv() {
-		return "member/phoneCertification";
-	}
-	
-	// 휴대폰 인증
-	@RequestMapping(value = "/mmPhoneCheck",  method = RequestMethod.GET)
-	@ResponseBody
-	public String sendSMS(@RequestParam("m_phoneNum") String userPhoneNumber) { // 휴대폰 문자보내기
-		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
-		System.out.println(randomNumber);
-		mm.mmCertifiedPhoneNumber(userPhoneNumber,randomNumber);
-		
-		return Integer.toString(randomNumber);
-	}
+   // 비밀번호 변경
+   @PostMapping(value = "/mmResetPw")
+   public ModelAndView mmResetPw(@ModelAttribute Member mb) {
+      mav = mm.mmResetPw(mb);
+      return mav;
+   }
+   
+   // 휴대폰 인증 이동
+   @RequestMapping(value = "/mmPhoneCheckMv", method = RequestMethod.GET)
+   public String mmPhoneCheckMv() {
+      return "member/phoneCertification";
+   }
+   
+   // 휴대폰 인증
+   @RequestMapping(value = "/mmPhoneCheck",  method = RequestMethod.GET)
+   @ResponseBody
+   public String sendSMS(@RequestParam("m_phoneNum") String userPhoneNumber) { // 휴대폰 문자보내기
+      int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
+      System.out.println(randomNumber);
+      mm.mmCertifiedPhoneNumber(userPhoneNumber,randomNumber);
+      
+      return Integer.toString(randomNumber);
+   }
 
-//	(공통회원)---------------------------------------------------------------------------------------------------------------------
+//   (공통회원)---------------------------------------------------------------------------------------------------------------------
 
-	// 로그아웃
-	@RequestMapping(value = "/cmLogout", method = RequestMethod.GET)
-	public ModelAndView cmLogout(HttpSession session) {
-		mav = mm.cmLogout(session);
-		return mav;
-	}
+   // 로그아웃
+   @RequestMapping(value = "/cmLogout", method = RequestMethod.GET)
+   public ModelAndView cmLogout(HttpSession session) {
+      mav = mm.cmLogout(session);
+      return mav;
+   }
 
-	// 마이페이지 이동
-	@RequestMapping(value = "/cmMyPageMv", method = RequestMethod.GET)
-	public ModelAndView cmMyPageMv(HttpSession session) {
-		mav = mm.cmMyPageMv(session);
-		return mav;
-	}
+   // 마이페이지 이동
+   @RequestMapping(value = "/cmMyPageMv", method = RequestMethod.GET)
+   public ModelAndView cmMyPageMv(HttpSession session) {
+      mav = mm.cmMyPageMv(session);
+      return mav;
+   }
 
-	// 회원정보수정 전 로그인 페이지 이동
-	@RequestMapping(value = "/cmMyInfoLoginMv", method = RequestMethod.GET)
-	public String cmMyInfoLoginMv() {
-		return "member/cm/myInfoLogin";
-	}
+   // 회원정보수정 전 로그인 페이지 이동
+   @RequestMapping(value = "/cmMyInfoLoginMv", method = RequestMethod.GET)
+   public String cmMyInfoLoginMv() {
+      return "member/cm/myInfoLogin";
+   }
 
-	// 회원정보수정 전 로그인
-	@PostMapping(value = "/cmMyInfoLogin")
-	public ModelAndView cmMyInfoLogin(@ModelAttribute Member mb, HttpSession session) {
-		mav = mm.cmMyInfoLogin(mb, session);
-		return mav;
-	}
+   // 회원정보수정 전 로그인
+   @PostMapping(value = "/cmMyInfoLogin")
+   public ModelAndView cmMyInfoLogin(@ModelAttribute Member mb, HttpSession session) {
+      mav = mm.cmMyInfoLogin(mb, session);
+      return mav;
+   }
 
-	// 회원정보수정
-	@PostMapping(value = "/cmMyInfoUpdate")
-	public ModelAndView cmMyInfoUpdate(@ModelAttribute Member mb, HttpSession session) {
-		mav = mm.cmMyInfoUpdate(mb, session);
-		return mav;
-	}
+   // 회원정보수정
+   @PostMapping(value = "/cmMyInfoUpdate")
+   public ModelAndView cmMyInfoUpdate(@ModelAttribute Member mb, HttpSession session) {
+      mav = mm.cmMyInfoUpdate(mb, session);
+      return mav;
+   }
 
-	// 마이페이지 비밀번호 변경 페이지 이동
-	@RequestMapping(value = "/cmMyInfoPwUpdateMv", method = RequestMethod.GET)
-	public String cmMyInfoPwUpdateMv() {
-		return "member/cm/myInfoPwUpdate";
-	}
+   // 마이페이지 비밀번호 변경 페이지 이동
+   @RequestMapping(value = "/cmMyInfoPwUpdateMv", method = RequestMethod.GET)
+   public String cmMyInfoPwUpdateMv() {
+      return "member/cm/myInfoPwUpdate";
+   }
 
-	// 마이페이지 비밀번호 변경
-	@PostMapping(value = "/cmMyInfoPwUpdate")
-	public ModelAndView cmMyInfoPwUpdate(@ModelAttribute Member mb, HttpSession session) {
-		mav = mm.cmMyInfoPwUpdate(mb, session);
-		return mav;
-	}
+   // 마이페이지 비밀번호 변경
+   @PostMapping(value = "/cmMyInfoPwUpdate")
+   public ModelAndView cmMyInfoPwUpdate(@ModelAttribute Member mb, HttpSession session) {
+      mav = mm.cmMyInfoPwUpdate(mb, session);
+      return mav;
+   }
 
-	// 마이페이지 회원탈퇴 페이지 이동
-	@RequestMapping(value = "/cmMyInfoDeleteMv", method = RequestMethod.GET)
-	public String cmMyInfoDeleteMv() {
-		return "member/cm/myInfoDelete";
-	}
+   // 마이페이지 회원탈퇴 페이지 이동
+   @RequestMapping(value = "/cmMyInfoDeleteMv", method = RequestMethod.GET)
+   public String cmMyInfoDeleteMv() {
+      return "member/cm/myInfoDelete";
+   }
 
-	// 마이페이지 회원탈퇴
-	@PostMapping(value = "/cmMyInfoDelete")
-	public ModelAndView cmMyInfoDelete(@ModelAttribute Member mb, @ModelAttribute Withdrawal wd, HttpSession session) {
-		mav = mm.cmMyInfoDelete(mb, wd, session);
-		return mav;
-	}
+   // 마이페이지 회원탈퇴
+   @PostMapping(value = "/cmMyInfoDelete")
+   public ModelAndView cmMyInfoDelete(@ModelAttribute Member mb, @ModelAttribute Withdrawal wd, HttpSession session) {
+      mav = mm.cmMyInfoDelete(mb, wd, session);
+      return mav;
+   }
 
-	// 내캐시충전 페이지 이동
-	@RequestMapping(value = "/cmCashChargeMv", method = RequestMethod.GET)
-	public String cmCashChargeMv() {
-		return "member/cm/cashCharge";
-	}
+   // 내캐시충전 페이지 이동
+   @RequestMapping(value = "/cmCashChargeMv", method = RequestMethod.GET)
+   public ModelAndView cmCashChargeMv(HttpSession session) {
+      mav = mm.cmCashChargeMv(session);
+      System.out.println("mmCon: " + mav);
+      return mav;
+   }
 
-	// 내캐시충전
-	@PostMapping(value = "/cmCashCharge")
-	public ModelAndView cmCashCharge(@ModelAttribute Member mb, HttpSession session) {
-		mav = mm.cmCashCharge(mb, session);
-		return mav;
-	}
-	
-	//카카오페이
-	@RequestMapping(value = "/cmKakaoPay", method = RequestMethod.GET)
-	public ModelAndView cmKakaoPay(@ModelAttribute Member mb, HttpSession session) {
-		mav = mm.cmKakaoPay(mb,session);
-		return mav;
-	}
+   
+   //카카오페이
+   @RequestMapping(value = "/cmKakaoPay", method = RequestMethod.POST)
+   public ModelAndView cmKakaoPay(@ModelAttribute Member mb, HttpSession session) {
+	   System.out.println("kakaoCon: "+ mb);
+      mav = mm.cmKakaoPay(mb,session);
+      System.out.println("kakaoMav: "+ mav);
+      return mav;
+   }
 
 }

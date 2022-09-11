@@ -1,6 +1,5 @@
 package gg.yms.icia.service;
 
-import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,10 +21,6 @@ public class GameRecordMM {
 		mav.setViewName("gameRecord/search");
 		return mav;
 		}
-
-	public ModelAndView grLastList(String gr_summonerName) {
-		PythonInterpreter pyInterp = new PythonInterpreter();
-		return null;
 	}
 		
 }
