@@ -11,121 +11,169 @@
 <style>
 a:link {
 	text-decoration: none;
-	color: black;
+	color: #000;
 }
 
+.view a:link {
+	text-decoration: none;
+	color: ece6cc;
+}
 
 a:visited {
-	text-decoration: none;
-}
-
-a:active {
 	text-decoration: none;
 	color: grey;
 }
 
+a:active {
+	text-decoration: none;
+	color: ece6cc;
+}
+
 a:hover {
 	text-decoration: underline;
-	color: red;
+	color: ece6cc;
+}
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
+
+* {font-family: 'Open Sans', sans-serif;}
+
+.rwd-table {
+  margin: auto;
+  min-width: 1100px;
+  max-width: 100%;
+  border-collapse: collapse;
 }
 
-table {
-	border-spacing: 1;
-	border-collapse: collapse;
-	background: white;
-	border-radius: 6px;
-	overflow: hidden;
-	max-width: 800px;
-	width: 100%;
-	margin: 0 auto;
-	position: relative;
-	text-decoration: none;
-	text-align: center;
+.rwd-table tr:first-child {
+  border-top: none;
+  background: #428bca;
+  color: #fff;
 }
 
-table * {
-	position: relative;
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #f5f9fc;
 }
 
-table td, table th {
-	padding-left: 8px;
+.rwd-table tr:nth-child(odd):not(:first-child) {
+  background-color: #ebf3f9;
 }
 
-table thead tr {
-	height: 60px;
-	background: #FFED86;
-	font-size: 16px;
+.rwd-table th {
+  display: none;
 }
 
-table tbody tr {
-	height: 48px;
-	border-bottom: 1px solid #E3F1D5;
+.rwd-table td {
+  display: block;
 }
 
-table tbody tr:last-child {
-	border: 0;
+.rwd-table td:first-child {
+  margin-top: .5em;
 }
 
-@media screen and (max-width: 35.5em) {
-	table {
-		display: block;
-	}
-	table>*, table tr, table td, table th {
-		display: block;
-	}
-	table thead {
-		display: none;
-	}
-	table tbody tr {
-		height: auto;
-		padding: 8px 0;
-	}
-	table tbody tr td {
-		padding-left: 45%;
-		margin-bottom: 12px;
-	}
-	table tbody tr td:last-child {
-		margin-bottom: 0;
-	}
-	table tbody tr td:before {
-		position: absolute;
-		font-weight: 700;
-		width: 40%;
-		left: 10px;
-		top: 0;
-	}
-	table tbody tr td:nth-child(1):before {
-		content: "Code";
-	}
-	table tbody tr td:nth-child(2):before {
-		content: "Stock";
-	}
-	table tbody tr td:nth-child(3):before {
-		content: "Cap";
-	}
-	table tbody tr td:nth-child(4):before {
-		content: "Inch";
-	}
-	table tbody tr td:nth-child(5):before {
-		content: "Box Type";
-	}
+.rwd-table td:last-child {
+  margin-bottom: .5em;
 }
 
-body {
-	background: #252a37;
-	font: 400 14px "Calibri", "Arial";
-	padding: 20px;
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
+  color: #000;
 }
 
-blockquote {
-	color: white;
-	text-align: center;
+.rwd-table th,
+.rwd-table td {
+  text-align: left;
 }
 
-.paging {
-	text-align: center;
-	text-decoration: none;
-	font-size: 20px;
+.rwd-table {
+  color: #333;
+  border-radius: .4em;
+  overflow: hidden;
+}
+
+.rwd-table tr {
+  border-color: #bfbfbf;
+}
+
+.rwd-table th,
+.rwd-table td {
+  padding: .5em 1em;
+}
+@media screen and (max-width: 601px) {
+  .rwd-table tr:nth-child(2) {
+    border-top: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .rwd-table tr:hover:not(:first-child) {
+    background-color: #d8e7f3;
+  }
+  .rwd-table td:before {
+    display: none;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child,
+  .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child,
+  .rwd-table td:last-child {
+    padding-right: 0;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    padding: 1em !important;
+  }
+}
+h1 {
+  text-align: center;
+  font-size: 2.4em;
+  color: #f2f2f2;
+}
+.container {
+  display: block;
+  text-align: center;
+}
+h3 {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-size: 1.5em;
+  color: #cecece;
+}
+h3:before {
+  content: "\25C0";
+  position: absolute;
+  left: -50px;
+  -webkit-animation: leftRight 2s linear infinite;
+  animation: leftRight 2s linear infinite;
+}
+h3:after {
+  content: "\25b6";
+  position: absolute;
+  right: -50px;
+  -webkit-animation: leftRight 2s linear infinite reverse;
+  animation: leftRight 2s linear infinite reverse;
+}
+@-webkit-keyframes leftRight {
+  0%    { -webkit-transform: translateX(0)}
+  25%   { -webkit-transform: translateX(-10px)}
+  75%   { -webkit-transform: translateX(10px)}
+  100%  { -webkit-transform: translateX(0)}
+}
+@keyframes leftRight {
+  0%    { transform: translateX(0)}
+  25%   { transform: translateX(-10px)}
+  75%   { transform: translateX(10px)}
+  100%  { transform: translateX(0)}
 }
 </style>
 
@@ -262,14 +310,192 @@ code {
   font: inherit;
 }
 
+</style>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nanum Pen Script';
+    font-size: 20px;
+}
+header{
+    display: flex;
+    vertical-align: top; 
+    text-align: right;
+    justify-content: right;
+    align-items: center;
+    height: 100px;
+    background: #252a37;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+}
+.view{
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    margin: 40px 0;
+    color: #ece6cc;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin-right: 50px;
+   
+}
+.view:hover{
+    background: #ece6cc;
+    color: #050801;
+    box-shadow: 0 0 5px #ece6cc,
+                0 0 25px #ece6cc,
+                0 0 50px #ece6cc,
+                0 0 200px #ece6cc;
+     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
+}
+
+.view span{
+    position: absolute;
+    display: block;
+}
+.view span:nth-child(1){
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,transparent,#ece6cc);
+    animation: animate1 1s linear infinite;
+}
+@keyframes animate1{
+    0%{
+        left: -100%;
+    }
+    50%,100%{
+        left: 100%;
+    }
+}
+.view span:nth-child(2){
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,transparent,#ece6cc);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+@keyframes animate2{
+    0%{
+        top: -100%;
+    }
+    50%,100%{
+        top: 100%;
+    }
+}
+.view span:nth-child(3){
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg,transparent,#ece6cc);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.50s;
+}
+@keyframes animate3{
+    0%{
+        right: -100%;
+    }
+    50%,100%{
+        right: 100%;
+    }
+}
+
+.view span:nth-child(4){
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg,transparent,#ece6cc);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+@keyframes animate4{
+    0%{
+        bottom: -100%;
+    }
+    50%,100%{
+        bottom: 100%;
+    }
+} 
+.logo {
+    position: absolute;
+    text-align: left;
+}
+
+.button:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.button {
+  border: none;
+  background: transparent;
+  position: relative;
+  left: 390px;
+  display: flex;
+  padding: 0.8rem 2rem;
+  overflow: hidden;
+  border-radius: 100vmax;
+  box-shadow: var(--shadow-elevation-high);
+  transition: box-shadow 0.2s ease-in-out;
+}
+.button::after, .button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: red;
+}
+.button::before {
+  z-index: 1;
+  right: -100%;
+  background: linear-gradient(to right, #a7bb50 0%, #dae79c 50%, #dbff57 100%);
+  background-size: 50% 100%;
+  -webkit-animation: scroll 1.2s infinite linear;
+          animation: scroll 1.2s infinite linear;
+}
+.button::after {
+  z-index: 2;
+  inset: 5px;
+  border-radius: 100vmax;
+  background-color: black;
+  transition: inset 0.2s ease-in-out;
+}
+.button span {
+  z-index: 3;
+  color: white;
+  text-transform: uppercase;
+}
+.button:hover {
+  box-shadow: var(--shadow-elevation-medium);
+}
+.button:hover::after {
+  inset: 8px;
+}
+
 
 </style>
-	<div class="logo">
-	<a href="main"><img src="resources/img/yms.png" style="width: 100px; height: 100px;" ></a>
-	</div>
+	<a href="main" class="logo"><img src="resources/img/yms.png" style="width: 100px; height: 100px;" ></a>
 	
-	
-
+	<header>
+	<a href="#" class="view">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                로그아웃
+            </a>
+    </header>        
+            
 	 <div class="buttons">
         <button class="fill">전적 검색</button>
         <button class="pulse">챔피언 분석</button>
@@ -279,22 +505,19 @@ code {
         <button class="slide">팀원 찾기</button>
         <button class="offset">소환사 분석</button>
       </div>
-
+	
 <body>
-	<div id="bbBoardTable"></div>
 
-	<br>
-	<br>
-	<table>
-		<thead>
-			<tr>
-				<th>글번호</th>
-				<th>작성자</th>
-				<th>제목</th>
-				<th>날짜</th>
-			</tr>
-		<thead>
-		<tbody>
+    <div class="container">
+        <table class="rwd-table">
+        <br>
+          <tbody>
+            <tr>
+              <th>글 번호</th>
+              <th>작성자</th>
+              <th>제목</th>
+              <th>날짜</th>
+            </tr>
 			<c:forEach var="list" items="${bbList}">
 				<tr>
 					<td>${list.bb_postNum}</td>
@@ -303,17 +526,13 @@ code {
 					<td>${list.bb_date}</td>
 				</tr>
 			</c:forEach>
-		</tbody>
-
-		<tfoot class="paging">
-			<tr>
-				<td></td>
-				<td></td>
-				<td>${paging}</td>
-			</tr>
-		</tfoot>
-
+            <button onclick = "location.href='bbBoardWriteMv'" class="button" type="submit">
+        <span>게시글 작성</span>
+        </button>
 	</table>
-
+	<br>
+	<h3>${paging}</h3>
+</div>
 </body>
 </html>
+

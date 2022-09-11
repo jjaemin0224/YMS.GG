@@ -9,11 +9,11 @@
 </head>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 .fill:hover,
 .fill:focus {
   box-shadow: inset 0 0 0 2em var(--hover);
 }
-
 
 .pulse:hover,
 .pulse:focus {
@@ -259,13 +259,7 @@ a span:nth-child(4){
 <body>
 
 		<header>
-            <a href="#">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Home
-            </a>
+            
             <a href="mmLoginMv">
                 <span></span>
                 <span></span>
@@ -280,19 +274,16 @@ a span:nth-child(4){
                 <span></span>
                 Join
             </a>
+            <a href="cmMyPageMv">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+               myPage
+            </a>
           
          
         </header>
-
-	<br>
-	<a href="main">홈으로</a>
-	<a href="cmLogout">로그아웃</a>
-	<a href="cmMyPageMv">마이페이지</a>
-	<a href="cmCashChargeMv">캐시충전</a>
-
-	<a href="bbBulletinBoardMv">자유게시판</a>
-	<br>
-
 		<img src="resources/img/yms.png">
 	<div class="buttons">
         <button class="fill">전적 검색</button>

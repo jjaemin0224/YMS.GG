@@ -40,6 +40,8 @@
 					onclick="replyInsert(${board.bb_postNum})"></td>
 			</tr>
 		</table>
+		
+		
 	</form>
 
 	<script type="text/javascript">

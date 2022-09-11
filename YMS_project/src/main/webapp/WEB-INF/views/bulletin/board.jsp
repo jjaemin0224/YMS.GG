@@ -10,7 +10,7 @@
 <body>
 
 <div id="bbBulletinBoardList"></div>
-<a href="bbBoardWriteMv">게시글작성</a>
+
 
 
 <script type="text/javascript">
