@@ -460,7 +460,7 @@ top {
 				<form name="cmCashChargeFrm" id="cmKakaoPay" action="cmKakaoPay" method="post">
 					<div class="user-box">
 							<input type="text"  id="m_cash" name="m_cash" required=""> <label>캐시 가격</label> 
-						<button class="button" id="cashChargeBtn">
+						<button class="button" id="cashChargeBtn" type="button">
 					<span>확인</span>
 				</button>
 			</div>
