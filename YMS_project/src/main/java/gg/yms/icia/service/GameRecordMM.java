@@ -21,6 +21,7 @@ public class GameRecordMM {
 		mav.setViewName("gameRecord/search");
 		return mav;
 		}
+
+
 	}
 		
-}

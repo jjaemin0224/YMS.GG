@@ -22,12 +22,5 @@ public class GameRecordController {
 		return mav;
 	}
 	
-	@GetMapping(value="/grLastList")
-	public ModelAndView grLastList(@RequestParam String gr_summonerName) {
-		mav = grm.grLastList(gr_summonerName);
-		return mav;
-	}
-	
-	
 	
 }
