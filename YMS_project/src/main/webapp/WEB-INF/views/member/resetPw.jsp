@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 html {
@@ -148,13 +148,41 @@ body {
 			</div>
 			<div class="user-box">
 				<input type="password" id="m_pw" name="m_pw" required=""> <label>Password</label>
+				<span id="m_pwCheckMsg"></span> <br>
 			</div>
 			<div class="buttons">
-        <button class="button" type="submit">
+        <button class="button" type="submit" id="m_pwResetBtn">
           <span>비밀번호 재설정</span>
         </button>
 			</div>
 </form>
+<script type="text/javascript">
+//비밀번호 체크
+$("#m_pwResetBtn").click(function() {
+    var pw = $("#m_pw").val();
+    var num = pw.search(/[0-9]/g);
+    var eng = pw.search(/[a-z]/ig);
+    var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+    if(pw.length < 8 || pw.length > 20){
+     $("#m_pwCheckMsg").text("8자리 ~ 20자리 이내로 입력해주세요.");
+     $("#m_pwCheckMsg").css("color","red");
+     return false;
+    }else if(pw.search(/\s/) != -1){
+       $("#m_pwCheckMsg").text("비밀번호는 공백 없이 입력해주세요.");
+       $("#m_pwCheckMsg").css("color","red");
+     return false;
+    }else if(num < 0 || eng < 0 || spe < 0 ){
+       $("#m_pwCheckMsg").text("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+       $("#m_pwCheckMsg").css("color","red");
+     return false;
+    }else {
+       $("#m_pwCheckMsg").text("사용 가능한 비밀번호입니다.");
+       $("#m_pwCheckMsg").css("color","green");
+     return true;
+    }
+});
+
+</script>
 </div>
 </body>
 </html>

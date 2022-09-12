@@ -1,4 +1,4 @@
-package gg.yms.icia.service;
+	package gg.yms.icia.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -25,6 +27,12 @@ public class MemberMM {
    private IMemberDao mDao;
 
    ModelAndView mav;
+   
+   @Bean
+   BCryptPasswordEncoder passwordEncoder() {
+
+       return new BCryptPasswordEncoder();
+   }
 
    // 세션id를 통해 정보 가져오기
    public Member getMemberInfo(HttpSession session) {
@@ -41,10 +49,12 @@ public class MemberMM {
 
 //   (비로그인서비스)---------------------------------------------------------------------------------------------------------
 
-   // 회원가입
+// 회원가입
    public ModelAndView mmJoin(Member mb) {
       mav = new ModelAndView();
+      BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
       String view = null;
+      mb.setM_pw(bc.encode(mb.getM_pw()));
 
       if (mDao.mmJoin(mb)) {
          view = "home";
@@ -57,21 +67,29 @@ public class MemberMM {
       return mav;
    } // end mmJoin
 
-   // 로그인
+// 로그인
    public ModelAndView mmLogin(Member mb, HttpSession session, RedirectAttributes attr) {
       mav = new ModelAndView();
+      BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
       String view = null;
-
-      if (mDao.mmLogin(mb)) {
-         view = "home";
-         session.setAttribute("id", mb.getM_id());
-         mav.addObject("loginCheck", 1);
-      } else {
+      
+      String bcEnco = mDao.mmEncoderPw(mb.getM_id());
+      if(bcEnco != null) {
+         if (bc.matches(mb.getM_pw(), bcEnco)) {      
+            session.setAttribute("id", mb.getM_id());
+            mb = mDao.getMemberInfo(mb.getM_id());
+            mav.addObject("loginCheck", 1);
+            view = "home";
+         } else {
+            view = "member/login";
+            mav.addObject("loginCheck", 2);
+         }   
+      }else {
          view = "member/login";
          mav.addObject("loginCheck", 2);
-      }
-      mav.setViewName(view);
-      return mav;
+         
+      }mav.setViewName(view);
+       return mav;
    }
 
    // 아이디 찾기
@@ -113,18 +131,20 @@ public class MemberMM {
    }
 
    public ModelAndView mmResetPw(Member mb) {
-      mav = new ModelAndView();
-      String view = null;
+	      mav = new ModelAndView();
+	      String view = null;
+	      BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
+	      mb.setM_pw(bc.encode(mb.getM_pw()));
 
-      if (mDao.mmResetPw(mb)) {
-         view = "member/login";
-      } else {
-         view = "member/searchPw";
-      }
+	      if (mDao.mmResetPw(mb)) {
+	         view = "member/login";
+	      } else {
+	         view = "member/searchPw";
+	      }
 
-      mav.setViewName(view);
-      return mav;
-   }
+	      mav.setViewName(view);
+	      return mav;
+	   }
 
    // 휴대폰 인증
    public void mmCertifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
@@ -214,19 +234,20 @@ public class MemberMM {
    }
 
    public ModelAndView cmMyInfoPwUpdate(Member mb, HttpSession session) {
-      mav = new ModelAndView();
-      mb.setM_id(getSessionId(session));
+	      mav = new ModelAndView();
+	      BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
+	      mb.setM_id(getSessionId(session));
+	      mb.setM_pw(bc.encode(mb.getM_pw()));
 
-      if (mDao.cmMyInfoPwUpdate(mb)) {
-         mav = cmMyPageMv(session);
-      } else {
-         mav.addObject("msg", "비밀번호변경 실패");
-         mav.setViewName("member/cm/myInfoPwUpdate");
-      }
-      return mav;
+	      if (mDao.cmMyInfoPwUpdate(mb)) {
+	         mav = cmMyPageMv(session);
+	      } else {
+	         mav.addObject("msg", "비밀번호변경 실패");
+	         mav.setViewName("member/cm/myInfoPwUpdate");
+	      }
+	      return mav;
 
-   }
-
+	   }
    public ModelAndView cmMyInfoDelete(Member mb, Withdrawal wd, HttpSession session) {
       mav = new ModelAndView();
       String view = null;
