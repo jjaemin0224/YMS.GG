@@ -200,7 +200,7 @@ h3 {
 	position: relative;
 	color: #fff;
 	font-size: 30px;
-	top: 120px;
+	top: 185px;
 	left: 50%;
 	width: 370px;
 	padding: 40px;
@@ -464,8 +464,9 @@ top {
 				   <input type="radio" class="m_cash" name="m_cash" value="10000"> <span>10,000원</span> <br>
 				   <input type="radio" class="m_cash" name="m_cash" value="30000"> <span>30,000원</span> <br>
 				   <input type="radio" class="m_cash" name="m_cash" value="50000"> <span>50,000원</span> <br>
-				   <br> <input type="button" id="cashChargeBtn" value="충전">
-
+				   <br> <button type="button" class="button" id="cashChargeBtn">
+						<span>확인</span>
+					</button>
 				</form>
 
 				</div>
@@ -480,7 +481,7 @@ top {
                 <p><a href="#">챔피언 분석</a></p>
                 <p><a href="#">챔피언 추천</a></p>
                 <p><a href="bbBulletinBoardMv">자유 게시판</a></p>
-                <p><a href="#">탐원 찾기</a></p>
+                <p><a href="TsbList">탐원 찾기</a></p>
                 <p><a href="#">소환사 분석</a></p>
             </div><!--left-->
 
@@ -509,6 +510,7 @@ var { IMP } = window;
 IMP.init('imp16447358');
 $("#cashChargeBtn").click(function () {
    var buyer_cash = $('input[name="m_cash"]:checked').val();
+   alert(buyer_cash + '원을 충전 하시겠습니까?');
    IMP.request_pay({
       pg : 'kakaopay',
        pay_method : 'card',

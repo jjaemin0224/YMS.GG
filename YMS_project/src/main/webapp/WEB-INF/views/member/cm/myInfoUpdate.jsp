@@ -480,7 +480,7 @@ top {
                 <p><a href="#">챔피언 분석</a></p>
                 <p><a href="#">챔피언 추천</a></p>
                 <p><a href="bbBulletinBoardMv">자유 게시판</a></p>
-                <p><a href="#">탐원 찾기</a></p>
+                <p><a href="TsbList">탐원 찾기</a></p>
                 <p><a href="#">소환사 분석</a></p>
             </div><!--left-->
 

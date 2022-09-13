@@ -26,7 +26,7 @@ a:link {
 
 a:visited {
 	text-decoration: none;
-	color: grey;
+	color: #fff;
 }
 
 a:active {
@@ -47,7 +47,7 @@ a:hover {
   min-width: 300px;
   max-width: 100%;
   border-collapse: collapse;
-  width:80%;
+  width:60%;
     height:100%;
     margin-left: auto;
     margin-right: auto;
@@ -503,9 +503,9 @@ header{
   display: flex;
   margin: 0 auto;
   min-width: 300px;
-  max-width: 100%;
+  max-width: 80%;
   border-collapse: collapse;
-  width:80%;
+  width:60%;
   margin-left: auto;
   margin-right: auto;
   
@@ -527,38 +527,92 @@ header{
     margin: 4px;
 }
 
-.articleView_layer{
-	position : fixed;
+#articleView_layer {
+	display: none;
+	position: fixed;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%
+}
+
+#articleView_layer.open {
+	display: block;
+	color: red;
+}
+
+#articleView_layer #bg_layer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: .5;
+	filter: alpha(opacity = 50);
+	z-index: 100
+}
+
+#contents_layer {
+	position: absolute;
+	top: 40%;
+	left: 40%;
 	width: 600px;
-	height: 800px;
-	background:#000;
-	top:150px;
-	left:45%;
-	display:none;
+	height: 600px;
+	margin: -150px 0 0 -194px;
+	border: 2px solid #555;
+	color:#fff;
+	background: #202024;
+	font-size: 12px;
+	z-index: 200;
+	line-height: normal;
+	white-space: normal;
 	border: solid 1px #fff;
 	padding: 40px;
 	border-radius: 10px;
 	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-
+	text-align: center;
 }
 
-
-.contents_layer{
-	color:#fff;
-}
-
-.headcontainer{
-  display: flex;
-  margin: 0 auto;
-  min-width: 300px;
-  max-width: 100%;
-  border-collapse: collapse;
-  width:80%;
-  margin-left: auto;
-  margin-right: auto;
+.wsbWrite-button {
+  left:480%;
+  appearance: none;
+  background-color: transparent;
+  background-color: green;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3) inset;
+  color: #fff;
+  margin: auto;
+  position: relative;
+  cursor: pointer;
   
 }
-
+.wsbWrite-button::before, .wsbWrite-button::after {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 2px;
+  transition: height 0.4s 0.4s cubic-bezier(0.86, 0, 0.07, 1), width 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.wsbWrite-button::before {
+  box-shadow: 2px 2px 0 white inset;
+  bottom: 0;
+  left: 0;
+  border-radius: 0.25rem;
+}
+.wsbWrite-button::after {
+  box-shadow: -2px -2px 0 white inset;
+  top: 0;
+  right: 0;
+  border-radius: 0.25rem;
+}
+.wsbWrite-button:hover::before, .wsbWrite-button:hover::after {
+  height: 100%;
+  width: 100%;
+  transition: height 0.4s cubic-bezier(0.86, 0, 0.07, 1), width 0.4s 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
 </style>
 <a href="main" class="logo"><img src="resources/img/yms.png" style="width: 100px; height: 100px;" ></a>
 	
@@ -578,14 +632,13 @@ header{
         <button class="close">챔피언 추천</button>
         <button class="raise">쿨타임 계산기</button>
         <button onclick="location.href='bbBulletinBoardMv'" class="up">자유 게시판</button>
-        <button class="slide">팀원 찾기</button>
+        <button onclick="location.href='./TsbList'" class="slide">팀원 찾기</button>
         <button class="offset">소환사 분석</button>
       </div>
 		<br>
 
 		<div class="headcontainer">
 			<select name="tsb_que" id="tsb_que" class="tsbListSort">
-				<option value="상관없음">큐상관 없음</option>
 				<option value="솔로랭크">솔로랭크</option>
 				<option value="자유랭크">자유랭크</option>
 				<option value="일반">일반</option>
@@ -613,7 +666,7 @@ header{
 			</select>
 			
 							<form action="tsbWriteFrm">
-								<button>글작성</button>
+								<button class="wsbWrite-button">글작성</button>
 							</form>
 </div><br>
 
@@ -621,21 +674,17 @@ header{
 			<table class="rwd-table">
 					<tr height="30">
 						<th width="100">작성자</th>
-						<th width="100">큐</th>
-						<th width="100">라인</th>
-						<th width="100">티어</th>
 						<th width="100">제목</th>
+						<th width="100">내용</th>
 						<th width="100">플레이 시간</th>
 						<!--  			<th width="100">조회수</th>  -->
 					</tr>
 					<c:forEach var="board" items="${tsbList}">
 						<tr height="25">
 							<td align="center">${board.tsb_id}</td>
-							<td align="center">${board.tsb_que}</td>
-							<td align="center">${board.tsb_lane}</td>
-							<td align="center">${board.tsb_tier}</td>
 							<td align="center"><a href="#"
 								onclick="articleView(${board.tsb_postNum})">${board.tsb_title}</a></td>
+							<td align="center">${board.tsb_que} ${board.tsb_tier} 포지션 ${board.tsb_lane}</td>
 							<td align="center">${board.tsb_time}</td>
 							
 						</tr>
@@ -648,6 +697,7 @@ header{
 
 	<!-- 여기는 게시글 내용 보여줄 모달 박스 ! -->
 	<div class="articleView_layer" id="articleView_layer">
+	<div class="bg_layer" id="bg_layer"></div>
 		<div class="contents_layer" id="contents_layer"></div>
 	</div>
 
@@ -675,6 +725,25 @@ function articleView(postnum){
 	}
 			)
 }//end
+
+$(function(){  
+	
+	//모달박스 해제
+		var $layerWindow=$('#articleView_layer');
+		$layerWindow.find("#bg_layer").on('mousedown',function(evt){
+			console.log(evt);
+			$layerWindow.removeClass('open');
+		}); //on End
+		$(document).keydown(function(evt){
+			console.log(evt);
+			if(evt.keyCode!=27) return;
+			else if($layerWindow.hasClass('open')){
+				$layerWindow.removeClass('open');
+			}
+		}); //keydown End
+		
+	});//ready End
+
 
 </script>
 

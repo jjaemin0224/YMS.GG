@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -39,31 +38,26 @@ a:hover {
 * {font-family: 'Open Sans', sans-serif;}
 
 .rwd-table {
-  margin: 0 auto;
-  min-width: 300px;
+  margin: auto;
+  min-width: 1100px;
   max-width: 100%;
   border-collapse: collapse;
-  width:80%;
-    height:100%;
-    margin-left: auto;
-    margin-right: auto;
-
 }
 
 .rwd-table tr:first-child {
   border-top: none;
-  background: #282830;
+  background: #428bca;
   color: #fff;
 }
 
 .rwd-table tr {
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  background-color: #31313c;
+  background-color: #f5f9fc;
 }
 
 .rwd-table tr:nth-child(odd):not(:first-child) {
-  background-color: #31313c;
+  background-color: #ebf3f9;
 }
 
 .rwd-table th {
@@ -87,7 +81,7 @@ a:hover {
   font-weight: bold;
   width: 120px;
   display: inline-block;
-  color: #fff;
+  color: #000;
 }
 
 .rwd-table th,
@@ -102,7 +96,7 @@ a:hover {
 }
 
 .rwd-table tr {
-  border-color: #000;
+  border-color: #bfbfbf;
 }
 
 .rwd-table th,
@@ -116,7 +110,7 @@ a:hover {
 }
 @media screen and (min-width: 600px) {
   .rwd-table tr:hover:not(:first-child) {
-    background-color: #282830;
+    background-color: #d8e7f3;
   }
   .rwd-table td:before {
     display: none;
@@ -124,7 +118,6 @@ a:hover {
   .rwd-table th,
   .rwd-table td {
     display: table-cell;
-    color: #fff;
     padding: .25em .5em;
   }
   .rwd-table th:first-child,
@@ -139,12 +132,6 @@ a:hover {
   .rwd-table td {
     padding: 1em !important;
   }
-}
-
-body {
-height: 100vh;
-background: url("back.jpg");
-background-size:cover;    
 }
 h1 {
   text-align: center;
@@ -495,32 +482,8 @@ header{
   inset: 8px;
 }
 
-.headcontainer{
-  display: flex;
-  margin: 0 auto;
-  min-width: 300px;
-  max-width: 100%;
-  border-collapse: collapse;
-  width:80%;
-  margin-left: auto;
-  margin-right: auto;
-  
-}
 
-.tsbListSort {
-	color:#fff;
-	background :#31313c;
-}
-
-#articleView_layer{
-	position : absolute;
-	width:100%; height:100%;
-	background:rgba(0,0,0,0,8);
-	top:0;
-	left:0;
-	display:none;}
 </style>
-
 	<a href="main" class="logo"><img src="resources/img/yms.png" style="width: 100px; height: 100px;" ></a>
 	
 	<header>
@@ -542,119 +505,34 @@ header{
         <button class="slide">팀원 찾기</button>
         <button class="offset">소환사 분석</button>
       </div>
-		<br>
+	
 <body>
 
-
-		<div class="headcontainer">
-			<select name="tsb_que" id="tsb_que" class="tsbListSort">
-				<option value="상관없음">큐상관 없음</option>
-				<option value="솔로랭크">솔로랭크</option>
-				<option value="자유랭크">자유랭크</option>
-				<option value="일반">일반</option>
-				<option value="칼바람">칼바람</option>
-			</select>
-
-		<select name="tsb_lane" id="tsb_lane" class="tsbListSort">
-			<option value="상관없음">라인 상관 없음</option>
-			<option value="탑">탑</option>
-			<option value="미드">미드</option>
-			<option value="정글">정글</option>
-			<option value="원딜">원딜</option>
-			<option value="서폿">서폿</option>
-		</select>
-			<select name="tsb_tier" id="tsb_tier" class="tsbListSort">
-				<option value="상관없음">티어 상관 없음</option>
-				<option value="언랭">언랭</option>
-				<option value="브론즈">브론즈</option>
-				<option value="실버">실버</option>
-				<option value="골드">골드</option>
-				<option value="플래티넘">플래티넘</option>
-				<option value="다이아몬드">다이아몬드</option>
-				<option value="그랜드마스터">그랜드마스터</option>
-				<option value="챌린저">챌린저</option>
-			</select>
-			
-			<form action="tsbWriteFrm">
-								<button>글작성</button>
-							</form>
-		</div>
-		
-    <div id="tsbSortList" class="container">
+    <div class="container">
         <table class="rwd-table">
         <br>
-         
+          <tbody>
             <tr>
+              <th>글 번호</th>
               <th>작성자</th>
-              <th>주 포지션</th>
-              <th>큐</th>
-              <th>티어</th>
-              <th>내용</th>
-              <th>시간</th>
+              <th>제목</th>
+              <th>날짜</th>
             </tr>
-			<c:forEach var="board" items="${tsbList}">
+			<c:forEach var="list" items="${bbList}">
 				<tr>
-					<td align="center">${board.tsb_id}</td>
-					<td align="center">${board.tsb_lane}</td>
-					<td align="center">${board.tsb_que}</td>
-					<td align="center">${board.tsb_tier}</td>
-					<td align="center"><a href="#" onclick="articleView(${board.tsb_postNum})">${board.tsb_title}</a></td>
-					<td align="center">${board.tsb_time}</td>
+					<td>${list.bb_postNum}</td>
+					<td>${list.bb_id}</td>
+					<td><a href="bbBoardView?bb_postNum=${list.bb_postNum}">${list.bb_title}</a></td>
+					<td>${list.bb_date}</td>
 				</tr>
 			</c:forEach>
-            
+            <button onclick = "location.href='bbBoardWriteMv'" class="button" type="submit">
+        <span>게시글 작성</span>
+        </button>
 	</table>
 	<br>
-	<h3>${tsbPaging}</h3>
+	<h3>${paging}</h3>
 </div>
-
-
-	<!-- 여기는 게시글 내용 보여줄 모달 박스 ! -->
-	<div id="articleView_layer">
-		<div id="contents_layer"></div>
-	</div>
-
 </body>
-<script type="text/javascript">
-function articleView(postnum){
-	console.log(postnum)
-   $('#articleView_layer').addClass('open'); //모달박스 나타남
-   $.ajax({
-      type:'get',
-      url:'TsbContents',
-      data:{"postNum" : postnum},
-      dataType:'html', //생략 가능
-      success:function(data){
-         //console.log(data);
-         $('#contents_layer').html(data);
-      },
-      error:function(error){
-         console.log(error);
-      }
-      
-   }); //ajax End
-   $(function(){
-		$('#articleView_layer').fadeIn();
-	}
-			)
-}//end
-
-</script>
-
-
-
-<script type="text/javascript">
-$('.tsbListSort').on('change' ,function () {
-   $.ajax({
-	   type:'get',
-	   url:'TsbList',
-	   data : {"tsb_lane" : $('#tsb_lane').val() ,"tsb_que" :$('#tsb_que').val() , "tsb_tier" : $('#tsb_tier').val()  },
-	   dataType: 'html',
-   }).done((data)=>{$("#tsbSortList").html(data);})
-   .fail((err)=>console.log(err));
-	  	   
-});
-
-
-</script>
 </html>
+

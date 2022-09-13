@@ -456,21 +456,20 @@ top {
 				<form name="cmMyInfoPwUpdateFrm" action="cmMyInfoPwUpdate"	method="post">
 					<div class="user-box">
 						<input type="password" required=""> <label>현재 비밀번호 입력</label>
-						<span id="m_pwCheckMsg"></span> <br>
 					</div>
 					<div class="user-box">
 						<input type="password"  id="m_pw" class="pw" name="m_pw" required=""> <label>변경 비밀번호 입력</label> 
-						<span id="m_pwCheckMsg2"></span>
+						<span id="m_pwCheckMsg"></span>
 					</div>
 					<div class="user-box">
 				<input type="password" id="m_pwCheck2" class="pw" required=""> <label>변경 비밀번호 확인</label>
 				<span id="m_pwCheckMsg2"></span> <br>
 				</div>
-					<button class="button" type="submit" id="m_pwUpdateBtn">
+					<button class="button" type="submit" id="m_pwUpdateBtn" disabled="disabled">
 						<span>확인</span>
 					</button>
 				</form>
-			</div>
+				</div>
 			
 		</div>
 		</div>
@@ -483,7 +482,7 @@ top {
                 <p><a href="#">챔피언 분석</a></p>
                 <p><a href="#">챔피언 추천</a></p>
                 <p><a href="bbBulletinBoardMv">자유 게시판</a></p>
-                <p><a href="#">탐원 찾기</a></p>
+                <p><a href="TsbList">탐원 찾기</a></p>
                 <p><a href="#">소환사 분석</a></p>
             </div><!--left-->
 
@@ -504,6 +503,7 @@ top {
 
         </div><!--content-->
     </div><!--footer-->
+
 <script type="text/javascript">
 //비밀번호 확인
  $('.pw').focusout(function(){   
@@ -512,9 +512,10 @@ top {
    if ( m_pw != '' && m_pwCheck2 == '' ) {
         null;
    }else if (m_pw != "" || m_pwCheck2 != "") {
-        if (m_pw == m_pwCheck2) {
+        if (m_pw == m_pwCheck2 ) {
            $("#m_pwCheckMsg2").text("비밀번호가 일치합니다.");
             $("#m_pwCheckMsg2").css("color","green");
+            $("#m_pwUpdateBtn").attr("disabled", false)
         } else {
            $("#m_pwCheckMsg2").text("비밀번호가 일치하지 않습니다.");
             $("#m_pwCheckMsg2").css("color","red");
@@ -547,5 +548,6 @@ $("#m_pw").focusout(function() {
     }
 });
 </script>
+
 </body>
 </html>

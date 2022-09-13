@@ -389,7 +389,7 @@ header{
         <button class="close">챔피언 추천</button>
         <button class="raise">쿨타임 계산기</button>
         <button onclick="location.href='bbBulletinBoardMv'" class="up">자유 게시판</button>
-        <button class="slide">팀원 찾기</button>
+        <button onclick="location.href='./TsbList'" class="slide">팀원 찾기</button>
         <button class="offset">소환사 분석</button>
       </div>
 
