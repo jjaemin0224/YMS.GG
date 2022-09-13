@@ -8,6 +8,7 @@
 </head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+* {font-family: 'Nanum Pen Script';}
 
 html {
 	height: 100%;
@@ -49,7 +50,7 @@ body {
 .login-box .user-box input {
 	width: 100%;
 	padding: 10px 0;
-	font-size: 18px;
+	font-size: 20px;
 	color: #fff;
 	margin-bottom: 30px;
 	border: none;
@@ -63,7 +64,7 @@ body {
 	top: 0;
 	left: 0;
 	padding: 10px 0;
-	font-size: 18px;
+	font-size: 20	px;
 	color: #fff;
 	pointer-events: none;
 	transition: .5s;
@@ -71,7 +72,7 @@ body {
 
 .login-box .user-box input:focus ~ label, .login-box .user-box input:valid 
 	~ label {
-	top: -20px;
+	top: -25px;
 	left: 0;
 	color: #03e9f4;
 	font-size: 20px;
@@ -129,6 +130,7 @@ body {
 	z-index: 3;
 	color: white;
 	text-transform: uppercase;
+	font-size:20px;
 }
 
 .button:hover {
@@ -145,16 +147,16 @@ body {
 <body>
 
 	<div class="login-box">
-		<h2>Login</h2>
+		<h2>아이디 찾기</h2>
 		<form name="mmSearchIdFrm" action="mmSearchId" method="post">
 			<div class="user-box">
-				<input type="text" id="m_name" name="m_name" required=""> <label>Username</label>
+				<input type="text" id="m_name" name="m_name" required=""> <label>이름</label>
 			</div>
 			<div class="user-box">
-				<input type="date" id="m_birth" name="m_birth" required=""> <label>Birth</label>
+				<input type="text" id="m_birth" name="m_birth" required=""> <label>생년월일(6자리)</label>
 			</div>
 			<div class="user-box">
-				<input type="text" id="m_phoneNum" name="m_phoneNum" required=""> <label>PhoneNum</label>
+				<input type="text" id="m_phoneNum" name="m_phoneNum" required=""> <label>핸드폰 번호</label>
 			</div>
 			<div class="buttons">
 				<button class="button" type="submit">

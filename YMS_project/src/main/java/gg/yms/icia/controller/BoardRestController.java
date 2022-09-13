@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import gg.yms.icia.bean.BbReply;
+import gg.yms.icia.bean.BoardLike;
 import gg.yms.icia.service.BoardMM;
 
 @RestController
@@ -27,4 +28,18 @@ public class BoardRestController {
 		return bbReplyList;
 	}
 
+	// 자유게시판 좋아요
+		@PostMapping(value = "/bbLikeUp")
+		public BoardLike bbLikeUp(BoardLike Bbl , HttpSession session) {
+			System.out.println("컨트롤러" + Bbl);
+			BoardLike bblinfo = bm.bbLikeUp(Bbl , session);
+			return bblinfo;
+		}
+
+		// 자유게시판 좋아요 취소
+		@PostMapping(value = "/bbLikeDown")
+		public BoardLike bbLikeDown(BoardLike Bbl , HttpSession session) {
+			BoardLike bblinfo = bm.bbLikeDown(Bbl , session);
+			return bblinfo;
+		}
 }

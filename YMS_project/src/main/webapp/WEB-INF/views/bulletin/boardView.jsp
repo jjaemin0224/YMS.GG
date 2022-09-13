@@ -447,53 +447,43 @@ header{
       </div>
 
 <body>
-    <div class="login-box">
-	글번호 : ${board.bb_postNum}
-	<br>
-	<br>
-	작성자 : ${board.bb_id}
-	<br>
-	<br> 
-	제목 : ${board.bb_title}
-	<br>
-	<br> 
-	내용 : ${board.bb_content}
-	<br> 
-	<br>
-	<br>
-	<br>
-	좋아요 수 : ${board.bb_like}
-	<br>
-	<br>
-	작성 날짜 : ${board.bb_date}
-	<br>
-	<br>
-	<form name="bbReplyFrm" id="bbReplyFrm">
-		<table>
-			<tr>
-				<td><textarea rows="3" cols="50" name="bbr_content"
-						id="bbr_content" class="content-box"></textarea></td>
-			
-			<button onclick = "replyInsert(${board.bb_postNum})" class="button" type="button">
-        <span>댓글 작성</span>
-        </button>
-        </tr>
-		</table>
-	</form>
-	<br>
-	<table id="bReplyTable" class="bReplyTable">
-		<c:forEach var="list" items="${bReplyList}">
-			<tr>
-				<td>${list.bbr_id}</td>
-				<td>${list.bbr_content}</td>
-				<td>${list.bbr_date}</td>
-		</c:forEach>
-	</table>
+    글번호 : ${board.bb_postNum} <br> <br> 작성자 : ${board.bb_id} <br>
+		<br> 제목 : ${board.bb_title} <br> <br> 내용 :
+		${board.bb_content} <br> <br> <br> <br> 
+		<div class = "likeinfo" id = "likeinfo"> 좋아요 수 :
+		<p class = "like" id = "like">
+		${boardLike}
+		</p>
 		</div>
+		<button class="LikeBtn"></button>
+		<br> <br> 작성 날짜 : ${board.bb_date} <br> <br>
+		<form name="bbReplyFrm" id="bbReplyFrm">
+			<table>
+				<tr>
+					<td><textarea rows="3" cols="50" name="bbr_content"
+							id="bbr_content" class="content-box"></textarea></td>
 
-	
+					<button onclick="replyInsert(${board.bb_postNum})" class="button"
+						type="button">
+						<span>댓글 작성</span>
+					</button>
+				</tr>
+			</table>
+		</form>
+		<br>
+		<table id="bReplyTable" class="bReplyTable">
+			<c:forEach var="list" items="${bReplyList}">
+				<tr>
+					<td>${list.bbr_id}</td>
+					<td>${list.bbr_content}</td>
+					<td>${list.bbr_date}</td>
+			</c:forEach>
+		</table>
+	</div>
 
-<script type="text/javascript">
+
+
+	<script type="text/javascript">
 		function replyInsert(bbr_postNum){
 		 
 			let obj = {}; 
@@ -525,6 +515,62 @@ header{
 		}//replyInsert End
 		
 		
+	</script>
+	
+<script type="text/javascript">
+	let likeval = ${findLike};	
+	var bbl_postnum = ${board.bb_postNum};
+	
+	if (likeval > 0) {
+		 console.log(likeval + "좋아요 눌러져있는 상태");
+		 $('.LikeBtn').html("좋아요 취소");
+	 }
+	 else {
+		 console.log(likeval + " 좋아요 안 누른 상태");
+		 $('.LikeBtn').html("좋아요");
+	 }
+	
+	$('.LikeBtn').click(function() {
+		 var msg = $(this).html();
+		 if (msg == "좋아요") {
+			 $.ajax({
+				 type:'post',
+				 url : 'bbLikeUp',
+				 data : {"bbl_postnum" : bbl_postnum},
+				dataType: 'json',
+				success : function (data){
+					$('.LikeBtn').html("좋아요 취소");
+					$('#like').empty();
+					$('#like').html(data.bbl_like);
+					likeval = data.bbl_likeNum;
+					console.log(likeval);
+				},error: function(err){
+					console.log(err);
+				}
+			 });//에이젝스
+		 }
+		 else {
+			 $.ajax({
+				 type : 'post' , 
+				 url : 'bbLikeDown' , 
+				 data :{"bbl_postnum" : bbl_postnum},
+				dataType: 'json',
+				success : function (data) {
+					$('.LikeBtn').html("좋아요");
+					$('#like').empty();
+					$('#like').html(data.bbl_like);
+					likeval = data.bbl_likeNum;
+					console.log(likeval);
+					console.log("성공");
+					
+				},error: function(err){
+					console.log(err);
+				}
+			 }); // 에이젝스
+			 
+		 }
+	 });
+
 </script>
    
 </body>

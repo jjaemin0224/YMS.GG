@@ -36,8 +36,8 @@ public class BoardController {
 
 	// 게시글 읽기
 	@GetMapping(value = "/bbBoardView")
-	public ModelAndView bbBoardView(@NonNull Integer bb_postNum) {
-		mav = bm.bbBoardView(bb_postNum);
+	public ModelAndView bbBoardView(@NonNull Integer bb_postNum, HttpSession session ) {
+		mav = bm.bbBoardView(bb_postNum,session);
 		return mav;
 	}
 

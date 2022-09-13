@@ -28,6 +28,8 @@
 		}).done((data)=>{$(position).html(data);})
 		  	.fail((err)=>console.log(err));
 	} //Aj End
+	
+	
 
 </script>
 

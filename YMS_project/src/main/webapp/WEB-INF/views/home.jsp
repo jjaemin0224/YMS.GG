@@ -10,6 +10,13 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nanum Pen Script';
+    font-size: 20px;
+}
 .fill:hover,
 .fill:focus {
   box-shadow: inset 0 0 0 2em var(--hover);
@@ -108,7 +115,6 @@ button:hover, button:focus {
 body {
   color: #fff;
   background: #252a37;
-  font: 300 1em "Fira Sans", sans-serif;
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -134,15 +140,7 @@ code {
   color: #e4cb58;
   font: inherit;
 }
-</style>
 
-<style> <!-- 헤더부분 css -->
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 header{
 	position:absolute;
 	top:10px;
@@ -152,7 +150,6 @@ header{
     align-items: center;
     height: 100px;
     background: #252a37;
-    font-family: 'Raleway', sans-serif;
     font-weight: bold;
 }
 a{
@@ -268,6 +265,11 @@ a span:nth-child(4){
     position: absolute;
     top: 600px;
     left: 18%;
+    align-items: center;
+	  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 </style>

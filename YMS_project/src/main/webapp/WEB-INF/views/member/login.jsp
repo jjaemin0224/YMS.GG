@@ -8,6 +8,9 @@
 </head>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+* {font-family: 'Nanum Pen Script';}
+
 
 html {
   height: 100%;
@@ -15,13 +18,11 @@ html {
 body {
   margin:0;
   padding:0;
-  font-family: sans-serif;
   background: linear-gradient(#252a37,#252a37);
 }
 
-
-
 .login-box {
+font-size:20px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -48,7 +49,7 @@ body {
 .login-box .user-box input {
   width: 100%;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 20px;
   color: #fff;
   margin-bottom: 30px;
   border: none;
@@ -61,7 +62,7 @@ body {
   top:0;
   left: 0;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 20px;
   color: #fff;
   pointer-events: none;
   transition: .5s;
@@ -69,10 +70,10 @@ body {
 
 .login-box .user-box input:focus ~ label,
 .login-box .user-box input:valid ~ label {
-  top: -20px;
+  top: -25px;
   left: 0;
   color: #03e9f4;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 
@@ -123,6 +124,7 @@ body {
   z-index: 3;
   color: white;
   text-transform: uppercase;
+  font-size:20px;
 }
 .button:hover {
   box-shadow: var(--shadow-elevation-medium);
@@ -141,10 +143,10 @@ body {
 		<h2>Login</h2>
 		<form name="mmLoginFrm" action="mmLogin" method="post">
 			<div class="user-box">
-				<input type="text" id="m_id" name="m_id" required=""> <label>Username</label>
+				<input type="text" id="m_id" name="m_id" required=""> <label>아이디</label>
 			</div>
 			<div class="user-box">
-				<input type="password" id="m_pw" name="m_pw" required=""> <label>Password</label>
+				<input type="password" id="m_pw" name="m_pw" required=""> <label>비밀번호</label>
 			</div>
 			<div class="buttons">
         <button class="button" type="submit">

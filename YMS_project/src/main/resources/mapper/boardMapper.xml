@@ -47,5 +47,38 @@
 	</insert>
 	
 
+	<select id = "findLikeNum"  resultType = "int"> 
+		SELECT COUNT(*) FROM BoardLike WHERE  BBL_POSTNUM = #{bbl_postnum} AND BBL_ID = #{bbl_Id} 
+	</select>
+	
+	
+	<select id = "getLike" resultType = "int">
+		SELECT BB_LIKE FROM BULLETINBOARD WHERE BB_POSTNUM =  #{bbl_postnum}
+	</select>
+	
+	<insert id = "bblUp">
+		INSERT INTO BoardLike (bbl_postnum , bbl_Id , bbl_like, bbl_likeNum)
+		VALUES (#{bbl_postnum},#{bbl_Id}, bbl_like_seq.nextval,1)
+	</insert>
+	
+	<update id="bb_likeUp">
+		UPDATE BULLETINBOARD 
+		SET bb_like = (select bb_like from BULLETINBOARD where BB_POSTNUM = #{bbl_postnum}) +1
+		where BB_POSTNUM = #{bbl_postnum}
+	</update>	
+
+	<update id="bb_likeDown">
+		UPDATE BULLETINBOARD 
+		SET bb_like = (select bb_like from BULLETINBOARD where BB_POSTNUM = #{bbl_postnum}) -1
+		where BB_POSTNUM = #{bbl_postnum}
+	</update>
+	
+	<select id = "getbbl" resultType = "BoardLike">
+		SELECT * FROM BoardLike WHERE BBL_POSTNUM = #{bbl_postnum} AND BBL_ID = #{bbl_Id} 
+	</select>
+
+	<delete id = "bblDown">
+		DELETE FROM BoardLike WHERE BBL_POSTNUM = #{bbl_postnum} AND BBL_ID = #{bbl_Id}		
+	</delete>
 
 </mapper>

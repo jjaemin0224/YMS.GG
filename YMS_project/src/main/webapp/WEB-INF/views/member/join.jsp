@@ -9,6 +9,8 @@
 </head>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+* {font-family: 'Nanum Pen Script';}
 
 html {
   height: 100%;
@@ -19,7 +21,6 @@ body {
   font-family: sans-serif;
   background: linear-gradient(#252a37,#252a37);
 }
-
 
 .login-box {
   position: absolute;
@@ -32,6 +33,7 @@ body {
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   border-radius: 10px;
+  font-size:20px;
 }
 
 .login-box h2 {
@@ -48,7 +50,7 @@ body {
 .login-box .user-box input {
   width: 100%;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 20px;
   color: #fff;
   margin-bottom: 30px;
   border: none;
@@ -61,7 +63,7 @@ body {
   top:0;
   left: 0;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 20px;
   color: #fff;
   pointer-events: none;
   transition: .5s;
@@ -72,7 +74,7 @@ body {
   top: -20px;
   left: 0;
   color: #03e9f4;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 
@@ -97,6 +99,7 @@ body {
   border-radius: 100vmax;
   box-shadow: var(--shadow-elevation-high);
   transition: box-shadow 0.2s ease-in-out;
+  font-size:20px;
 }
 .button::after, .button::before {
   content: "";
@@ -131,10 +134,51 @@ body {
   inset: 8px;
 }
 
-p {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.7;
+@charset "UTF-8";
+*, *:before, *:after {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.arrow-btn {
+  position: relative;
+  display: inline-block;
+  border-radius: 0;
+  color: #b2876f;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: 700ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding-right: 2.5em;
+  font-size:20px;
+  background-color: transparent;
+  border: none;
+}
+.arrow-btn:hover {
+  transition: 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.arrow-btn:hover:after {
+  transition: 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: translateX(15px);
+  opacity: 0;
+}
+.arrow-btn:hover:before {
+  transition: 700ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: translateX(0);
+  opacity: 1;
+}
+.arrow-btn:before, .arrow-btn:after {
+  content: "⟶";
+  position: absolute;
+  right: -10px;
+}
+.arrow-btn:before {
+  transform: translateX(-15px);
+  opacity: 0;
+}
+.arrow-btn:after {
+  transform: none;
 }
 
 </style>
@@ -146,18 +190,23 @@ p {
 		<form name="mmJoinFrm" action="mmJoin" method="post">
 			<div class="user-box">
 				<input type="text" id="m_id" name="m_id" required=""> <label>아이디</label>
-				<button type="button" id="m_idCheck">ID중복체크</button>
-				<span id="m_idCheckMsg"></span>
+				<button class="arrow-btn"  type="button" id="m_idCheck">
+				<span id="m_idCheckMsg">ID 중복체크</span>
+				</button>
 			</div>
+			<br>
 			<div class="user-box">
 				<input type="password" id="m_pw" name="m_pw" class="pw" required=""> <label>비밀번호</label>
-				<button type="button" id="m_pwCheck">비밀번호 확인</button>
-				<span id="m_pwCheckMsg"></span>
+				<button class="arrow-btn" type="button" id="m_pwCheck">
+				<span id="m_pwCheckMsg">비밀번호 확인</span>
+				</button>
 			</div>
+			<br>
 			<div class="user-box">
 				<input type="password" id="m_pwCheck2" name="m_pwCheck2" class="pw" required=""> <label>비밀번호확인</label>
 				<span id="m_pwCheckMsg2"></span>
 			</div>
+			<br>
 			<div class="user-box">
 				<input type="text" id="m_name" name="m_name" required=""> <label>이름</label>
 				<span id="m_nameCheckMsg"></span>
@@ -176,11 +225,12 @@ p {
 			</div>
 			<div class="user-box">
 				<input type="text" id="m_phoneNum" name="m_phoneNum" required=""> <label>전화번호</label>
-				<a href="mmPhoneCheckMv">휴대폰 인증</a>
+				<a class="arrow-btn" href="mmPhoneCheckMv">휴대폰 인증</a>
 				<span id="m_phoneNumCheckMsg"></span>
 			</div>
 			
 			<div class="buttons">
+			<br>
         <button id="joinBtn" class="button" type="submit">
           <span>회원가입</span>
         </button>
@@ -188,6 +238,7 @@ p {
 
 		</form>
 	</div>
+	
 <script type="text/javascript">
 /* 아이디 중복체크 */
 $("#m_idCheck").click(function() {

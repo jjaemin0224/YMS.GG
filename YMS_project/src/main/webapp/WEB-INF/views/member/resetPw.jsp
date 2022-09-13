@@ -8,9 +8,8 @@
 </head>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <style>
-@import
-	url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap')
-	;
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+* {font-family: 'Nanum Pen Script';}
 
 html {
 	height: 100%;
@@ -52,7 +51,7 @@ body {
 .login-box .user-box input {
 	width: 100%;
 	padding: 10px 0;
-	font-size: 25px;
+	font-size: 20px;
 	color: #fff;
 	margin-bottom: 30px;
 	border: none;
@@ -66,7 +65,7 @@ body {
 	top: 0;
 	left: 0;
 	padding: 10px 0;
-	font-size: 22px;
+	font-size: 20px;
 	color: #fff;
 	pointer-events: none;
 	transition: .5s;
@@ -74,7 +73,7 @@ body {
 
 .login-box .user-box input:focus ~ label, .login-box .user-box input:valid 
 	~ label {
-	top: -20px;
+	top: -25px;
 	left: 0;
 	color: #03e9f4;
 	font-size: 18px;
@@ -155,14 +154,19 @@ body {
 		<form name="mmResetPwFrm" action="mmResetPw" method="post">
 			<div class="user-box">
 				<input type="text" id="m_id" name="m_id" required=""
-					value="${searchedId}"> <label>Username</label>
+					value="${searchedId}"> <label>아이디</label>
 			</div>
+			<br>
 			<div class="user-box">
-				<input type="password" id="m_pw" name="m_pw" required=""> <label>Password</label>
-				<span id="m_pwCheckMsg"></span> <br>
+				<input type="password" id="m_pw" name="m_pw" required=""> <label>비밀번호</label>
+				<span id="m_pwCheckMsg"></span>
 			</div>
-			비밀번호 재확인 : <input type="password" id="m_pwRe" name="m_pwRe"
-				class="pw"> <br> <span id="m_pwCheckMsgRe"></span> <br>
+			<br>
+			<div class="user-box">
+			<input type="password" id="m_pwRe" name="m_pwRe" class="pw" required=""> <label>비밀번호 재확인</label>
+			<span id="m_pwCheckMsgRe"></span> <br>
+			</div>
+			<br>
 			<div class="buttons">
 				<button class="button" type="submit" id="m_pwResetBtn" disabled="disabled">
 					<span>비밀번호 재설정</span>
