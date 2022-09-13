@@ -10,4 +10,114 @@
 		ORDER BY CH_IMG_CHAMPIONNAMEKR
 	</select>
 	
+	<select id="selectLaneChampionId" resultType="Integer">
+		SELECT CA_CHAMPIONID 
+		FROM CHAMP_ANALYSIS_RATE
+		WHERE CA_LANE = #{lane}
+	</select>
+	
+	<select id="mainChampSideList" resultType="ChampAnalysisRate">
+		SELECT * 
+		FROM ((SELECT *
+               FROM CHAMP_ANALYSIS_RATE
+               WHERE CA_LANE = #{value}) A
+             LEFT OUTER JOIN  
+             (SELECT CH_IMG_CHAMPIONID, 
+              CH_IMG_CHAMPIONNAMEKR AS CA_CHAMPIONNAMEKR, 
+              CH_IMG_IMG1 AS CA_CHAMPIMG1
+              FROM CHAMPIMG) B
+             ON A.CA_CHAMPIONID = B.CH_IMG_CHAMPIONID)
+        ORDER BY CA_PICKRATE DESC
+	</select>
+	
+	
+	
+	
+	<select id="getChampImgList" parameterType="java.util.List" resultType="ChampImg">
+		SELECT CH_IMG_CHAMPIONID, CH_IMG_CHAMPIONNAMEKR ,CH_IMG_IMG1
+		FROM CHAMPIMG
+		WHERE CH_IMG_CHAMPIONID IN 
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		ORDER BY CH_IMG_CHAMPIONNAMEKR
+	</select>
+	
+	<select id="getMainLane" resultType="String">
+		SELECT CA_LANE 
+		FROM (SELECT ROWNUM RANK, CA.*
+              FROM (SELECT * FROM CHAMP_ANALYSIS_RATE
+                    WHERE CA_CHAMPIONID=#{value} AND CA_LANE!='ALL'
+                    ORDER BY CA_PICKRATE DESC) CA)
+        WHERE RANK = 1
+	</select>
+	
+	
+	<select id="caChampionImg" resultType="ChampImg">
+		SELECT * FROM CHAMPIMG
+		WHERE CH_IMG_CHAMPIONID = #{value}
+	</select>
+	
+	<select id="caChampCounterInfo" resultType="ChampCounter">
+		SELECT CC_RANK, CC_CHAMPIONID_COUNTER, CC_LANE, CC_CHAMPIMG1_COUNTER, CC_CHAMPIONNAME_COUNTER, CC_LANEWINRATE_ORG
+		FROM (SELECT * 
+				FROM (SELECT ROWNUM CC_RANK, CC.* 
+					  FROM (SELECT * 
+					        FROM CHAMP_COUNTER
+		                    WHERE CC_CHAMPIONID=#{championId} and CC_LANE=#{lane}
+		                    ORDER BY CC_LANEWINRATE_ORG DESC) CC) A
+		        LEFT OUTER JOIN 
+		              (SELECT CH_IMG_CHAMPIONID, 
+		                      CH_IMG_CHAMPIONNAMEKR as CC_CHAMPIONNAME_COUNTER, 
+		                      CH_IMG_IMG1 as CC_CHAMPIMG1_COUNTER 
+		              FROM CHAMPIMG) B
+		        ON A.CC_CHAMPIONID_COUNTER = B.CH_IMG_CHAMPIONID
+		        ORDER BY CC_RANK)
+	</select>
+	
+	<select id="getFirstCounterId" resultType="ChampCounter">
+		SELECT *
+		FROM (SELECT ROWNUM CC_RANK, CC.* 
+              FROM (SELECT * 
+                    FROM CHAMP_COUNTER
+                    WHERE CC_CHAMPIONID=#{cc_championId} and CC_LANE=#{cc_lane}
+              ORDER BY CC_LANEWINRATE_ORG DESC) CC)
+        WHERE CC_RANK=1
+	</select>
+	
+	<select id="caChampMatchUp" resultType="ChampCounter">
+		SELECT * 
+		FROM CHAMP_COUNTER
+		WHERE CC_CHAMPIONID=#{championId} and CC_CHAMPIONID_COUNTER=#{counterId} and CC_LANE=#{lane} 
+	</select>
+	
+	<select id="getChampImg" resultType="ChampImg">
+		SELECT CH_IMG_CHAMPIONNAMEKR, CH_IMG_IMG1 
+		FROM CHAMPIMG
+		WHERE CH_IMG_CHAMPIONID = #{championId}
+	</select>
+	
+	<select id="getChampAnalysisRate" resultType="ChampAnalysisRate">
+		SELECT *
+		FROM CHAMP_ANALYSIS_RATE
+		WHERE CA_CHAMPIONID = #{championId} AND CA_LANE = #{lane}
+	</select>
+	
+	
+	
+	
+	<!-- <select id="caChampionHardCounter" resultType="ChampCounter">
+		<![CDATA[
+			SELECT * 
+			FROM (SELECT ROWNUM CC_RANK, CC.* 
+				  FROM (SELECT * FROM CHAMP_COUNTER
+				        WHERE CC_CHAMPIONID=#{championId} and CC_LANE=#{lane}
+		                ORDER BY CC_LANEWINRATE_ORG) CC)
+			WHERE CC_RANK <= 5
+		]]>	
+	</select> -->
+	
+	
+	
+	
 </mapper>
