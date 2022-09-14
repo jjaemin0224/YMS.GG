@@ -9,30 +9,30 @@
 </head>
 <body>
 	<h1>소환사전적검색페이지(gameRecord/search.jsp)</h1>
-	<form name="grSearchFrm" action="grSearch" method="get">
-		<input type="text" name="gr_summonerName">
-		<input type="submit" value="검색">
-	</form>
-	
-	
-	<!-- <div id="grUserTier">유저티어</div>
-	<div id="grList">전적리스트</div>
+	<input class= "summonerNameSelectVal" type="text" name="gr_summonerName">
+	<input class="summonerNameSelectBtn" type="button" value="검색">
 
+	
+	<div id="grSearchNoneMsg"></div>
+	
 	<script type="text/javascript">
-		var gr_summonerName = '${gr_summonerName}'
-		console.log(gr_summonerName)
-		Aj('grList', '#grList', gr_summonerName)
-		
-		function Aj(url, position, gr_summonerName){
-			$.ajax({ 
-				url: url,
-				data: {"gr_summonerName" : gr_summonerName},
-				type: 'get',
-				dataType: 'html',
-			}).done((data)=>{$(position).html(data);})
-	  	  	.fail((err)=>console.log(err));
-		} //Aj End
-	</script> -->
+		$(".summonerNameSelectBtn").click(function(){
+			var gr_summonerName = $(".summonerNameSelectVal").val();
+			$.ajax({
+				type : 'post',
+				url: 'http://127.0.0.1:5000/grUserSelect',
+				data: {'summonerName' : gr_summonerName},
+				success : function(data) {
+					gr_summonerName = data;
+					location.href = "grSearch?gr_summonerName=" + gr_summonerName;
+				},
+				error : function(err){
+					$("<p></p>").text("검색된 유저가 없습니다. 다시 검색해주세요.").appendTo("#grSearchNoneMsg");
+				}
+			});
+		});
+	
+	</script>
 
 </body>
 </html>
