@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gg.yms.icia.dao.IGameRecordDao">
+
+	<select id="getGrList" resultType="GameRecord">
+		<![CDATA[
+			SELECT * 
+			FROM (SELECT ROWNUM RANK, GR.* 
+			      FROM (SELECT * FROM GAMERECORD
+                        WHERE GR_SUMMONERNAME = #{value}
+                        ORDER BY GR_GAMEENDTIME DESC) GR) A
+                  LEFT OUTER JOIN
+                  (SELECT CH_IMG_CHAMPIONID, 
+                   CH_IMG_CHAMPIONNAMEKR AS GR_CHAMPIONNAMEKR, 
+                   CH_IMG_IMG1 AS GR_CHAMPIMG1
+                   FROM CHAMPIMG) B
+                  ON A.GR_CHAMPIONID = B.CH_IMG_CHAMPIONID
+            WHERE RANK <= 10
+            ORDER BY GR_GAMEENDTIME DESC
+		]]>	
+	</select>
+	
+	
+	<select id="grGetOneBlueList" resultType="GameRecord">
+		SELECT * 
+		FROM (SELECT * FROM GAMERECORD
+		      WHERE GR_GAMEID = #{value} AND GR_TEAMID=100) A
+             LEFT OUTER JOIN
+             (SELECT CH_IMG_CHAMPIONID, 
+              CH_IMG_CHAMPIONNAMEKR AS GR_CHAMPIONNAMEKR, 
+              CH_IMG_IMG1 AS GR_CHAMPIMG1
+              FROM CHAMPIMG) B
+             ON A.GR_CHAMPIONID = B.CH_IMG_CHAMPIONID
+        ORDER BY GR_PARTICIPANTID
+	</select>
+	
+	<select id="grGetOneRedList" resultType="GameRecord">
+		SELECT * 
+		FROM (SELECT * FROM GAMERECORD
+		      WHERE GR_GAMEID = #{value} AND GR_TEAMID=200) A
+             LEFT OUTER JOIN
+             (SELECT CH_IMG_CHAMPIONID, 
+              CH_IMG_CHAMPIONNAMEKR AS GR_CHAMPIONNAMEKR, 
+              CH_IMG_IMG1 AS GR_CHAMPIMG1
+              FROM CHAMPIMG) B
+             ON A.GR_CHAMPIONID = B.CH_IMG_CHAMPIONID
+        ORDER BY GR_PARTICIPANTID
+	</select>
+	
+</mapper>	
+	

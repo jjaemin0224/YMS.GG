@@ -9,9 +9,9 @@
 </head>
 <body>
 	<h1>소환사전적검색페이지(gameRecord/search.jsp)</h1>
-	<form name="grLastListFrm" action="grLastList" method="get">
-		<input type="text" name="gr_summonerName" value="${gr_summonerName}">
-		<input type="submit" value="전적갱신">
+	<form name="grSearchFrm" action="grSearch" method="get">
+		<input type="text" name="gr_summonerName">
+		<input type="submit" value="검색">
 	</form>
 	
 	
