@@ -254,7 +254,7 @@ code {
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 *{
     margin: 0;
-    padding: 0;
+    padding: 0; 
     box-sizing: border-box;
     font-family: 'Nanum Pen Script';
     font-size: 20px;
@@ -267,7 +267,7 @@ header{
     align-items: center;
     height: 100px;
     background: #252a37;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif; 
     font-weight: bold;
 }
 .view{

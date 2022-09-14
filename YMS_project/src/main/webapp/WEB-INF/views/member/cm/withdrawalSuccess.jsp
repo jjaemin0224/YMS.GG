@@ -141,8 +141,7 @@ a:hover {
 
 <body>
   
-
-   <link href="https://fonts.googleapis.com/css?family=Notable&display=swap" rel="stylesheet">
+	
   <div class="neon_effect">
     <p>응 안말려 꺼져</p>
      </div>
@@ -152,7 +151,7 @@ a:hover {
         <a href="main"><span>탈퇴완료</span></a>
         <div class="dot"></div>
       </div>
-      <h1>&#x261D; Hover on the button &#x261D;</h1>
+      <h1>&#x261D; 눌러 ㅅㅂ &#x261D;</h1>
     </div>
     </body>
 </html>

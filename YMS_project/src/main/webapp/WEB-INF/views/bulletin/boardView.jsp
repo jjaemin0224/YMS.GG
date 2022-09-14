@@ -423,62 +423,73 @@ header{
   inset: 8px;
 }	
 
-</style> 
-	<a href="main" class="logo"><img src="resources/img/yms.png" style="width: 100px; height: 100px;" ></a>
-	
-	<header>
-	<a href="#" class="view">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                로그아웃
-            </a>
-    </header>        
-            
-	 <div class="buttons">
-        <button class="fill">전적 검색</button>
-        <button class="pulse">챔피언 분석</button>
-        <button class="close">챔피언 추천</button>
-        <button class="raise">쿨타임 계산기</button>
-        <button onclick="location.href='bbBulletinBoardMv'" class="up">자유 게시판</button>
-        <button onclick="location.href='./TsbList'" class="slide">팀원 찾기</button>
-        <button class="offset">소환사 분석</button>
-      </div>
+
+</style>
+<a href="main" class="logo"><img src="resources/img/yms.png"
+	style="width: 100px; height: 100px;"></a>
+
+<header>
+	<a href="#" class="view"> <span></span> <span></span> <span></span>
+		<span></span> 로그아웃
+	</a>
+</header>
+
+<div class="buttons">
+	<button class="fill">전적 검색</button>
+	<button class="pulse">챔피언 분석</button>
+	<button class="close">챔피언 추천</button>
+	<button class="raise">쿨타임 계산기</button>
+	<button onclick="location.href='bbBulletinBoardMv'" class="up">자유
+		게시판</button>
+	<button onclick="location.href='./TsbList'" class="slide">팀원
+		찾기</button>
+	<button class="offset">소환사 분석</button>
+</div>
 
 <body>
-    글번호 : ${board.bb_postNum} <br> <br> 작성자 : ${board.bb_id} <br>
-		<br> 제목 : ${board.bb_title} <br> <br> 내용 :
-		${board.bb_content} <br> <br> <br> <br> 
-		<div class = "likeinfo" id = "likeinfo"> 좋아요 수 :
-		<p class = "like" id = "like">
-		${boardLike}
-		</p>
-		</div>
-		<button class="LikeBtn"></button>
-		<br> <br> 작성 날짜 : ${board.bb_date} <br> <br>
-		<form name="bbReplyFrm" id="bbReplyFrm">
-			<table>
-				<tr>
-					<td><textarea rows="3" cols="50" name="bbr_content"
-							id="bbr_content" class="content-box"></textarea></td>
+ <div class="login-box">
+	글번호 : ${board.bb_postNum}
+	<br>
+	<br> 작성자 : ${board.bb_id}
+	<br>
+	<br> 제목 : ${board.bb_title}
+	<br>
+	<br> 내용 : ${board.bb_content}
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="likeinfo" id="likeinfo">
+		좋아요 수 :
+		<p class="like" id="like">${boardLike}</p>
+	</div>
+	<button class="LikeBtn"></button>
+	<br>
+	<br> 작성 날짜 : ${board.bb_date}
+	<br>
+	<br>
+	<form name="bbReplyFrm" id="bbReplyFrm">
+		<table>
+			<tr>
+				<td><textarea rows="3" cols="50" name="bbr_content"
+						id="bbr_content" class="content-box"></textarea></td>
 
-					<button onclick="replyInsert(${board.bb_postNum})" class="button"
-						type="button">
-						<span>댓글 작성</span>
-					</button>
-				</tr>
-			</table>
-		</form>
-		<br>
-		<table id="bReplyTable" class="bReplyTable">
-			<c:forEach var="list" items="${bReplyList}">
-				<tr>
-					<td>${list.bbr_id}</td>
-					<td>${list.bbr_content}</td>
-					<td>${list.bbr_date}</td>
-			</c:forEach>
+				<button onclick="replyInsert(${board.bb_postNum})" class="button"
+					type="button">
+					<span>댓글 작성</span>
+				</button>
+			</tr>
 		</table>
+	</form>
+	<br>
+	<table id="bReplyTable" class="bReplyTable">
+		<c:forEach var="list" items="${bReplyList}">
+			<tr>
+				<td>${list.bbr_id}</td>
+				<td>${list.bbr_content}</td>
+				<td>${list.bbr_date}</td>
+		</c:forEach>
+	</table>
 	</div>
 
 
@@ -516,8 +527,8 @@ header{
 		
 		
 	</script>
-	
-<script type="text/javascript">
+
+	<script type="text/javascript">
 	let likeval = ${findLike};	
 	var bbl_postnum = ${board.bb_postNum};
 	
@@ -572,6 +583,6 @@ header{
 	 });
 
 </script>
-   
+
 </body>
 </html>

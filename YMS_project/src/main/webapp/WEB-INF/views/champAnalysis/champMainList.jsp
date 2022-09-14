@@ -8,13 +8,16 @@
 <title>Insert title here</title>
 </head>
 <style>
-.champMainImg_div{
-	float: left;
-	margin: 10px;
-}
+
 .champMainImg{
-	width: 80px;
-	height: 80px;
+	width: 60px;
+	height: 60px;
+	border-radius: 10px;
+}
+
+.champMainImg_div{
+	float:left;
+	margin:10px;
 }
 
 </style>

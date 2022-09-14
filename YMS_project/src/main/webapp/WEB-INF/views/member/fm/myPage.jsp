@@ -396,7 +396,7 @@ top {
 
             </div><!--header-->
             <div class="login-box">
-                    아이디 : ${member.m_id} <br>
+                    아이디 : ${member.m_id}입니다. <br>
                     비밀번호 : ${member.m_pw} <br>
                     이름 : ${member.m_name} <br>
                     전화번호 : ${member.m_phoneNum} <br>

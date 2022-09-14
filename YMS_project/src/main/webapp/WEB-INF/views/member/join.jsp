@@ -219,6 +219,7 @@ body {
 				<input type="text" id="m_email" name="m_email" required=""> <label>이메일</label>
 				<span id="m_emailCheckMsg"></span>
 			</div>
+			<br>
 			<div class="user-box">
 				<input type="text" id="m_birth" name="m_birth"  required=""> <label>생년월일(6자리)</label>
 				<span id="m_birthCheckMsg"></span>
