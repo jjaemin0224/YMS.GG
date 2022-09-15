@@ -17,8 +17,6 @@
 	text-align: center;
 }
 
-
-
 .fill:hover,
 .fill:focus {
   box-shadow: inset 0 0 0 2em var(--hover);
@@ -149,109 +147,10 @@ header{
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
 }
-.view{
-    position: relative;
-    top:-110px;
-    left: 35px;
-    display: inline-block;
-    padding: 25px 30px;
-    margin: 40px 0;
-    color: #ece6cc;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: 0.5s;
-    letter-spacing: 4px;
-    overflow: hidden;
-    margin-right: 50px;
-   
-}
-.view:hover{
-    background: #ece6cc;
-    color: #050801;
-    box-shadow: 0 0 5px #ece6cc,
-                0 0 25px #ece6cc,
-                0 0 50px #ece6cc,
-                0 0 200px #ece6cc;
-     -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
-}
-
-.view span{
-    position: absolute;
-    display: block;
-}
-.view span:nth-child(1){
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg,transparent,#ece6cc);
-    animation: animate1 1s linear infinite;
-}
-@keyframes animate1{
-    0%{
-        left: -100%;
-    }
-    50%,100%{
-        left: 100%;
-    }
-}
-.view span:nth-child(2){
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg,transparent,#ece6cc);
-    animation: animate2 1s linear infinite;
-    animation-delay: 0.25s;
-}
-@keyframes animate2{
-    0%{
-        top: -100%;
-    }
-    50%,100%{
-        top: 100%;
-    }
-}
-.view span:nth-child(3){
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg,transparent,#ece6cc);
-    animation: animate3 1s linear infinite;
-    animation-delay: 0.50s;
-}
-@keyframes animate3{
-    0%{
-        right: -100%;
-    }
-    50%,100%{
-        right: 100%;
-    }
-}
-
-.view span:nth-child(4){
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg,transparent,#ece6cc);
-    animation: animate4 1s linear infinite;
-    animation-delay: 0.75s;
-}
-@keyframes animate4{
-    0%{
-        bottom: -100%;
-    }
-    50%,100%{
-        bottom: 100%;
-    }
-}
 
 img{
 	margin:auto;
-	    display: block;
-	    background: rgba(27, 27, 27,0);
+	background: rgba(27, 27, 27,0);
 }
 
 
@@ -291,6 +190,7 @@ img{
     margin: 0px auto;
 }
 
+
 h1{
 	font-size:40px;
 }
@@ -310,6 +210,7 @@ h1{
 
 .champCounterInfo_ca{
 	font-size:20px;
+	
 }
 
 .champLane{
@@ -350,7 +251,7 @@ h1{
      
 	 <div class="buttons">
         <button onclick="location.href='grSearchMv'" class="fill">전적 검색</button>
-        <button class="pulse">챔피언 분석</button>
+        <button onclick="location.href='caChampAnalysisMv'" class="pulse">챔피언 분석</button>
         <button class="close">챔피언 추천</button>
         <button class="raise">쿨타임 계산기</button>
         <button onclick="location.href='bbBulletinBoardMv'" class="up">자유 게시판</button>
@@ -380,12 +281,12 @@ h1{
 	</div>
 		
 	<div class="champMatchUp">
-		<div id="champCounterInfo_ca"></div>
+		<div id="champCounterInfo_ca" style="height:3000px;"></div>
 		<div id="champMatchUp_ca"></div>
+		
 	</div>
 	<div class="champInfo">
 		<div id="champRuneInfo_ca"></div>
-		
 	</div>
 	
 	
@@ -393,39 +294,46 @@ h1{
 </div>
 
 <script type="text/javascript">
+
 	
 	$(function() {
-		var championId = "${ChampCounter.cc_championId}";
 		var counterId = "${ChampCounter.cc_championId_counter}";
-		
+		var championId = "${ChampCounter.cc_championId}";
 		var lane = "${ChampCounter.cc_lane}";
+		caAj2('caChampRuneInfo', '#champRuneInfo_ca', championId, lane);
 		caAj1('caChampMatchUp', '#champMatchUp_ca', championId, counterId, lane);
 		caAj2('caChampCounterInfo', '#champCounterInfo_ca', championId, lane);
-		caAj2('caChampRuneInfo', '#champRuneInfo_ca', championId, lane);
+		
 	});
 	
 	
 	$(function(){
+		$("#calane-top").hide();
+		$("#calane-jug").hide();
+		$("#calane-mid").hide();
+		$("#calane-bot").hide();
+		$("#calane-sup").hide();
+		
 		var lane_top = "${lane_top}";
 		var lane_jug = "${lane_jug}";
 		var lane_mid = "${lane_mid}";
 		var lane_bot = "${lane_bot}";
 		var lane_sup = "${lane_top}";
 		
-		if (lane_top == 0){
-			$("#calane-top").hide();
+		if (lane_top == 1){
+			$("#calane-top").show();
 		}
-		if (lane_jug == 0){
-			$("#calane-jug").hide();
+		if (lane_jug == 1){
+			$("#calane-jug").show();
 		}
-		if (lane_mid == 0){
-			$("#calane-mid").hide();
+		if (lane_mid == 1){
+			$("#calane-mid").show();
 		}
-		if (lane_bot == 0){
-			$("#calane-bot").hide();
+		if (lane_bot == 1){
+			$("#calane-bot").show();
 		}
-		if (lane_sup == 0){
-			$("#calane-sup").hide();
+		if (lane_sup == 1){
+			$("#calane-sup").show();
 		}
 	});
 	

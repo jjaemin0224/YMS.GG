@@ -109,6 +109,12 @@
 		WHERE RA_CHAMPIONID = #{championId} AND RA_LANE = #{lane}
 	</select>
 	
+	<select id="getLaneList" resultType="String">
+		SELECT CA_LANE
+		FROM CHAMP_ANALYSIS_RATE
+		WHERE CA_CHAMPIONID = #{value} AND CA_LANE != 'ALL'
+	</select>
+	
 	<!-- <select id="caChampionHardCounter" resultType="ChampCounter">
 		<![CDATA[
 			SELECT * 

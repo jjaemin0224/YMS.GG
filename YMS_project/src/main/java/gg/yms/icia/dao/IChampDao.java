@@ -37,5 +37,7 @@ public interface IChampDao {
 
 	RuneAnalysis caChampRuneInfo(@Param("championId") int championId, @Param("lane") String lane);
 
+	List<String> getLaneList(int championId);
+
 
 }

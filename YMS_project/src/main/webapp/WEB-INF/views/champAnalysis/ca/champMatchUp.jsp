@@ -14,6 +14,7 @@
     background-color: #dedede;
     font-weight: 600;
     font-size: .8rem;
+    margin: 100px;
 }
 
 .progress-bar .progress {
@@ -24,6 +25,7 @@
     text-align: center;
     background-color: #4F98FF;
     color: #111;
+    margin: 100px;
 }
 
 .matchup{
@@ -45,7 +47,7 @@
 <body>
 <div class="matchup">
 
-	<h2>Match Up</h2>
+	<h2 style="margin:100px">Match Up</h2>
 	<table class="matchTable">
 		<tr>
 			<td> 
