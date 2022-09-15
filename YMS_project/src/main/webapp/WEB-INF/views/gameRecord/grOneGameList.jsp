@@ -9,6 +9,12 @@
 </head>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+*{
+	font-family: 'Nanum Pen Script';
+	color:#fff;
+	font-size:20px;
+}
 #oneGameBlue_wrapper  {
 	float : left;
 	width : 48%
@@ -245,7 +251,7 @@
 				$("<img class='mainRuneImg'>").attr("src","https://ddragon.canisback.com/img/perk-images/Styles/Domination/DarkHarvest/DarkHarvest.png").appendTo($(this));
 			}
 			else if ($(item).attr("data-code") == 9923){
-				$("<img class='mainRuneImg'>").attr("src","https://ddragon.canisback.com/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.pngs").appendTo($(this));
+				$("<img class='mainRuneImg'>").attr("src","https://ddragon.canisback.com/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png").appendTo($(this));
 			}
 			else if ($(item).attr("data-code") == 8351){
 				$("<img class='mainRuneImg'>").attr("src","https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png").appendTo($(this));

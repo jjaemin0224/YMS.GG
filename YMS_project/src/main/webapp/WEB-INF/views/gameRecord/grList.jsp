@@ -250,7 +250,7 @@
 					$("<img class='mainRuneImg'>").attr("src","https://ddragon.canisback.com/img/perk-images/Styles/Domination/DarkHarvest/DarkHarvest.png").appendTo($(this));
 				}
 				else if ($(item).attr("data-code") == 9923){
-					$("<img class='mainRuneImg'>").attr("src","https://ddragon.canisback.com/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.pngs").appendTo($(this));
+					$("<img class='mainRuneImg'>").attr("src","https://ddragon.canisback.com/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png").appendTo($(this));
 				}
 				else if ($(item).attr("data-code") == 8351){
 					$("<img class='mainRuneImg'>").attr("src","https://ddragon.canisback.com/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png").appendTo($(this));

@@ -11,7 +11,7 @@
 
 body{
     background-color: #252a37;
-    font-family: 'Nanum Pen Script';
+   
 }
 
 td{

@@ -20,6 +20,7 @@ public class GameRecordMM {
 
 	public ModelAndView grSearch(String gr_summonerName) {
 		mav = new ModelAndView();
+		
 		mav.addObject("gr_summonerName", gr_summonerName);
 		mav.setViewName("gameRecord/main");
 		return mav;

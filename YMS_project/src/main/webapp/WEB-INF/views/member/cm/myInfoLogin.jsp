@@ -473,12 +473,12 @@ top {
         <div class="content">
             <div id="left">
                 <h3>바로가기</h3>
-                <p><a href="#">전적 검색</a></p>
-                <p><a href="#">챔피언 분석</a></p>
+                <p><a href="grSearchMv">전적 검색</a></p>
+                <p><a href="caChampAnalysisMv">챔피언 분석</a></p>
                 <p><a href="#">챔피언 추천</a></p>
                 <p><a href="bbBulletinBoardMv">자유 게시판</a></p>
                 <p><a href="TsbList">탐원 찾기</a></p>
-                <p><a href="#">소환사 분석</a></p>
+                <p><a href="">소환사 분석</a></p>
             </div><!--left-->
 
             <div id="right">
