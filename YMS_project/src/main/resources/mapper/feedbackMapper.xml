@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gg.yms.icia.dao.IFeedbackDao">
+	<insert id="gmFeedbackAccount" parameterType="FeedbackApplication">
+		INSERT INTO FEEDBACKAPPLICATION VALUES (FA_SEQ.NEXTVAL, #{fba_id}, #{fba_portfolio}, DEFAULT, DEFAULT)
+	</insert>	
+	
+	<select id="gmFeedbackConfirmList" parameterType="Integer"
+		resultType="FeedbackApplication">
+
+		<![CDATA[
+			SELECT * FROM (
+            	SELECT ROWNUM RN,FA.*
+            	FROM (SELECT * FROM FEEDBACKAPPLICATION ORDER BY fba_postnum DESC) FA
+            	WHERE ROWNUM<=#{pageNum}*10  
+            	)
+         	WHERE RN>=#{pageNum}*10-9 AND FBA_CHECK=0
+		]]>
+		</select>
+		
+	<select id="gmFeedbackConfirmView" parameterType="Integer" resultType="FeedbackApplication">
+		SELECT * FROM FEEDBACKAPPLICATION WHERE FBA_POSTNUM = #{fba_postnum}
+	</select>
+	
+	<update id="gmFeedbackTransUpdate" parameterType="int">
+		UPDATE FEEDBACKAPPLICATION 
+    	SET FBA_CHECK = 1
+    	WHERE FBA_POSTNUM = #{fba_postnum}
+
+	</update>
+	
+	<update id="gmFeedbackTransUpdate2" parameterType="int">
+    	
+    	UPDATE (SELECT M.M_RATING
+            FROM FEEDBACKAPPLICATION F
+            RIGHT JOIN MEMBER M
+            ON (F.FBA_ID = M.M_ID)
+            WHERE F.FBA_POSTNUM = #{fba_postnum}
+            ) 
+    	SET M_RATING = 'FM'
+	</update>
+	
+	<delete id="gmFeedbackTransDelete" parameterType="Integer" >
+		DELETE FROM FEEDBACKAPPLICATION
+		WHERE FBA_POSTNUM = #{fba_postnum}
+	</delete>
+
+</mapper>

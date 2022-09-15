@@ -29,6 +29,7 @@ public interface IMemberDao {
 
 	String mmEncoderPw(String m_id);
 
+
 	
 
 }

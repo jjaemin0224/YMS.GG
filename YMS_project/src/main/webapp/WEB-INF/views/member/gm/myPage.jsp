@@ -390,6 +390,9 @@ top {
                         <li><a href="cmMyInfoDeleteMv">회원탈퇴</a></li>
                         <li><a href="cmCashChargeMv">캐시충전</a></li>
                         <li><a href="gmFeedbackMv">내 피드백</a></li>
+                        <!-- 피드백 계정신청 전환 확인용 -->
+                        <br>
+                        <li><a href="gmFeedbackConfirmMv" >피드백 계정신청 전환 확인용</a> </li>
                     </ul>
 
                 </div><!-- menu -->

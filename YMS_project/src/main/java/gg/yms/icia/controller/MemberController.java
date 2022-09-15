@@ -1,7 +1,9 @@
 package gg.yms.icia.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.maven.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -185,10 +187,13 @@ public class MemberController {
    //카카오페이
    @RequestMapping(value = "/cmKakaoPay", method = RequestMethod.POST)
    public ModelAndView cmKakaoPay(@ModelAttribute Member mb, HttpSession session) {
-	   System.out.println("kakaoCon: "+ mb);
+	  System.out.println("kakaoCon: "+ mb);
       mav = mm.cmKakaoPay(mb,session);
       System.out.println("kakaoMav: "+ mav);
       return mav;
    }
+   
+
+
 
 }

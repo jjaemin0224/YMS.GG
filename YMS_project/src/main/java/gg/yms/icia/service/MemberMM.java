@@ -1,8 +1,10 @@
 	package gg.yms.icia.service;
 
+import java.beans.Encoder;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -73,9 +75,9 @@ public class MemberMM {
       BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
       String view = null;
       
-      String bcEnco = mDao.mmEncoderPw(mb.getM_id());
+      String bcEnco = mDao.mmEncoderPw(mb.getM_id()); 
       if(bcEnco != null) {
-         if (bc.matches(mb.getM_pw(), bcEnco)) {      
+         if (bc.matches(mb.getM_pw(), bcEnco)) {     
             session.setAttribute("id", mb.getM_id());
             mb = mDao.getMemberInfo(mb.getM_id());
             mav.addObject("loginCheck", 1);
@@ -205,18 +207,28 @@ public class MemberMM {
    public ModelAndView cmMyInfoLogin(Member mb, HttpSession session) {
       mav = new ModelAndView();
       String view = null;
-
+      
+//      BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
+//      String getPw = mb.getM_pw(); //useruser3!
+//            
+//      String enPw = mDao.mmEncoderPw(mb.getM_id()); //암호화 된 비밀번호
+//      System.out.println("enPw" + enPw);
+//      bc.matches(enPw, getPw);
+      
+      
+      
       mb.setM_id(getSessionId(session));
-
-      if (mDao.mmLogin(mb)) {
+      
+      if (mDao.mmLogin(mb)) { //boolean id,pw
          view = "member/cm/myInfoUpdate";
          mav.addObject("member", getMemberInfo(session));
       } else {
          view = "member/cm/myInfoLogin";
          mav.addObject("msg", "로그인 실패");
-      }
-      mav.setViewName(view);
-
+         System.out.println("failMav: " + mav);
+      }       
+	  mav.setViewName(view);
+	  System.out.println("infoLogin: "+ mav);
       return mav;
    }
 
@@ -315,5 +327,7 @@ public class MemberMM {
       mav.setViewName("member/cm/cashCharge");
       return mav;
    }
+   
+
 
 }

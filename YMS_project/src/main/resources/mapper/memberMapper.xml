@@ -59,5 +59,8 @@
 	<select id="mmEncoderPw" resultType="String"> 
       SELECT M_PW FROM MEMBER WHERE M_ID=#{m_id} 
    </select>
+   
+   
+   
 	
 </mapper>

@@ -20,6 +20,6 @@ public class Feedback {
 	private String fb_ans_id;
 	private String fb_ans_contents;
 	private String fb_ans_date;
-	private boolean fb_flag;
+	private int fb_check;
 
 }
