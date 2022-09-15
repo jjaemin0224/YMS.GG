@@ -390,6 +390,8 @@ top {
                         <li><a href="cmMyInfoPwUpdateMv">비밀번호변경</a></li>
                         <li><a href="cmMyInfoDeleteMv">회원탈퇴</a></li>
                         <li><a href="cmCashChargeMv">캐시충전</a></li>
+                        <li><a href="fmWaitingFbList">피드백 요청 리스트</a></li>
+                        <li><a href="fmAcceptFbList">피드백 수락 리스트</a></li>
                     </ul>
 
                 </div><!-- menu -->

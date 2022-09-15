@@ -29,7 +29,7 @@ public interface IMemberDao {
 
 	String mmEncoderPw(String m_id);
 
-
+	void cashDeduction(String req_id);
 	
 
 }

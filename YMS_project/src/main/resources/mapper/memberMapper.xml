@@ -59,6 +59,12 @@
 	<select id="mmEncoderPw" resultType="String"> 
       SELECT M_PW FROM MEMBER WHERE M_ID=#{m_id} 
    </select>
+   	
+	<update id="cashDeduction" parameterType="Member">
+		UPDATE MEMBER
+		SET M_CASH= (M_CASH - 2000)
+		WHERE M_ID=#{req_id}
+	</update>
    
    
    
