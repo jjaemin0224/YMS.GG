@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import gg.yms.icia.bean.ChampAnalysisRate;
 import gg.yms.icia.bean.ChampCounter;
 import gg.yms.icia.bean.ChampImg;
+import gg.yms.icia.bean.RuneAnalysis;
 import gg.yms.icia.dao.IChampDao;
 
 @Service
@@ -115,6 +116,16 @@ public class ChampMM {
 		
 		mav.addObject("champCounterList", champCounterList);
 		mav.setViewName("champAnalysis/ca/champCounterInfo");
+		return mav;
+	}
+
+	public ModelAndView caChampRuneInfo(int championId, String lane) {
+		mav = new ModelAndView();
+		RuneAnalysis ra = cDao.caChampRuneInfo(championId, lane);
+		System.out.println(ra);
+		
+		mav.addObject("ra", ra);
+		mav.setViewName("hampAnalysis/ca/champRuneInfo");
 		return mav;
 	}
 

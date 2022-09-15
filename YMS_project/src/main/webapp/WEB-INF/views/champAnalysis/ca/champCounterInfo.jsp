@@ -32,7 +32,7 @@
 
 .rwd-table {
   border-collapse: collapse;
-  width:400px;
+  width:500px;
     margin-left: auto;
     margin-right: auto;
 	overflow: hidden
@@ -132,6 +132,11 @@
 h2{
 	alight:
 }
+
+.counterChampImg:hover{
+	cursor:pointer;
+}
+
 </style>
 
 <body>

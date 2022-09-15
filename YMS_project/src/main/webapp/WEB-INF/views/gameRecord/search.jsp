@@ -471,14 +471,6 @@ function searchToggle(obj, evt){
 					
 		});
 		
-		$(function(){
-			ajax ()
-			
-				url : asdfasdf
-				
-				
-				
-		});
 	
 	</script>
 

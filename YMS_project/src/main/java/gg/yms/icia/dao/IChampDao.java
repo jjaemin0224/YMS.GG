@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import gg.yms.icia.bean.ChampAnalysisRate;
 import gg.yms.icia.bean.ChampCounter;
 import gg.yms.icia.bean.ChampImg;
+import gg.yms.icia.bean.RuneAnalysis;
 
 public interface IChampDao {
 
@@ -33,6 +34,8 @@ public interface IChampDao {
 	ChampAnalysisRate getChampAnalysisRate(@Param("championId") int championId,@Param("lane") String lane);
 
 	List<ChampAnalysisRate> mainChampSideList(String lane);
+
+	RuneAnalysis caChampRuneInfo(@Param("championId") int championId, @Param("lane") String lane);
 
 
 }

@@ -304,7 +304,7 @@ a span:nth-child(4){
         </header>
 		<img src="resources/img/yms.png" class="img">
 	<div class="buttons">
-        <button class="fill">전적 검색</button>
+        <button onclick="location.href='grSearchMv'" class="fill">전적 검색</button>
         <button onclick="location.href='caChampAnalysisMv'" class="pulse">챔피언 분석</button>
         <button class="close">챔피언 추천</button>
         <button class="raise">쿨타임 계산기</button>

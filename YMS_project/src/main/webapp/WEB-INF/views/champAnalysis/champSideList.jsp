@@ -15,11 +15,11 @@
 
 .selectLaneSide{
 	display: inline-block;
-    margin: 10px;
+    margin: 5px;
     border: solid 1px lightslategray;
     padding: 20px;
     border-radius: 20px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .rwd-table {
@@ -28,7 +28,6 @@
     height:100%;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .rwd-table tr:first-child {
@@ -120,6 +119,9 @@
   .rwd-table td {
     padding: 1em !important;
   }
+  
+
+  
 }
 
 .container {
@@ -127,26 +129,30 @@
   text-align: center;
 }
 
+.selectLaneSide, .champSideImg_div:hover{
+	cursor: pointer;
+}
+
 </style>
 <body>
 	<div class="champMainImg_wrapper">
 	
 		<div class="selectLaneSide_wrapper" >
-			<div class="selectLaneSide" data-code="TOP">top</div>
-			<div class="selectLaneSide" data-code="JUNGLE">jug</div>
-			<div class="selectLaneSide" data-code="MIDDLE">mid</div>
-			<div class="selectLaneSide" data-code="BOTTOM">bot</div>
-			<div class="selectLaneSide" data-code="UTILITY">sup</div>
+			<div class="selectLaneSide" id="sideLane_top" data-code="TOP">TOP</div>
+			<div class="selectLaneSide" id="sideLane_jug" data-code="JUNGLE">JUG</div>
+			<div class="selectLaneSide" id="sideLane_mid" data-code="MIDDLE">MID</div>
+			<div class="selectLaneSide" id="sideLane_bot" data-code="BOTTOM">BOT</div>
+			<div class="selectLaneSide" id="sideLane_sup" data-code="UTILITY">SUP</div>
 		</div>
 	<div class="container">
 		<table class="rwd-table">
 				<tr height="10">
-					<th width="30"> <div class="selectColumn" data-code="CA_TIER" >티어</div> </th>
-					<th width="50"> <div>챔피언</div> </th>
-					<th width="110"> <div class="selectColumn" data-code="CA_CHAMPIONNAMEKR" >이름</div> </th>
-					<th width="70"> <div class="selectColumn" data-code="CA_PICKRATE" >픽률</div> </th>
-					<th width="70"> <div class="selectColumn" data-code="CA_WINRATE" >승률</div> </th>
-					<th width="70"> <div class="selectColumn" data-code="CA_BANRATE" >밴률</div> </th>
+					<th> <div class="selectColumn" data-code="CA_TIER" style="width:30px;">티어</div> </th>
+					<th> <div>챔피언</div> </th>
+					<th> <div class="selectColumn" data-code="CA_CHAMPIONNAMEKR" style="width:50px;" >이름</div> </th>
+					<th> <div class="selectColumn" data-code="CA_PICKRATE" >픽률</div> </th>
+					<th> <div class="selectColumn" data-code="CA_WINRATE" >승률</div> </th>
+					<th> <div class="selectColumn" data-code="CA_BANRATE" >밴률</div> </th>
 				</tr>
 				
 			<c:forEach var="list" items="${champSideList}">
@@ -156,7 +162,7 @@
 					</td>
 					<td align="center">
 						<div class="champSideImg_div" data-code="${list.ca_championId}" data-lane="${list.ca_lane}">
-							<img class="champSideImg" src="${list.ca_champImg1}" style="width:30px; height:30px;">
+							<img class="champSideImg" src="${list.ca_champImg1}" style="width:40px; height:40px;">
 						</div>
 					</td>
 					<td align="center">
@@ -179,16 +185,44 @@
 </div>
 
 <script type="text/javascript">
+	
+	checkingSideLane();
+
+	function checkingSideLane() {
+		var sideLane = "${sideLane}";
+		$(".selectLaneSide").css("border", "0px solid gold");
+		if (sideLane == 'TOP') {
+			$("#sideLane_top").css("border", "1px solid gold");
+		}
+		else if (sideLane == 'JUNGLE') {
+			$("#sideLane_jug").css("border", "1px solid gold");
+		}
+		else if (sideLane == 'MIDDLE') {
+				$("#sideLane_mid").css("border", "1px solid gold");
+		}
+		else if (sideLane == 'BOTTOM') {
+				$("#sideLane_bot").css("border", "1px solid gold");
+		}
+		else if (sideLane == 'UTILITY') {
+				$("#sideLane_sup").css("border", "1px solid gold");
+		}
+	}
+	
+	
 
 	$(".selectLaneSide").click(function(){
+		$(".selectLaneSide").css("border", "solid 0px");
+		$(this).css("border", "solid 1px gold");
 		var sideLane = $(this).attr("data-code");
 		$.ajax({
 			url: 'caChampSideListLane',
 			type: 'get',
 			data: {'lane': sideLane},
 			dataType: 'html',
-		}).done((data)=>{$('#caChampSideList').html(data);})
-		  	.fail((err)=>console.log(err));
+		}).done((data)=>{
+			$('#caChampSideList').html(data);
+			checkingSideLane();
+		}).fail((err)=>console.log(err));
 	});
 	
 	$(".champSideImg_div").click(function() {
@@ -196,7 +230,6 @@
 		var lane = String($(this).attr("data-lane"));
 		location.href = "caAnalysis?cc_championId=" + championId + "&cc_lane=" + lane;
 	});
-
 	
 </script>
 

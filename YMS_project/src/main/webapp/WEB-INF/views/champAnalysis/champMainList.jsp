@@ -10,14 +10,18 @@
 <style>
 
 .champMainImg{
-	width: 60px;
-	height: 60px;
+	width: 80px;
+	height: 80px;
 	border-radius: 10px;
 }
 
 .champMainImg_div{
 	float:left;
 	margin:10px;
+}
+
+.champMainImg_div:hover{
+	cursor:pointer;
 }
 
 </style>

@@ -9,12 +9,6 @@
 </head>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
-*{
-	font-family: 'Nanum Pen Script';
-	color:#fff;
-	font-size:20px;
-}
 #oneGameBlue_wrapper  {
 	float : left;
 	width : 48%

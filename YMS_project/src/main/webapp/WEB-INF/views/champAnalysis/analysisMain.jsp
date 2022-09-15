@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -311,6 +312,27 @@ h1{
 	font-size:20px;
 }
 
+.champLane{
+	float:right;
+	margin: 0 0 0 200px;
+}
+
+
+.lane-ca{
+	padding: 10px;
+	width: 40px;
+	heigth: 40px;
+	font-size: 30px;
+	display: inline-block;
+	margin : 20px;
+	border : 1px solid white;	
+}
+
+.lane-ca:hover{
+	cursor: pointer;
+	border: 1px solid gold;
+	color: gold;
+}
 
 </style>
 <a href="main" class="logo"><img src="resources/img/yms.png" style="width: 100px; height: 100px; position: relative;
@@ -336,36 +358,76 @@ h1{
         <button class="offset">소환사 분석</button>
       </div>
 <body>
-
-<div class="champion-box">
-<div class="champinfo-img">
-	<img src="${ChampImg.ch_img_img1}">
-</div>
-
-<div class="champinfo">
-	<h1>${ChampImg.ch_img_championNameKr}<br>${ChampCounter.cc_lane}</h1><br>
-	<p style=" margin-left: 40px; margin-top: 35px; font-size: 25px;"> 픽률: ${ChampCounter.cc_pickrate} % <br><br> 승률: ${ChampCounter.cc_winrate} % <br><br>	 밴률: ${ChampCounter.cc_banrate} % </p>
-</div>
-</div>
+<div class="ca-wrapper">
+	<div class="champion-box">
+	<div class="champinfo-img">
+		<img src="${ChampImg.ch_img_img1}">
+	</div>
 	
-<div class="champMatchUp">
-	<div id="champMatchUp_ca"></div>
-	<div id="champCounterInfo_ca"></div>
-
+	<div class="champinfo">
+		<h1>${ChampImg.ch_img_championNameKr}<br>${ChampCounter.cc_lane}</h1><br>
+		<p style=" margin-left: 40px; margin-top: 35px; font-size: 25px;"> 픽률: ${ChampCounter.cc_pickrate} % <br><br> 승률: ${ChampCounter.cc_winrate} % <br><br>	 밴률: ${ChampCounter.cc_banrate} % </p>
+	</div>
+	
+	<div class="champLane">
+		<div class="lane-ca" id="calane-top" data-lane="TOP">탑</div>
+		<div class="lane-ca" id="calane-jug" data-lane="JUNGLE">정글</div>
+		<div class="lane-ca" id="calane-mid" data-lane="MIDDLE">미드</div>
+		<div class="lane-ca" id="calane-bot" data-lane="BOTTOM">원딜</div>
+		<div class="lane-ca" id="calane-sup" data-lane="UTILITY">서폿</div>
+	</div>
+	
+	</div>
+		
+	<div class="champMatchUp">
+		<div id="champCounterInfo_ca"></div>
+		<div id="champMatchUp_ca"></div>
+	</div>
+	<div class="champInfo">
+		<div id="champRuneInfo_ca"></div>
+		
+	</div>
+	
+	
 	
 </div>
+
 <script type="text/javascript">
-	
 	
 	$(function() {
 		var championId = "${ChampCounter.cc_championId}";
 		var counterId = "${ChampCounter.cc_championId_counter}";
+		
 		var lane = "${ChampCounter.cc_lane}";
 		caAj1('caChampMatchUp', '#champMatchUp_ca', championId, counterId, lane);
 		caAj2('caChampCounterInfo', '#champCounterInfo_ca', championId, lane);
-		
+		caAj2('caChampRuneInfo', '#champRuneInfo_ca', championId, lane);
 	});
 	
+	
+	$(function(){
+		var lane_top = "${lane_top}";
+		var lane_jug = "${lane_jug}";
+		var lane_mid = "${lane_mid}";
+		var lane_bot = "${lane_bot}";
+		var lane_sup = "${lane_top}";
+		
+		if (lane_top == 0){
+			$("#calane-top").hide();
+		}
+		if (lane_jug == 0){
+			$("#calane-jug").hide();
+		}
+		if (lane_mid == 0){
+			$("#calane-mid").hide();
+		}
+		if (lane_bot == 0){
+			$("#calane-bot").hide();
+		}
+		if (lane_sup == 0){
+			$("#calane-sup").hide();
+		}
+	});
 	
 	function caAj1(url, position, championId, counterId, lane){
 		$.ajax({ 
@@ -387,6 +449,11 @@ h1{
 		  	.fail((err)=>console.log(err));
 	} //Aj End
 	
+	$(".lane-ca").click(function(){
+		var lane = String($(this).attr("data-lane"));
+		var championId = "${ChampCounter.cc_championId}";
+		location.href = "caAnalysis?cc_championId=" + championId + "&cc_lane=" + lane;
+	});
 	
 	
 	

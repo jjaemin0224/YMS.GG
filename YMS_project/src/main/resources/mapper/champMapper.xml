@@ -27,7 +27,7 @@
               CH_IMG_IMG1 AS CA_CHAMPIMG1
               FROM CHAMPIMG) B
              ON A.CA_CHAMPIONID = B.CH_IMG_CHAMPIONID)
-        ORDER BY CA_PICKRATE DESC
+        ORDER BY CA_TIER ASC, CA_PICKRATE DESC
 	</select>
 	
 	
@@ -103,8 +103,11 @@
 		WHERE CA_CHAMPIONID = #{championId} AND CA_LANE = #{lane}
 	</select>
 	
-	
-	
+	<select id="caChampRuneInfo" resultType="RuneAnalysis">
+		SELECT *
+		FROM RUNE_ANALYSIS
+		WHERE RA_CHAMPIONID = #{championId} AND RA_LANE = #{lane}
+	</select>
 	
 	<!-- <select id="caChampionHardCounter" resultType="ChampCounter">
 		<![CDATA[
