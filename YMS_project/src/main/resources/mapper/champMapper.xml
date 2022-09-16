@@ -115,6 +115,19 @@
 		WHERE CA_CHAMPIONID = #{value} AND CA_LANE != 'ALL'
 	</select>
 	
+	
+	<select id="caChampSkillBuildInfo" resultType="String">
+		SELECT SB_SKILLBUILD
+		FROM SKILLBUILD
+		WHERE SB_CHAMPIONID = #{championId} AND SB_LANE = #{lane}
+	</select>
+	
+	<select id="caChampStartItemInfo" resultType="StartItem">
+		SELECT * FROM STARTITEM
+		WHERE SI_CHAMPIONID = #{championId} AND SI_LANE = #{lane}
+	</select>
+	
+	
 	<!-- <select id="caChampionHardCounter" resultType="ChampCounter">
 		<![CDATA[
 			SELECT * 

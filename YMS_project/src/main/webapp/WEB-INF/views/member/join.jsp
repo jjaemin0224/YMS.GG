@@ -186,61 +186,123 @@ body {
 <body>
 <a href="main"><img src="resources/img/yms.png" style = "width:200px; height:200px"></a>
 
-	<div class="login-box">
-		<form name="mmJoinFrm" action="mmJoin" method="post">
-			<div class="user-box">
-				<input type="text" id="m_id" name="m_id" required=""> <label>아이디</label>
-				<button class="arrow-btn"  type="button" id="m_idCheck">
-				<span id="m_idCheckMsg">ID 중복체크</span>
-				</button>
-			</div>
-			<br>
-			<div class="user-box">
-				<input type="password" id="m_pw" name="m_pw" class="pw" required=""> <label>비밀번호</label>
-				<button class="arrow-btn" type="button" id="m_pwCheck">
-				<span id="m_pwCheckMsg">비밀번호 확인</span>
-				</button>
-			</div>
-			<br>
-			<div class="user-box">
-				<input type="password" id="m_pwCheck2" name="m_pwCheck2" class="pw" required=""> <label>비밀번호확인</label>
-				<span id="m_pwCheckMsg2"></span>
-			</div>
-			<br>
-			<div class="user-box">
-				<input type="text" id="m_name" name="m_name" required=""> <label>이름</label>
-				<span id="m_nameCheckMsg"></span>
-			</div>
-			<div class="user-box">
-				<input type="text" id="m_summonerName" name="m_summonerName" required=""> <label>소환사 닉네임</label>
-				<span id="m_summonerNameCheckMsg"></span>
-			</div>
-			<div class="user-box">
-				<input type="text" id="m_email" name="m_email" required=""> <label>이메일</label>
-				<span id="m_emailCheckMsg"></span>
-			</div>
-			<br>
-			<div class="user-box">
-				<input type="text" id="m_birth" name="m_birth"  required=""> <label>생년월일(6자리)</label>
-				<span id="m_birthCheckMsg"></span>
-			</div>
-			<div class="user-box">
-				<input type="text" id="m_phoneNum" name="m_phoneNum" required=""> <label>전화번호</label>
-				<a class="arrow-btn" href="mmPhoneCheckMv">휴대폰 인증</a>
-				<span id="m_phoneNumCheckMsg"></span>
-			</div>
-			
-			<div class="buttons">
-			<br>
-        <button id="joinBtn" class="button" type="submit">
+   <div class="login-box">
+      <form name="mmJoinFrm" action="mmJoin" method="post">
+         <div class="user-box">
+            <input type="text" id="m_id" name="m_id" required=""> <label>아이디</label>
+            <button class="arrow-btn"  type="button" id="m_idCheck">
+            <span id="m_idCheckMsg">ID 중복체크</span>
+            </button>
+         </div>
+         <br>
+         <div class="user-box">
+            <input type="password" id="m_pw" name="m_pw" class="pw" required=""> <label>비밀번호</label>
+            <button class="arrow-btn" type="button" id="m_pwCheck">
+            <span id="m_pwCheckMsg">비밀번호 확인</span>
+            </button>
+         </div>
+         <br>
+         <div class="user-box">
+            <input type="password" id="m_pwCheck2" name="m_pwCheck2" class="pw" required=""> <label>비밀번호확인</label>
+            <span id="m_pwCheckMsg2"></span>
+         </div>
+         <br>
+         <div class="user-box">
+            <input type="text" id="m_name" name="m_name" required=""> <label>이름</label>
+            <span id="m_nameCheckMsg"></span>
+         </div>
+         <div class="user-box">
+            <input type="text" id="m_summonerName" name="m_summonerName" required=""> <label>소환사 닉네임</label>
+            <span id="m_summonerNameCheckMsg"></span>
+         </div>
+         <div class="user-box">
+            <input type="text" id="m_email" name="m_email" required=""> <label>이메일</label>
+            <span id="m_emailCheckMsg"></span>
+         </div>
+         <br>
+         <div class="user-box">
+            <input type="text" id="m_birth" name="m_birth"  required=""> <label>생년월일(6자리)</label>
+            <span id="m_birthCheckMsg"></span>
+         </div>
+         <div class="user-box">
+            <input type="text" id="m_phoneNum" name="m_phoneNum" required=""> <label>전화번호</label>
+            <span id="m_phoneNumCheckMsg"></span>
+            <button class="arrow-btn" type="button" id = "mmPhoneCheckMv" style="display:none;">휴대폰 인증</button>
+            <input class= "content" id="phone2" type="text" name="phone2" title="인증번호 입력" style="display:none;"/><br>
+            <button id="phoneChk2" type="button" class="arrow-btn" style="display:none;">본인인증</button>
+            <span id="m_CheckMsg" style="display:none;"></span>
+         </div>
+         
+         <div class="buttons">
+         <br>
+        <button id="joinBtn" class="button" type="submit" disabled="disabled">
           <span>회원가입</span>
         </button>
-			</div>
+         </div>
 
-		</form>
-	</div>
-	
+      </form>
+   </div>
+   
 <script type="text/javascript">
+//번호 정규화 및 번호 입력시에만 본인인증 버튼 활성화
+$("#m_phoneNum").focusout(function() {
+   var m_phoneNum = $("#m_phoneNum").val();
+   if(m_phoneNum.length == 11) {
+       $("#m_phoneNumCheckMsg").text("유효한 휴대폰 번호입니다.");
+       $("#m_phoneNumCheckMsg").css("color","green");
+       $("#mmPhoneCheckMv").show();
+       $("#phone2").show();       
+       $("#phoneChk2").show();       
+       $("#m_idCheckMsg").show();       
+   }else{
+       $("#m_phoneNumCheckMsg").text("휴대폰 번호가 올바르지 않습니다.");
+         $("#m_phoneNumCheckMsg").css("color","red");
+         $("#mmPhoneCheckMv").hide();
+   }
+});
+
+//휴대폰 인증
+var code2 = "";
+$("#mmPhoneCheckMv").click(function(){
+   alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
+   var phone = $("#m_phoneNum").val();
+   $.ajax({
+        type:"GET",
+        url:"mmPhoneCheck?m_phoneNum=" + phone,
+        cache : false,
+        success:function(data){
+           if(data == "error"){
+              alert("휴대폰 번호가 올바르지 않습니다.")
+            $("m_CheckMsg").text("유효한 번호를 입력해주세요.");
+            $("m_CheckMsg").css("color","red");
+            $("#m_phoneNum").attr("autofocus",true);
+           }else{                 
+              $("#phone2").attr("disabled",false);
+              $("#phoneChk2").css("display","inline-block");
+              $("#m_CheckMsg").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
+              $("#m_CheckMsg").css("color","green");
+              $("#m_phoneNum").attr("readonly",true);
+              code2 = data;
+           }
+        }
+    });
+});
+
+$("#phoneChk2").click(function(){
+   if($("#phone2").val() == code2){
+      alert("인증번호가 일치합니다.");
+      $("#m_CheckMsg").css("color","green");
+      $("#phoneDoubleChk").val("true");
+      $("#phone2").attr("disabled",true);
+      $("#joinBtn").attr("disabled",false);
+   }else{
+      $("#m_CheckMsg").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
+      $("#m_CheckMsg").css("color","red");
+      $("#phoneDoubleChk").val("false");
+      $(this).attr("autofocus",true);
+   }
+});
+
 /* 아이디 중복체크 */
 $("#m_idCheck").click(function() {
    $.ajax({
@@ -260,7 +322,7 @@ $("#m_idCheck").click(function() {
    })
 });
 
-//전화번호 입력 없이 휴대폰 인증 클릭 시
+/* //전화번호 입력 없이 휴대폰 인증 클릭 시
 $("#phoneCheck").click(function() {
    var phone_num = $("#m_phoneNum").val();
    if(phone_num == '') {
@@ -272,7 +334,8 @@ $("#phoneCheck").click(function() {
       $("#m_phoneNum").removeAttr("disabled");
    }
 });
-
+ */
+ 
 //비밀번호 체크
 $("#m_pwCheck").click(function() {
     var pw = $("#m_pw").val();

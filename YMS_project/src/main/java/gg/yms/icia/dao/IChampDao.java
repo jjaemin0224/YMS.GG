@@ -8,6 +8,7 @@ import gg.yms.icia.bean.ChampAnalysisRate;
 import gg.yms.icia.bean.ChampCounter;
 import gg.yms.icia.bean.ChampImg;
 import gg.yms.icia.bean.RuneAnalysis;
+import gg.yms.icia.bean.StartItem;
 
 public interface IChampDao {
 
@@ -37,7 +38,9 @@ public interface IChampDao {
 
 	RuneAnalysis caChampRuneInfo(@Param("championId") int championId, @Param("lane") String lane);
 
-	List<String> getLaneList(int championId);
+	String caChampSkillBuildInfo(@Param("championId") int championId, @Param("lane") String lane);
+
+	StartItem caChampStartItemInfo(@Param("championId") int championId, @Param("lane") String lane);
 
 
 }

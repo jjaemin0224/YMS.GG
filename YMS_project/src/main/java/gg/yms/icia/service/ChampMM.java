@@ -1,6 +1,7 @@
 package gg.yms.icia.service;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import gg.yms.icia.bean.ChampAnalysisRate;
 import gg.yms.icia.bean.ChampCounter;
 import gg.yms.icia.bean.ChampImg;
 import gg.yms.icia.bean.RuneAnalysis;
+import gg.yms.icia.bean.StartItem;
 import gg.yms.icia.dao.IChampDao;
 
 @Service
@@ -72,20 +74,6 @@ public class ChampMM {
 			String lane = cDao.getMainLane(championId);
 			cc.setCc_lane(lane);
 		}
-		mav.addObject("lane_top", 0);
-		mav.addObject("lane_jug", 0);
-		mav.addObject("lane_jug", 0);
-		mav.addObject("lane_jug", 0);
-		mav.addObject("lane_jug", 0);
-		
-		List<String> laneList = cDao.getLaneList(championId);
-		for (int i = 0; i<laneList.size(); i++) {
-			if ("TOP".equals(laneList.get(i))) mav.addObject("lane_top", 1);
-			else if ("JUNGLE".equals(laneList.get(i))) mav.addObject("lane_jug", 1);
-			else if ("MIDDLE".equals(laneList.get(i))) mav.addObject("lane_mid", 1);
-			else if ("BOTTOM".equals(laneList.get(i))) mav.addObject("lane_bot", 1);
-			else if ("UTILITY".equals(laneList.get(i))) mav.addObject("lane_sup", 1);
-		}
 		
 		ChampCounter champ = cDao.getFirstCounterId(cc);
 		ChampImg champImg = cDao.caChampionImg(championId);
@@ -142,12 +130,44 @@ public class ChampMM {
 		return mav;
 	}
 
-	
-	
+	public ModelAndView caChampSkillBuildInfo(int championId, String lane) {
+		mav = new ModelAndView();
+		String skill = cDao.caChampSkillBuildInfo(championId, lane);
+		StringTokenizer st = new StringTokenizer(skill, "|");
+		String [] arr = new String[st.countTokens()];
+		int i = 0;
+		while(st.hasMoreElements()){
+			arr[i++] = st.nextToken();
+		}
+		mav.addObject("skill", arr);
+		mav.setViewName("champAnalysis/ca/champSkillBuildInfo");
+		return mav;
+	}
 
-	
-	
-
+	public ModelAndView caChampStartItemInfo(int championId, String lane) {
+		mav = new ModelAndView();
+		StartItem startItem = cDao.caChampStartItemInfo(championId, lane);
+		String startItem1 = startItem.getSi_startitem1();
+		StringTokenizer st1 = new StringTokenizer(startItem1, "|");
+		String [] arr1 = new String[st1.countTokens()];
+		int i = 0;
+		while(st1.hasMoreElements()){
+			arr1[i++] = st1.nextToken();
+		}
+		mav.addObject("startItemImg1", arr1);
+		String startItem2 = startItem.getSi_startitem1();
+		StringTokenizer st2 = new StringTokenizer(startItem2, "|");
+		String [] arr2 = new String[st2.countTokens()];
+		int j = 0;
+		while(st2.hasMoreElements()){
+			arr2[j++] = st2.nextToken();
+		}
+		mav.addObject("startItemImg2", arr2);
+		
+		mav.addObject("startItem", startItem);
+		mav.setViewName("champAnalysis/ca/champStartItemInfo");
+		return mav;
+	}
 
 
 }
