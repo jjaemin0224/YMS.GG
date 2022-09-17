@@ -11,6 +11,9 @@
 	<div>
 		<table>
 			<tr>
+				<td colspan="3"> <p style="font-size:50px;">시작아이템</p> </td>
+			</tr>
+			<tr>
 				<td> <p> 픽률: ${startItem.si_pickrate1} %</p> </td>
 			</tr>
 			<tr>

@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import gg.yms.icia.bean.ChampAnalysisRate;
 import gg.yms.icia.bean.ChampCounter;
 import gg.yms.icia.bean.ChampImg;
+import gg.yms.icia.bean.ItemBuild;
 import gg.yms.icia.bean.RuneAnalysis;
+import gg.yms.icia.bean.Shoes;
 import gg.yms.icia.bean.StartItem;
 
 public interface IChampDao {
@@ -41,6 +43,10 @@ public interface IChampDao {
 	String caChampSkillBuildInfo(@Param("championId") int championId, @Param("lane") String lane);
 
 	StartItem caChampStartItemInfo(@Param("championId") int championId, @Param("lane") String lane);
+
+	ItemBuild caChampItemBuildInfo(@Param("championId") int championId, @Param("lane") String lane);
+
+	Shoes caChampShoesInfo(@Param("championId") int championId, @Param("lane") String lane);
 
 
 }

@@ -3,6 +3,8 @@ package gg.yms.icia.service;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,7 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import gg.yms.icia.bean.ChampAnalysisRate;
 import gg.yms.icia.bean.ChampCounter;
 import gg.yms.icia.bean.ChampImg;
+import gg.yms.icia.bean.ItemBuild;
 import gg.yms.icia.bean.RuneAnalysis;
+import gg.yms.icia.bean.Shoes;
 import gg.yms.icia.bean.StartItem;
 import gg.yms.icia.dao.IChampDao;
 
@@ -155,7 +159,7 @@ public class ChampMM {
 			arr1[i++] = st1.nextToken();
 		}
 		mav.addObject("startItemImg1", arr1);
-		String startItem2 = startItem.getSi_startitem1();
+		String startItem2 = startItem.getSi_startitem2();
 		StringTokenizer st2 = new StringTokenizer(startItem2, "|");
 		String [] arr2 = new String[st2.countTokens()];
 		int j = 0;
@@ -166,6 +170,22 @@ public class ChampMM {
 		
 		mav.addObject("startItem", startItem);
 		mav.setViewName("champAnalysis/ca/champStartItemInfo");
+		return mav;
+	}
+
+	public ModelAndView caChampItemBuildInfo(int championId, String lane) {
+		mav = new ModelAndView();
+		ItemBuild itembuild = cDao.caChampItemBuildInfo(championId, lane);
+		mav.addObject("itembuild", itembuild);
+		mav.setViewName("champAnalysis/ca/champItemBuildInfo");
+		return mav;
+	}
+
+	public ModelAndView caChampShoesInfo(int championId, String lane) {
+		mav = new ModelAndView();
+		Shoes shoes = cDao.caChampShoesInfo(championId, lane);
+		mav.addObject("shoes", shoes);
+		mav.setViewName("champAnalysis/ca/champShoesInfo");
 		return mav;
 	}
 

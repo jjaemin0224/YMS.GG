@@ -87,9 +87,18 @@ public class ChampAnalysisController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/caChampItemBuildInfo", method = RequestMethod.GET)
+	public ModelAndView caChampItemBuildInfo(@RequestParam int championId, @RequestParam String lane) {
+		mav = cm.caChampItemBuildInfo(championId, lane);
+		return mav;
+	}
 	
 	
-	
+	@RequestMapping(value = "/caChampShoesInfo", method = RequestMethod.GET)
+	public ModelAndView caChampShoesInfo(@RequestParam int championId, @RequestParam String lane) {
+		mav = cm.caChampShoesInfo(championId, lane);
+		return mav;
+	}
 	
 	
 	

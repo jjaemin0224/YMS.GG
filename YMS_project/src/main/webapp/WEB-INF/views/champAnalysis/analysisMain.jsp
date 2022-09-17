@@ -282,6 +282,8 @@ h1 {
 				<div id="champRuneInfo_ca"></div>
 				<div id="champSkillBuildInfo_ca"></div>
 				<div id="champStartItemInfo_ca"></div>
+				<div id="champItemBuildInfo_ca"></div>
+				<div id="champShoesInfo_ca"></div>
 			</div>
 		</div>
 
@@ -301,7 +303,9 @@ h1 {
 		caAj2('caChampRuneInfo', '#champRuneInfo_ca', championId, lane);
 		caAj2('caChampSkillBuildInfo', '#champSkillBuildInfo_ca', championId, lane);
 		caAj2('caChampStartItemInfo', '#champStartItemInfo_ca', championId, lane);
-		
+		caAj2('caChampItemBuildInfo', '#champItemBuildInfo_ca', championId, lane);
+		caAj2('caChampShoesInfo', '#champShoesInfo_ca', championId, lane);
+	
 	});
 	
 	

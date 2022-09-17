@@ -127,6 +127,15 @@
 		WHERE SI_CHAMPIONID = #{championId} AND SI_LANE = #{lane}
 	</select>
 	
+	<select id="caChampItemBuildInfo" resultType="ItemBuild">
+		SELECT * FROM ITEMBUILD
+		WHERE IB_CHAMPIONID = #{championId} AND IB_LANE = #{lane}
+	</select>
+	
+	<select id="caChampShoesInfo" resultType="Shoes">
+		SELECT * FROM SHOES
+		WHERE SH_CHAMPIONID = #{championId} AND SH_LANE = #{lane}
+	</select>
 	
 	<!-- <select id="caChampionHardCounter" resultType="ChampCounter">
 		<![CDATA[

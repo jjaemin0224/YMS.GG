@@ -10,6 +10,7 @@
 <body>
 
 	<div class="skillBuild_wrapper">
+		<p style="font-size:50px;">스킬빌드</p>
 	
 		<c:forEach var="list" items="${skill}">
 			<c:choose>
