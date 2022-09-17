@@ -2,7 +2,6 @@ package gg.yms.icia.service;
 
 import java.util.List;
 
-import javax.annotation.Nonnull;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +28,6 @@ public class FeedbackMM {
 	@Autowired
 	private IMemberDao mDao;
 
-	private MemberMM MemberMM;
-
 	ModelAndView mav;
 
 	// 세션id return
@@ -50,7 +47,6 @@ public class FeedbackMM {
 		if (fbBoard.getFb_check() != 0) {
 			mav = new ModelAndView();
 			List<Feedback> gmFeedbackList = fDao.gmFeedbackList(m_id, pageNum, fbBoard.getFb_check());
-			System.out.println("정렬 리스트 일 때 fbBoard" + fbBoard);
 			if (gmFeedbackList != null) {
 				mav.addObject("gmFeedbackList", gmFeedbackList);
 				mav.addObject("FbPaging", getPaging(pageNum, fbBoard.getFb_check()));
@@ -63,7 +59,6 @@ public class FeedbackMM {
 			}
 		} else if (fbBoard.getFb_check() == 0 || fbBoard.getFb_check() == 5) {
 			List<Feedback> gmFeedbackListfirst = fDao.gmFeedbackListfirst(m_id, pageNum);
-			System.out.println("정렬 리스트 일 때 fbBoard else" + fbBoard);
 			mav = new ModelAndView();
 			mav.addObject("gmFeedbackList", gmFeedbackListfirst);
 			mav.addObject("FbPaging", getFirstPaging(pageNum));
@@ -79,7 +74,6 @@ public class FeedbackMM {
 		int pageCount = 5; // 그룹당 페이지 개수
 		String boardName = "gmFeedbackList"; // url
 		Paging paging = new Paging(maxNum, pageNum, listCount, pageCount, boardName);
-		System.out.println("maxNum" + maxNum);
 		return paging.makeHtmlPaging();
 	}
 
@@ -89,7 +83,6 @@ public class FeedbackMM {
 		int pageCount = 5; // 그룹당 페이지 개수
 		String boardName = "gmFeedbackList"; // url
 		Paging paging = new Paging(maxNum, pageNum, listCount, pageCount, boardName);
-		System.out.println("maxNum" + maxNum);
 		return paging.makeHtmlPaging();
 	}
 
@@ -98,9 +91,7 @@ public class FeedbackMM {
 		String view = null;
 		String req_id = getSessionId(session);
 		fbBoard.setFb_req_id(req_id);
-		System.out.println("req id 반영한 post 로 넘긴 fb 요청 내용 " + fbBoard);
 		Member memberInfo = mDao.getMemberInfo(req_id);
-		System.out.println("피드백 신청할 계정 정보 " + memberInfo);
 		if (memberInfo.getM_cash() >= 2000) {
 			if (fDao.gmFbReqWrite(fbBoard)) { // 수정 if 문으로 한번 더 감싸야함 (결제 성공 여부)
 				mav = gmFeedbackList(session, 1, fbBoard);
@@ -134,10 +125,8 @@ public class FeedbackMM {
 
 		if (fDao.gmFeedbackAccount(fab)) {
 			view = "member/gm/myPage";
-			System.out.println("feedbackAccTrue:" + view);
 		} else {
 			view = "member/gm/feedbackAccountReq";
-			System.out.println("feedbackAccFalse: " + view);
 		}
 		mav.setViewName(view);
 		return mav;
@@ -150,7 +139,6 @@ public class FeedbackMM {
 			pageNum = 1;
 
 		List<Feedback> fmFeedbackList = fDao.fmFeedbackList(pageNum);
-		System.out.println("서비스 피드백 리스트" + fmFeedbackList);
 		if (fmFeedbackList != null) {
 			mav = new ModelAndView();
 			mav.addObject("fmFeedbackList", fmFeedbackList);
@@ -162,7 +150,6 @@ public class FeedbackMM {
 			mav.setViewName("member/fm/WatingFbList");
 
 		}
-		System.out.println("list" + fmFeedbackList);
 		return mav;
 	}
 
@@ -192,7 +179,6 @@ public class FeedbackMM {
 	public ModelAndView FbAccept(Feedback fbAcceptPost, HttpSession session) {
 		mav = new ModelAndView();
 		if (fDao.FbAccept(fbAcceptPost.getFb_postNum(), getSessionId(session))) {
-			System.out.println("요청 수락 성공");
 			mav.setViewName("member/fm/WatingFbList");
 		}
 		return mav;
@@ -203,7 +189,6 @@ public class FeedbackMM {
 			pageNum = 1;
 
 		List<Feedback> fmAcceptFbList = fDao.fmAcceptFbList(pageNum, getSessionId(session));
-		System.out.println("서비스 accept피드백 리스트" + fmAcceptFbList);
 		if (fmAcceptFbList != null) {
 			mav = new ModelAndView();
 			mav.addObject("fmAcceptFbList", fmAcceptFbList);
@@ -225,7 +210,6 @@ public class FeedbackMM {
 		int pageCount = 5; // 그룹당 페이지 개수
 		String boardName = "fmAcceptFbList"; // url
 		Paging paging = new Paging(maxNum, pageNum, listCount, pageCount, boardName);
-		System.out.println("maxNum" + maxNum);
 		return paging.makeHtmlPaging();
 	}
 
@@ -243,7 +227,6 @@ public class FeedbackMM {
 	public ModelAndView feedbackWrite(Feedback fbWritePost) {
 		mav = new ModelAndView();
 		if (fDao.fbWrite(fbWritePost.getFb_postNum(), fbWritePost.getFb_ans_contents())) {
-			System.out.println("피드백 작성 성공");
 			mav.setViewName("member/fm/fmAcceptFbList");
 		}
 		return mav;
@@ -260,7 +243,6 @@ public class FeedbackMM {
 
 		List<Board> fabList = fDao.gmFeedbackConfirmList(pageNum);
 		if (fabList != null && fabList.size() != 0) {
-			System.out.println("fabList: " + fabList);
 
 			// mav.addObject("paging", getPaging(pageNum));
 			mav.addObject("fabList", fabList);
@@ -276,7 +258,6 @@ public class FeedbackMM {
 		if (fa != null) {
 			mav.addObject("fa", fa);
 			mav.setViewName("member/am/feedbackConfirmView");
-			System.out.println("mab: " + mav);
 		} else {
 			mav.setViewName("member/am/feedbackAccountList");
 		}
@@ -303,11 +284,9 @@ public class FeedbackMM {
 		if (fDao.gmFeedbackTransDelete(fba_postnum)) {
 			view = "member/gm/gmFeedbackConfirm";
 			mav.addObject("fmFeedbackUpdate", 1);
-			System.out.println("sView: " + view);
 		} else {
 			view = "member/am/feedbackConfirmView";
 			mav.addObject("fmFeedbackUpdate", 2);
-			System.out.println("eView: " + view);
 		}
 		mav.setViewName(view);
 		return mav;

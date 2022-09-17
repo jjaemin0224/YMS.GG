@@ -25,8 +25,8 @@ public class TSboardController {
 	
 	// 팀원 찾기 게시판 글 목록 	+ 팀원 찾기 게시판 페이징
 	@RequestMapping(value = "/TsbList" , method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-	public ModelAndView tsbList(@Nullable Integer pageNum ,Tsb_Board tsbBoard ) {
-		System.out.println(tsbBoard.getTsb_lane());
+	public ModelAndView tsbList(@Nullable Integer pageNum ,@ModelAttribute Tsb_Board tsbBoard ) {
+		System.out.println("CONSOLE"+tsbBoard.getTsb_lane());
 		mav = tsbM.getTsbList(pageNum ,tsbBoard);
 		return mav;
 	}
@@ -38,20 +38,20 @@ public class TSboardController {
 		return mav;
 	}
 	
-	// 팀원 찾기 글 삭제
-	@PostMapping(value = "/TsbDelete" )
-	public ModelAndView tsbDelete(int postnum) {
-		
-		System.out.println("글삭제 tsb " +postnum);
-		mav = tsbM.tsbDelete(postnum);
-		return mav;
-	}
+//	// 팀원 찾기 글 삭제
+//	@PostMapping(value = "/TsbDelete" )
+//	public ModelAndView tsbDelete(int postnum) {
+//		
+//		System.out.println("글삭제 tsb " +postnum);
+//		mav = tsbM.tsbDelete(postnum);
+//		return mav;
+//	}
 	
 	
 	// 팀원 찾기 게시판 글쓰기 이동
 	@RequestMapping(value = "/tsbWriteFrm" , method = RequestMethod.GET)
 	public String tsbWritemv() {
-		return "/tsBoard/tsbWrite";
+		return "tsBoard/tsbWrite";
 		
 	}
 	@PostMapping(value = "/tsbWrite")

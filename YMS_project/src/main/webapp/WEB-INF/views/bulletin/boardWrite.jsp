@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 </head>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <style>
@@ -374,12 +376,12 @@ header{
 	<a href="main" class="logo"><img src="resources/img/yms.png" style="width: 100px; height: 100px;" ></a>
 	
 	<header>
-	<a href="#" class="view">
+	<a href="mmLoginMv" class="view" id = "log">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-                로그아웃
+                log
             </a>
     </header>        
             
@@ -417,4 +419,24 @@ header{
     </form>
    
 </body>
+
+<script type="text/javascript">
+	$(function() {
+		var uid =  "<%=(String)session.getAttribute("id")%>" 
+		console.log(uid);
+		var $ele = $('#log').children();
+		console.log(uid);
+		if (uid  == "null" ) {
+			$('#log').html("Login");
+			$('#log').append($ele);
+			$('#log').prop('href', "mmLoginMv");
+		}
+		else {
+			$('#log').html("Logout");
+			$('#log').append($ele);
+			$('#log').prop('href', "cmLogout");	
+		}
+		})
+
+</script>
 </html>

@@ -480,12 +480,12 @@ header{
 	<a href="main" class="logo"><img src="resources/img/yms.png" style="width: 100px; height: 100px;" ></a>
 	
 	<header>
-	<a href="#" class="view">
+	<a href="mmLoginMv" class="view" id = log>
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
-                로그아웃
+                log
             </a>
     </header>        
             
@@ -526,6 +526,25 @@ header{
 	<br>
 	<h3>${paging}</h3>
 </div>
+
+<script type="text/javascript">
+	$(function() {
+		var uid =  "<%=(String)session.getAttribute("id")%>" 
+		var $ele = $('#log').children();
+		console.log(uid);
+		if (uid  == "null" ) {
+			$('#log').html("Login");
+			$('#log').append($ele);
+			$('#log').prop('href', "mmLoginMv");
+		}
+		else {
+			$('#log').html("Logout");
+			$('#log').append($ele);
+			$('#log').prop('href', "cmLogout");	
+		}
+		})
+
+</script>
 </body>
 </html>
 

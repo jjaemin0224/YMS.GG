@@ -277,43 +277,92 @@ a span:nth-child(4){
 <body>
 
 		<header>
-            
-            <a href="mmLoginMv">
+
+            <a href="mmLoginMv"  id = log>
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 Login
             </a>
-            <a href="mmJoinMv">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Join
-            </a>
-            <a href="cmMyPageMv">
+
+            <a href="cmMyPageMv" id = mypage>
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                myPage
             </a>
+            
+            <a href="mmJoinMv" id = join>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Join
+            </a>
+
           
          
         </header>
 		<img src="resources/img/yms.png" class="img">
 	<div class="buttons">
-        <button onclick="location.href='grSearchMv'" class="fill">전적 검색</button>
+        <button class="fill" onclick = "location.href='grSearchMv'">전적 검색</button>
         <button onclick="location.href='caChampAnalysisMv'" class="pulse">챔피언 분석</button>
-        <button class="close">챔피언 추천</button>
-        <button class="raise">쿨타임 계산기</button>
+   <!--     <button class="close">챔피언 추천</button>
+        <button class="raise">쿨타임 계산기</button> -->
         <button onclick="location.href='bbBulletinBoardMv'" class="up">자유 게시판</button>
         <button onclick="location.href='TsbList'" class="slide">팀원 찾기</button>
         <button class="offset">소환사 분석</button>
       </div>
 	
-	
+	<!-- 
+<script type="text/javascript">
+$(function() {
+	var uid = ${loginCheck};
+	var $ele = $('#log').children();
+	console.log(uid);
+	if (uid  == null ) {
+		$('#log').html("Login");
+		$('#log').prop('href', "mmLoginMv");
+	}
+	else if (uid == 1) {
+		$('#log').html("Logout");
+		$('#join').remove();
+		$('#log').append($ele);
+		$('#log').prop('href', "cmLogout");	
+	}
+	else {
+		
+	}
 
+})
+
+
+
+</script>
+ -->
+ 
+<script type="text/javascript">
+	$(function() {
+		var uid =  "<%=(String)session.getAttribute("id")%>" 
+		var $ele = $('#log').children();
+		var $ele1 = $('#log').children('a.mypage');
+		console.log(uid);
+		if (uid  == "null" ) {
+			$('#log').html("Login");
+			$('#log').append($ele);
+			$('#log').prop('href', "mmLoginMv");
+		}
+		else {
+			$('#log').html("Logout");
+			$('#join').remove();
+			$('#log').append($ele);
+			$('#log').prop('href', "cmLogout");	
+		}
+		})
+
+</script>
+ 
 </body>
 </html>

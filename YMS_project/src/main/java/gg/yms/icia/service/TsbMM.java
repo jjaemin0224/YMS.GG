@@ -19,30 +19,26 @@ public class TsbMM {
 	private TsbDao TsbDao;
 
 	ModelAndView mav;
-	
+
 	public ModelAndView getTsbList(Integer pageNum, Tsb_Board tsbBoard) {
 		if (pageNum == null)
 			pageNum = 1;
-
+		System.out.println("sort 변경사항" + tsbBoard.getTsb_lane() + tsbBoard.getTsb_que() + tsbBoard.getTsb_tier());
 		if (tsbBoard.getTsb_lane() != null) {
 			mav = new ModelAndView();
 			List<Tsb_Board> sortTsbList = TsbDao.getTsbListSort(pageNum, tsbBoard.getTsb_lane(), tsbBoard.getTsb_que(),
 					tsbBoard.getTsb_tier());
-			System.out.println("sort" + sortTsbList);
 
 			if (sortTsbList != null && sortTsbList.size() != 0) {
 				mav.addObject("tsbList", sortTsbList);
-				mav.addObject("tsbPaging", getSortPaging(pageNum ,  tsbBoard.getTsb_lane(), tsbBoard.getTsb_que(),
-						tsbBoard.getTsb_tier()));
+				mav.addObject("tsbPaging",
+						getSortPaging(pageNum, tsbBoard.getTsb_lane(), tsbBoard.getTsb_que(), tsbBoard.getTsb_tier()));
 //				mav.addObject("tsbPaging", getSortPaging(pageNum , tsbBoard.getTsb_lane(), tsbBoard.getTsb_que(),
 //						tsbBoard.getTsb_tier() ));
 				String view = "tsBoard/tsbListAj";
 				mav.setViewName(view);
-				System.out.println("if" + tsbBoard.getTsb_lane());
-				System.out.println("sortTsbList=" + tsbBoard);
-			} 
-			else {
-				String view = "tsBoard/tsbNoListAj";
+			} else {
+				String view = "tsBoard/tsbListAj";
 				mav.setViewName(view);
 			}
 		}
@@ -55,7 +51,9 @@ public class TsbMM {
 				mav.addObject("tsbPaging", getPaging(pageNum));
 				String view = "tsBoard/tsbList";
 				mav.setViewName(view);
-				System.out.println("tsbList=" + tsbBoard);
+			} else {
+				String view = "tsBoard/tsbNoListAj";
+				mav.setViewName(view);
 			}
 		}
 		return mav;
@@ -68,23 +66,18 @@ public class TsbMM {
 		int pageCount = 5; // 그룹당 페이지 개수
 		String boardName = "TsbList"; // url
 		Paging paging = new Paging(maxNum, pageNum, listCount, pageCount, boardName);
-		System.out.println("maxNum" + maxNum);
 		return paging.makeHtmlPaging();
 	}
-	
-	private String getSortPaging(Integer pageNum ,String lane , String que, String tier ) {
-		int maxNum = TsbDao.getSortBoardCount(lane , que , tier);
-		System.out.println("maxNum"+maxNum);
+
+	private String getSortPaging(Integer pageNum, String lane, String que, String tier) {
+		int maxNum = TsbDao.getSortBoardCount(lane, que, tier);
 		int listCount = 10; // 페이지당 글의 개수
 		int pageCount = 5; // 그룹당 페이지 개수
 		String boardName = "TsbList"; // url
-		
+
 		Paging paging = new Paging(maxNum, pageNum, listCount, pageCount, boardName);
 		return paging.makeHtmlPaging();
 	}
-	
-	
-	
 
 	// 글번호로 글쓰기 key select 가능 할 경우
 	public ModelAndView tsbWrite(Tsb_Board tsb, HttpSession session) {
@@ -109,7 +102,6 @@ public class TsbMM {
 		String view = "tsBoard/tsbContents";
 		mav = new ModelAndView();
 		Tsb_Board tsBoard = TsbDao.getTsb(postnum);
-		System.out.println("게시글 확인 " + tsBoard);
 		mav.addObject("tsbContents", tsBoard);
 		mav.setViewName(view);
 		return mav;
@@ -129,7 +121,5 @@ public class TsbMM {
 		mav.setViewName(view);
 		return mav;
 	}
-
-	
 
 }

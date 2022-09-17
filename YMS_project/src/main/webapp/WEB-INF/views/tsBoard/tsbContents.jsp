@@ -39,11 +39,14 @@
 		<tr height="30">
 			<th width="200" style="font-size:50px;">글 내용</th> <td style="font-size:30px;">${tsbContents.getTsb_contents()}</td>
 		</tr>
+		
+		<!-- 
 		<tr>
 			<td>
 			<input type="button" value="글 삭제" onclick="deleteBt(${tsbContents.getTsb_postNum()})">
 			</td>
 		</tr>
+		 -->
 	</table>
 			
 </body>

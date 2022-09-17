@@ -1,61 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
+
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
-	<table>
-		<thead>
-			<tr height="30">
-				<th width="100">¹øÈ£</th>
-				<th width="100">Á¦¸ñ</th>
-				<th width="100">ÀÛ¼ºÀÚ</th>
-				<th width="100">ÇÃ·¹ÀÌ ½Ã°£</th>
-				<th width="100">Æ¼¾î</th>
-				<th width="100">Å¥</th>
-				<th width="100">¶óÀÎ</th>
-				<th width="100">ÀÛ¼º ½Ã°£</th>
-				<!--  			<th width="100">Á¶È¸¼ö</th>  -->
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="board" items="${tsbList}">
-				<tr height="25">
-					<td align="center">${board.tsb_postNum}</td>
-					<td align="center"><a href="#"
-						onclick="articleView(${board.tsb_postNum})">${board.tsb_title}</a></td>
-					<td align="center">${board.tsb_id}</td>
-					<td align="center">${board.tsb_time}</td>
-					<td align="center">${board.tsb_tier}</td>
-					<td align="center">${board.tsb_que}</td>
-					<td align="center">${board.tsb_lane}</td>
-					<td align="center">${board.tsb_date}</td>
-				</tr>
-			</c:forEach>
+	<table class="rwd-table">
+					<tr height="30">
+						<th width="100">ì‘ì„±ì</th>
+						<th width="100">ì œëª©</th>
+						<th width="100">ë‚´ìš©</th>
+						<th width="100">í”Œë ˆì´ ì‹œê°„</th>
+						<!--  			<th width="100">ì¡°íšŒìˆ˜</th>  -->
+					</tr>
+					<c:forEach var="board" items="${tsbList}">
+						<tr height="25">
+							<td align="center">${board.tsb_id}</td>
+							<td align="center"><a href="#"
+								onclick="articleView(${board.tsb_postNum})">${board.tsb_title}</a></td>
+							<td align="center">${board.tsb_que} ${board.tsb_tier} í¬ì§€ì…˜ ${board.tsb_lane}</td>
+							<td align="center">${board.tsb_time}</td>
+							
+						</tr>
+					</c:forEach>
 
-
-			<tr>
-				<td>
-					<form action="tsbWriteFrm">
-						<button>±ÛÀÛ¼º</button>
-					</form>
-				</td>
-			</tr>
-
-		</tbody>
-
-		<tfoot class="tsbPaging">
-			<tr>
-				<td></td>
-				<td></td>
-				<td>${tsbPaging}</td>
-			</tr>
-		</tfoot>
-
-	</table>
+			</table>
+				</br>
+				<h3>${tsbPaging}</h3>
 </body>
 </html>

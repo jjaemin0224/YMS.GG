@@ -238,8 +238,8 @@ h1 {
 	style="width: 100px; height: 100px; position: relative; left: -660px;"></a>
 
 <header>
-	<a href="#" class="view"> <span></span> <span></span> <span></span>
-		<span></span> 로그아웃
+	<a href="main" class="view" id = 'log'> <span></span> <span></span> <span></span>
+		<span></span> log
 	</a>
 </header>
 
@@ -330,6 +330,26 @@ h1 {
 	} //Aj End
 	
 	
+	
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		var uid =  "<%=(String)session.getAttribute("id")%>" 
+		var $ele = $('#log').children();
+		console.log(uid);
+		if (uid  == "null" ) {
+			$('#log').html("Login");
+			$('#log').append($ele);
+			$('#log').prop('href', "mmLoginMv");
+		}
+		else {
+			$('#log').html("Logout");
+			$('#log').append($ele);
+			$('#log').prop('href', "cmLogout");	
+		}
+	});
+
 </script>
 
 
