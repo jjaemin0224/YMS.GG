@@ -11,13 +11,21 @@
 <style>
 #oneGameBlue_wrapper  {
 	float : left;
-	width : 48%
+	width : 49%;
+	height : 98%;
 }
 
 #oneGameRed_wrapper {
 	float : right;
-	width : 48%
+	width : 49%;
+	height : 98%;
 }
+
+#grBlueTable, #grRedTable {
+	width: 100%;
+	height: 100%;
+}
+
 .champGrImg{
 	width: 50px;
 	height: 50px;
@@ -44,15 +52,14 @@
 
 <body>
 
-<div> 
+<div style="height: 6%;"> 
 	<p> 게임시간: ${grDurationCheck}, 게임종류: ${grTypeCheck}  </p> 
 </div>
 
-<div>
-	
+<div style="height: 92%;">
 	<div id="oneGameBlue_wrapper" style="border:3px solid blue">
 		
-		<table id="grBlueTable">
+		<table id="grBlueTable" >
 			<c:forEach var="list" items="${grOneBlueList}">
 				<tr>
 					<td>
@@ -184,12 +191,12 @@
 		
 		var wincheck = "${grWinCheck}";
 		if (wincheck == 1) {
-			$("#grBlueTable").css("background", "lightblue");
-			$("#grRedTable").css("background", "lightpink");
+			$("#grBlueTable").css("background", "#ecf2ff");
+			$("#grRedTable").css("background", "#fff1f3");
 		}
 		else {
-			$("#grBlueTable").css("background", "lightpink");
-			$("#grRedTable").css("background", "lightblue");
+			$("#grBlueTable").css("background", "#fff1f3");
+			$("#grRedTable").css("background", "#ecf2ff");
 		}
 	});
 	

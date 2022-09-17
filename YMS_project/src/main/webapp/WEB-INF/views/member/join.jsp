@@ -197,9 +197,7 @@ body {
          <br>
          <div class="user-box">
             <input type="password" id="m_pw" name="m_pw" class="pw" required=""> <label>비밀번호</label>
-            <button class="arrow-btn" type="button" id="m_pwCheck">
-            <span id="m_pwCheckMsg">비밀번호 확인</span>
-            </button>
+            <span id="m_pwCheckMsg"></span>
          </div>
          <br>
          <div class="user-box">
@@ -337,7 +335,7 @@ $("#phoneCheck").click(function() {
  */
  
 //비밀번호 체크
-$("#m_pwCheck").click(function() {
+$("#m_pw").focusout(function() {
     var pw = $("#m_pw").val();
     var num = pw.search(/[0-9]/g);
     var eng = pw.search(/[a-z]/ig);
@@ -357,6 +355,7 @@ $("#m_pwCheck").click(function() {
     }else {
        $("#m_pwCheckMsg").text("사용 가능한 비밀번호입니다.");
        $("#m_pwCheckMsg").css("color","green");
+       //$("#m_pwResetBtn").attr("disabled", false)
      return true;
     }
 });

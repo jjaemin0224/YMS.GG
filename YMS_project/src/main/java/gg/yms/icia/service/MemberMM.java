@@ -197,7 +197,7 @@ public class MemberMM {
 			view = "member/gm/myPage";
 		} else if (member.getM_rating().equals("AM")) {
 			view = "member/am/myPage";
-		} else {
+		} else {	
 			view = "member/fm/myPage";
 		}
 
@@ -320,7 +320,7 @@ public class MemberMM {
 		return mav;
 
 	}
-
+	
 	public ModelAndView cmCashChargeMv(HttpSession session) {
 		mav = new ModelAndView();
 		Member member = getMemberInfo(session);
