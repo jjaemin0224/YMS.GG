@@ -24,41 +24,34 @@
 	<context:component-scan base-package="gg.yms.icia.*" />
 	
 	
-	<!-- 인터셉터를 이용해서 로그인 여부 판단 -->
 	<interceptors>
-		<interceptor>
-			<!-- mapping의 모든 요청은 Controller에 도착하기 전에 가로챈다 -->
-			<mapping path="/bbBoardWriteMv" />
-			<mapping path="/bbBoardView" />
-			<mapping path="/cmMyPageMv" />
-			<mapping path="/tsbWriteFrm" />
-			<mapping path="/TsbContents" />
-			<mapping path="/tsbWrite" />
-			<mapping path="/contents"/>
-			<mapping path="/bbReplyInsert"/>
-			<mapping path="/bbLikeUp"/>
-			<mapping path="/bbLikeDown"/>
-			
-			
+      <interceptor>
+         <!-- mapping의 모든 요청은 Controller에 도착하기 전에 가로챈다 -->
+         <mapping path="/bbBoardWriteMv" />
+         <mapping path="/bbBoardView" />
+         <mapping path="/cmMyPageMv" />
+         <mapping path="/tsbWriteFrm" />
+         <mapping path="/TsbContents" />
+         <mapping path="/tsbWrite" />
+         <mapping path="/bbReplyInsert"/>
+         
+         
 
-			<!-- exclude-mapping은 요청을 가로채지 않는다. -->
-			<exclude-mapping path="/bbBoardView"/>
-			<exclude-mapping path="/grSearchMv" />
-			<exclude-mapping path="/caChampAnalysisMv" />
-			<exclude-mapping path="/grSearchMv" />
-			<exclude-mapping path="/grSearchMv" />
-			<exclude-mapping path="/grSearch" />
-			<exclude-mapping path="/grList" />
-			<exclude-mapping path="/grGetOneGameList" />
-			<exclude-mapping path="/caChampCounterInfo" />
-			<exclude-mapping path="/caChampMatchUp" />
-			<exclude-mapping path="/" />
-			<exclude-mapping path="/main" />
+         <!-- exclude-mapping은 요청을 가로채지 않는다. -->
+         <exclude-mapping path="/" />
+         <exclude-mapping path="/main" />
+         <exclude-mapping path="/grSearchMv" />
+         <exclude-mapping path="/grSearch" />
+         <exclude-mapping path="/grList" />
+         <exclude-mapping path="/grGetOneGameList" />
+         <exclude-mapping path="/caChampCounterInfo" />
+         <exclude-mapping path="/caChampMatchUp" />
+         <exclude-mapping path="/caChampAnalysisMv" />
+        
 
+         <beans:bean class="gg.yms.icia.service.SessionInterceptor" />
+      </interceptor>
 
-			<beans:bean class="gg.yms.icia.service.SessionInterceptor" />
-		</interceptor>
-
-	</interceptors>
+   </interceptors>
 	
 </beans:beans>

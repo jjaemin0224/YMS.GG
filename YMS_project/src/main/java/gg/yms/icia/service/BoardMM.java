@@ -63,23 +63,23 @@ public class BoardMM {
 	}
 
 	public ModelAndView bbBoardView(@NonNull Integer bb_postNum, HttpSession session) {
-		Board board = bDao.bbBoardView(bb_postNum);
-		List<BbReply> bReplyList = bDao.bbReplyView(bb_postNum);
-		int boardLike = bDao.getLike(bb_postNum); // 현재 게시글 좋아요 수 저장
-		int findLike = bDao.findLikeNum(bb_postNum, getSessionId(session).toString());
-		if (board != null) {
-			board.setBb_like(boardLike);
-			mav.addObject("board", board);
-			mav.addObject("bReplyList", bReplyList);
-			mav.addObject("findLike",findLike); // select 값
-			mav.addObject("boardLike",boardLike);
-			mav.setViewName("bulletin/boardView");
-		
-		} else {
-			mav.setViewName("bulletin/board");
-		}
-		return mav;
-	}
+	      Board board = bDao.bbBoardView(bb_postNum);
+	      List<BbReply> bReplyList = bDao.bbReplyView(bb_postNum);
+	      if (board != null) {
+	         int boardLike = bDao.getLike(bb_postNum); // 현재 게시글 좋아요 수 저장
+	         int findLike = bDao.findLikeNum(bb_postNum, getSessionId(session).toString());
+	         board.setBb_like(boardLike);
+	         mav.addObject("board", board);
+	         mav.addObject("bReplyList", bReplyList);
+	         mav.addObject("findLike",findLike); // select 값
+	         mav.addObject("boardLike",boardLike);
+	         mav.setViewName("bulletin/boardView");
+	      
+	      } else {
+	         mav.setViewName("bulletin/board");
+	      }
+	      return mav;
+	   }
 	
 	
 //	public List<BbReply> bbReplyInsert(BbReply bbReply, HttpSession session) {

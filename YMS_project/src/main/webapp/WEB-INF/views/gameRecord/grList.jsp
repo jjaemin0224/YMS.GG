@@ -17,6 +17,7 @@
 	left: 0;
 	width: 100%;
 	height:100%;
+	color:#fff;
 }
 
 #grOneGameList_modal.open {
@@ -37,23 +38,26 @@
 }
 
 #grOneGameList_div {
-	justify-content:center;
-  	align-items:center;    
-  	position:fixed; 
-	top: 10%;
-	left: 5%;
-	width: 90%;
-	height: 80%;
-	margin: 0;
-	padding: 0;
-	border: 2px solid #555;
-	background: #fff;
-	font-size: 12px;
-	z-index: 200;
-	color: #767676;
-	line-height: normal;
-	white-space: normal;
+	justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    width: 90%;
+    height: 87%;
+    margin: 0;
+    padding: 0;
+    border: 2px solid #555;
+    background: #252a37;
+    font-size: 20px;
+    z-index: 200;
+    /* color: #767677; */
+    line-height: normal;
+    white-space: normal;
+    color: #000;
+    
 }
+
 .champGrImg{
 	width: 50px;
 	height: 50px;

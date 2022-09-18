@@ -52,7 +52,7 @@
 
 <body>
 
-<div style="height: 6%;"> 
+<div style="color:#fff;"> 
 	<p> 게임시간: ${grDurationCheck}, 게임종류: ${grTypeCheck}  </p> 
 </div>
 

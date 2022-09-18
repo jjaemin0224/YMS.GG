@@ -380,34 +380,29 @@ top {
      
             <div id="header">
 
-                <h1><a href="cmMyPageMv"><span>YMG.GG</span>MyPage</a></h1>
+                <h1><a href="cmMyPageMv"><span>YMG.GG</span>MyPage(관리자계정)</a></h1>
                 
                 <div id="menu">
 
                     <ul>
-                        <li><a href="cmMyInfoLoginMv">회원정보수정</a></li>
-                        <li><a href="cmMyInfoPwUpdateMv">비밀번호변경</a></li>
-                        <li><a href="cmMyInfoDeleteMv">회원탈퇴</a></li>
-                        <li><a href="cmCashChargeMv">캐시충전</a></li>
-                        <li><a href="gmFeedbackMv">내 피드백</a></li>
-                        <!-- 피드백 계정신청 전환 확인용 -->
-                        <li><a href="gmFeedbackConfirmMv" >피드백 전환 요청</a> </li>
+                    	<li><a href="#" >회원 관리</a> </li>
+                        <li><a href="#" >게시판 관리</a> </li>
                     </ul>
 
                 </div><!-- menu -->
 
             </div><!--header-->
             <div class="login-box">
-                    아이디 : ${member.m_id} <br>
-                    비밀번호 : ${member.m_pw} <br>
-                    이름 : ${member.m_name} <br>
-                    전화번호 : ${member.m_phoneNum} <br>
-                    생년월일 : ${member.m_birth} <br>
-                    이메일 : ${member.m_email} <br>
-                    소환사명 : ${member.m_summonerName} <br>
-                    회원등급 : ${member.m_rating} <br>
-                    캐시 : ${member.m_cash} <br>
-                    가입날짜 : ${member.m_creationDate} <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
+                   <br>
             </div>
         </div><!--content-->
     </div><!--wrapper-->

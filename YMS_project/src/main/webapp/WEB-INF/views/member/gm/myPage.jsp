@@ -380,7 +380,7 @@ top {
      
             <div id="header">
 
-                <h1><a href="cmMyPageMv"><span>YMG.GG</span>MyPage</a></h1>
+                <h1><a href="cmMyPageMv"><span>YMG.GG</span>MyPage()</a></h1>
                 
                 <div id="menu">
 
@@ -391,8 +391,7 @@ top {
                         <li><a href="cmCashChargeMv">캐시충전</a></li>
                         <li><a href="gmFeedbackList">내 피드백</a></li>
                         <!-- 피드백 계정신청 전환 확인용 -->
-                        <br>
-                        <li><a href="gmFeedbackConfirmMv" >피드백 계정신청 전환 확인용</a> </li>
+                  
                     </ul>
 
                 </div><!-- menu -->
