@@ -8,46 +8,26 @@
 </head>
 
 <style>
-.progress-bar {
-    width: 100%;
-    height: 30px;
-    background-color: #dedede;
-    font-weight: 600;
-    font-size: .8rem;
-    margin: 100px;
-}
-
-.progress-bar .progress {
-
-    width: 72%; 
-    height: 30px;
-    padding: 0;
-    text-align: center;
-    background-color: #4F98FF;
-    color: #111;
-    margin: 100px;
-}
-
 .matchup{
-	width: 700px;
+    background: rgba(27, 27, 27, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+    border-radius: 10px;
+    margin-left: 20px;
 }
 
 
 .matchTable{
-	width: 700px;
-	margin: 100px;
+	width: 640px;
+	margin: 0 auto;
 }
 
 </style>
 
-<div class="progress-bar">           
-   <div class="progress"> </div>
-</div>
-
 <body>
 <div class="matchup">
 
-	<h2 style="margin:100px">Match Up</h2>
+	<h2>Match Up</h2>
 	<table class="matchTable">
 		<tr>
 			<td> 

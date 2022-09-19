@@ -12,7 +12,7 @@
 
   .container {
     width: 440px;
-    height: 18%;
+    height: 100%;
         overflow: overlay;
   }
   .container::-webkit-scrollbar {

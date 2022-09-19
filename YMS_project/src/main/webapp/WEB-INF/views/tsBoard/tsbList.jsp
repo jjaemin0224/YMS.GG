@@ -12,6 +12,11 @@
 </head>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+*{
+	font-family: 'Nanum Pen Script';
+	font-size: 20px;
+}
 
 a:link {
 	text-decoration: none;
@@ -37,11 +42,9 @@ a:hover {
 	text-decoration: underline;
 	color: ece6cc;
 }
-@import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
-
-* {font-family: 'Open Sans', sans-serif;}
 
 .rwd-table {
+font-family: 'Nanum Pen Script';
   margin: 0 auto;
   min-width: 300px;
   max-width: 100%;
@@ -145,6 +148,7 @@ a:hover {
 }
 
 body {
+font-family: 'Nanum Pen Script';
 height: 100vh;
 background: url("back.jpg");
 background-size:cover;    
@@ -292,7 +296,6 @@ button:hover, button:focus {
 body {
   color: #000;
   background: #252a37;
-  font: 300 1em "Fira Sans", sans-serif;
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -300,6 +303,7 @@ body {
 }
 
 button {
+  font-family: 'Nanum Pen Script';
   background: none;
   border: 2px solid;
   font: inherit;
@@ -329,14 +333,6 @@ code {
 </style>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Nanum Pen Script';
-    font-size: 20px;
-}
 header{
     display: flex;
     vertical-align: top; 
@@ -345,7 +341,6 @@ header{
     align-items: center;
     height: 100px;
     background: #252a37;
-    font-family: 'Raleway', sans-serif;
     font-weight: bold;
 }
 .view{
@@ -447,55 +442,6 @@ header{
 .logo {
     position: absolute;
     text-align: left;
-}
-
-.button:not(:last-child) {
-  margin-bottom: 2rem;
-}
-
-.button {
-  border: none;
-  background: transparent;
-  position: relative;
-  left: 390px;
-  display: flex;
-  padding: 0.8rem 2rem;
-  overflow: hidden;
-  border-radius: 100vmax;
-  box-shadow: var(--shadow-elevation-high);
-  transition: box-shadow 0.2s ease-in-out;
-}
-.button::after, .button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: red;
-}
-.button::before {
-  z-index: 1;
-  right: -100%;
-  background: linear-gradient(to right, #a7bb50 0%, #dae79c 50%, #dbff57 100%);
-  background-size: 50% 100%;
-  -webkit-animation: scroll 1.2s infinite linear;
-          animation: scroll 1.2s infinite linear;
-}
-.button::after {
-  z-index: 2;
-  inset: 5px;
-  border-radius: 100vmax;
-  background-color: black;
-  transition: inset 0.2s ease-in-out;
-}
-.button span {
-  z-index: 3;
-  color: white;
-  text-transform: uppercase;
-}
-.button:hover {
-  box-shadow: var(--shadow-elevation-medium);
-}
-.button:hover::after {
-  inset: 8px;
 }
 
 .headcontainer{

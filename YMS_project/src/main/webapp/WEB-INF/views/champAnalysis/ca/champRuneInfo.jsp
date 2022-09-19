@@ -13,13 +13,21 @@
 	}
 	#runetbl{
 		text-align: center;
-		border-spacing: 30px;
-  		border-collapse: separate;
+	border-spacing: 30px;
+	border-collapse: separate;
+	display: flex;
+	margin: 0 auto;
+	font-size: 25px;
+	background: rgba(27, 27, 27, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgb(0 0 0 / 60%);
+    border-radius: 10px;
+    margin-top:20px;
 	}
 	
 </style>
 <body>
-	<div style="margin:60px 100px;">
+	<div>
 		<table id="runetbl">
 			<tr>
 				<td colspan="2"> <p style="font-size:50px;">룬 정보</p> </td>

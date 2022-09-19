@@ -264,7 +264,7 @@ a span:nth-child(4){
 .buttons{
     position: absolute;
     top: 600px;
-    left: 18%;
+    left: 27%;
     align-items: center;
 	  justify-content: center;
   align-content: center;

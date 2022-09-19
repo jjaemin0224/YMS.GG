@@ -448,7 +448,7 @@ top {
                         <li><a href="cmMyInfoPwUpdateMv">비밀번호변경</a></li>
                         <li><a href="cmMyInfoDeleteMv">회원탈퇴</a></li>
                         <li><a href="cmCashChargeMv">캐시충전</a></li>
-                        <li><a href="gmFeedbackMv">내 피드백</a></li>
+                        <li><a href="gmFeedbackList">내 피드백</a></li>
                     </ul>
 
                 </div><!-- menu -->

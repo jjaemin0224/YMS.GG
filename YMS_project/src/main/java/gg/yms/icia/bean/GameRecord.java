@@ -45,4 +45,5 @@ public class GameRecord {
 	private int gr_mainRune1;
 	private int gr_subRune1;
 	private int gr_gtotal;
+	private double gr_serving;
 }

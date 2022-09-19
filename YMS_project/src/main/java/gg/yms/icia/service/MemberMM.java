@@ -15,10 +15,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import gg.yms.icia.bean.Board;
 import gg.yms.icia.bean.Feedback;
 import gg.yms.icia.bean.Member;
+import gg.yms.icia.bean.Tsb_Board;
 import gg.yms.icia.bean.Withdrawal;
 import gg.yms.icia.dao.IMemberDao;
+import gg.yms.icia.dao.TsbDao;
+import gg.yms.icia.userClass.Paging;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
@@ -197,7 +201,7 @@ public class MemberMM {
 			view = "member/gm/myPage";
 		} else if (member.getM_rating().equals("AM")) {
 			view = "member/am/myPage";
-		} else {	
+		} else {
 			view = "member/fm/myPage";
 		}
 
@@ -210,17 +214,14 @@ public class MemberMM {
 	public ModelAndView cmMyInfoLogin(Member mb, HttpSession session) {
 		mav = new ModelAndView();
 		String view = null;
+		BCryptPasswordEncoder bc = new BCryptPasswordEncoder(); // 입력하는 비번 암호화 해줄 얘
+		String bcEnco = mDao.mmEncoderPw(getSessionId(session)); // 로그인 된 아이디 의 비밀번호
+		String m_id = getSessionId(session);
+		mb.setM_id(m_id);
 
-//      BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
-//      String getPw = mb.getM_pw(); //useruser3!
-//            
-//      String enPw = mDao.mmEncoderPw(mb.getM_id()); //암호화 된 비밀번호
-//      System.out.println("enPw" + enPw);
-//      bc.matches(enPw, getPw);
+		if (bc.matches(mb.getM_pw(), bcEnco)) {
+			System.out.println("비교?");
 
-		mb.setM_id(getSessionId(session));
-
-		if (mDao.mmLogin(mb)) { // boolean id,pw
 			view = "member/cm/myInfoUpdate";
 			mav.addObject("member", getMemberInfo(session));
 		} else {
@@ -228,6 +229,7 @@ public class MemberMM {
 			mav.addObject("msg", "로그인 실패");
 			System.out.println("failMav: " + mav);
 		}
+
 		mav.setViewName(view);
 		System.out.println("infoLogin: " + mav);
 		return mav;
@@ -264,23 +266,24 @@ public class MemberMM {
 
 	public ModelAndView cmMyInfoDelete(Member mb, Withdrawal wd, HttpSession session) {
 		mav = new ModelAndView();
-		String view = null;
+		BCryptPasswordEncoder bc = new BCryptPasswordEncoder(); // 입력하는 비번 암호화 해줄 얘
+		String bcEnco = mDao.mmEncoderPw(getSessionId(session)); // 로그인 된 아이디 의 비밀번호
 		String m_id = getSessionId(session);
 		mb.setM_id(m_id);
 		wd.setWd_id(m_id);
+		bc.encode(mb.getM_pw());
 
-		if (mDao.mmLogin(mb)) {
-			if (mDao.cmMyInfoDelete(mb)) {
-				if (mDao.cmInsertWithdrawal(wd)) {
+		if (bc.matches(mb.getM_pw(), bcEnco)) {
+			if (mDao.cmInsertWithdrawal(wd)) {
+				if (mDao.cmMyInfoDelete(mb)) {
 					session.invalidate();
-					view = "member/cm/withdrawalSuccess";
+					mav.setViewName("member/cm/withdrawalSuccess");
 				}
 			}
 		} else {
-			view = "member/cm/myInfoDelete";
+			mav.setViewName("member/cm/myInfoDelete");
 			mav.addObject("msg", "비밀번호불일치");
 		}
-		mav.setViewName(view);
 
 		return mav;
 	}
@@ -320,7 +323,7 @@ public class MemberMM {
 		return mav;
 
 	}
-	
+
 	public ModelAndView cmCashChargeMv(HttpSession session) {
 		mav = new ModelAndView();
 		Member member = getMemberInfo(session);
@@ -329,4 +332,104 @@ public class MemberMM {
 		return mav;
 	}
 
+// --- 관리자 계정
+	public ModelAndView amGetMemberinfo() {
+		mav = new ModelAndView();
+		List<Member> MemberList = mDao.amGetMemberinfo();
+		mav.addObject("memberInfo", MemberList);
+		mav.setViewName("member/am/MemberInfo");
+		return mav;
+	}
+
+	public List<Member> amMemberDelete(String m_id) {
+		System.out.println("넘겨받은 삭제할 멤버 아이디" + m_id);
+		List<Member> MemberDeleteList = null; // 삭제 후 멤버 정보
+		if (m_id != null) {
+			if (mDao.amMemberDelete(m_id)) {
+				MemberDeleteList = mDao.amGetMemberinfo();
+			}
+
+		} else {
+			System.out.println("넘겨받은 member정보 없음");
+		}
+		return MemberDeleteList;
+
+	}
+
+	public ModelAndView getTsbList(Integer pageNum) {
+		if (pageNum == null)
+			pageNum = 1;
+		mav = new ModelAndView();
+		List<Tsb_Board> tsbList = mDao.getTsbList(pageNum);
+		if (tsbList != null && tsbList.size() != 0) {
+			mav.addObject("tsbList", tsbList);
+			mav.addObject("tsbPaging", getPaging(pageNum, "amGetTsbList"));
+			String view = "member/am/tsbList";
+			mav.setViewName(view);
+		}
+		return mav;
+	}
+
+	private String getPaging(Integer pageNum, String url) {
+		int listCount = 10; // 페이지당 글의 개수
+		int pageCount = 5; // 그룹당 페이지 개수
+		int maxNum = 0;
+		String boardName = url; // url
+		if (boardName == "tsbList") {
+			maxNum = mDao.getTsbBoardCount();
+		} else {
+			maxNum = mDao.getBoardCount();
+		}
+
+		Paging paging = new Paging(maxNum, pageNum, listCount, pageCount, boardName);
+		return paging.makeHtmlPaging();
+	}
+
+	public List<Tsb_Board> amTsbDelete(Integer postNum, Integer pageNum) {
+		System.out.println("넘겨받은 삭제할 게시글 번호" + postNum);
+		List<Tsb_Board> amTsbList = null; // 삭제 후 게시글 정보
+		if (postNum != 0 || postNum != null) {
+			if (mDao.amTsbDelete(postNum)) {
+				if (pageNum == null)
+					pageNum = 1;
+				amTsbList = mDao.getTsbList(pageNum);
+			}
+
+		} else {
+			System.out.println("넘겨받은 tsb정보 없음");
+		}
+		return amTsbList;
+
+	}
+
+	public ModelAndView getBbList(Integer pageNum) {
+		if (pageNum == null)
+			pageNum = 1;
+		mav = new ModelAndView();
+		List<Board> bbList = mDao.getBbList(pageNum);
+		if (bbList != null && bbList.size() != 0) {
+			mav.addObject("bbList", bbList);
+			mav.addObject("bbPaging", getPaging(pageNum, "bbList"));
+			String view = "member/am/bbList";
+			System.out.println("bb list" + bbList);
+			mav.setViewName(view);
+		}
+		return mav;
+	}
+
+	public List<Board> amBbDelete(Integer postNum, Integer pageNum) {
+		System.out.println("넘겨받은 삭제할 게시글 번호" + postNum);
+		List<Board> amBbList = null; // 삭제 후 게시글 정보
+		if (postNum != 0 || postNum != null) {
+			if (mDao.amBbDelete(postNum)) {
+				if (pageNum == null)
+					pageNum = 1;
+				amBbList = mDao.getBbList(pageNum);
+			}
+
+		} else {
+			System.out.println("넘겨받은 bb정보 없음");
+		}
+		return amBbList;
+	}
 }

@@ -143,7 +143,7 @@ a:hover {
   
 	
   <div class="neon_effect">
-    <p>응 안말려 꺼져</p>
+    
      </div>
 
      <div class="container"> 
@@ -151,7 +151,6 @@ a:hover {
         <a href="main"><span>탈퇴완료</span></a>
         <div class="dot"></div>
       </div>
-      <h1>&#x261D; 눌러 ㅅㅂ &#x261D;</h1>
     </div>
     </body>
 </html>

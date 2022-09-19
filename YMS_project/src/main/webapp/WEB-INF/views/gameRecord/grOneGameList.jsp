@@ -78,6 +78,7 @@
 					</td>
 					<td>
 						<div> <a href="grSearch?gr_summonerName=${list.gr_summonerName}">${list.gr_summonerName}</a>  </div>
+						<div class="gr_serving"> <p> ${list.gr_serving}인분 </p> </div>
 					</td>
 					<td>
 						<p>LEVEL: ${list.gr_champLevel}</p>
@@ -140,6 +141,7 @@
 					</td>
 					<td>
 						<div> <a href="grSearch?gr_summonerName=${list.gr_summonerName}">${list.gr_summonerName}</a>  </div>
+						<div class="gr_serving"> <p> ${list.gr_serving}인분 </p> </div>
 					</td>
 					<td>
 						<p>LEVEL: ${list.gr_champLevel}</p>

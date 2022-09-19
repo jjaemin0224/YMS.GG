@@ -10,13 +10,13 @@
 	<div>
 		<table>
 			<tr>
-				<td colspan="4"> <p style="font-size:50px;">아이템빌드</p> </td>
+				<td colspan="4"> <p style="font-size:50px; margin-right: 45px">아이템빌드</p> </td>
 			</tr>
 			<tr>
 				<td> <img src="http://ddragon.leagueoflegends.com/cdn/12.17.1/img/item/${itembuild.ib_item1_1}.png"> </td>
 				<td> <img src="http://ddragon.leagueoflegends.com/cdn/12.17.1/img/item/${itembuild.ib_item2_1}.png"> </td>
 				<td> <img src="http://ddragon.leagueoflegends.com/cdn/12.17.1/img/item/${itembuild.ib_item3_1}.png"> </td>
-				<td> 
+				<td style= "padding: 30px;"> 
 					<p> 픽률: ${itembuild.ib_pickrate_itembuild_1} %</p>
 					<p> 승률: ${itembuild.ib_winrate_itembuild_1} % </p> 
 				</td>

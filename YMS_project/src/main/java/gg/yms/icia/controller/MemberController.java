@@ -3,6 +3,7 @@ package gg.yms.icia.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -191,6 +192,34 @@ public class MemberController {
       return mav;
    }
    
+   
+   // 관리자 계정
+   @RequestMapping(value = "/amGetMemberinfo" , method = RequestMethod.GET , produces = "application/json;charset=utf-8")
+   public ModelAndView amGetMemberinfo() {
+      System.out.println("컨트롤러 관리자 계정 멤버 정보 ");
+      mav = mm.amGetMemberinfo();
+      return mav;
+   }
+   
+   @RequestMapping(value = "/amGetMemberinfoMv", method = RequestMethod.GET)
+   public String amGetMemberinfoMv() {
+      return "member/am/MemberInfo";
+   }
+   
+   
+   @RequestMapping(value = "/amGetBbList", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+   public ModelAndView bbList(@Nullable Integer pageNum) {
+      System.out.println("CONSOLE");
+      mav = mm.getBbList(pageNum);
+      return mav;
+   }
+
+   @RequestMapping(value = "/amGetTsbList", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+   public ModelAndView tsbList(@Nullable Integer pageNum) {
+      System.out.println("CONSOLE");
+      mav = mm.getTsbList(pageNum);
+      return mav;
+   }
 
 
 

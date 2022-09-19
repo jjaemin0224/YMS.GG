@@ -10,11 +10,11 @@
 	<div>
 		<table>
 			<tr>
-				<td colspan="2"> <p style="font-size:50px;">신발</p> </td>
+				<td colspan="2"> <p style="font-size:50px; margin-right: 43px;">신발</p> </td>
 			</tr>
 			<tr>
 				<td> <img src="http://ddragon.leagueoflegends.com/cdn/12.17.1/img/item/${shoes.sh_shoes1}.png"> </td>
-				<td> 
+				<td style="padding: 30px;"> 
 					<p> 픽률: ${shoes.sh_pickrate1} %</p>
 					<p> 승률: ${shoes.sh_winrate1} % </p> 
 				</td>

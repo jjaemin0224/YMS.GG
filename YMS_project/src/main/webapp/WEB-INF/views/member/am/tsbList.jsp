@@ -1,255 +1,259 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<html>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>my page</title>
+<meta charset="UTF-8">
+    <title> am tsbList</title>
 
 </head>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-   border:0pt none;
-   font-family: 'Nanum Pen Script';
-   font-size:100%;
-   margin:0pt;
-   outline-color:invert;
-   outline-style:none;
-   outline-width:0pt;
-   padding:0pt;
-   vertical-align:baseline;
+	border:0pt none;
+	font-family: 'Nanum Pen Script';
+	font-size:100%;
+	margin:0pt;
+	outline-color:invert;
+	outline-style:none;
+	outline-width:0pt;
+	padding:0pt;
+	vertical-align:baseline;
 }
 
 caption, th, td {
-   font-weight:normal;
-   text-align:left;
+	font-weight:normal;
+	text-align:left;
 }
 blockquote:before, blockquote:after, q:before, q:after {
-   content:"";
+	content:"";
 }
 blockquote, q {
-   quotes:"" "";
+	quotes:"" "";
 }
 strong, b {
-   font-weight:bold;
+	font-weight:bold;
 }
 em, i {
-   font-style:italic;
+	font-style:italic;
 }
 * {
-   margin:0pt;
-   padding:0pt;
+	margin:0pt;
+	padding:0pt;
 }
 
 body {
-   
-   background:#151d30;
-   font-size:16px;
-   font-family: 'Nanum Pen Script'
+	
+	background:#151d30;
+	font-size:16px;
+	font-family: 'Nanum Pen Script'
 
 }
 
 a {
-   color:#fefefe;
-   text-decoration:none;
+	color:#fefefe;
+	text-decoration:none;
 }
 
 a:hover {
-   color:#fefefe;
-   text-decoration:none;
+	color:#fefefe;
+	text-decoration:none;
 }
 
 #wrapper {
-   width:100%;
-   background:url(resources/img/headerbg.jpg) center top no-repeat;
-   margin:-4px 0 0 0;
+	width:100%;
+	background:url(resources/img/headerbg.jpg) center top no-repeat;
+	margin:-4px 0 0 0;
 }
 
 .content {
-   width:940px;
-   margin:0px auto;   
-   
+	width:940px;
+	margin:0px auto;	
+	
 }
 
 #header {
-   padding:35px 0px 35px 0px;
-   color:#fff;
-   
+	padding:35px 0px 35px 0px;
+	color:#fff;
+	
 }
 
 h1{
-   margin:43px 0 0 0px;
-   padding:0px 0 0 70px;
-   background:url(images/logo.png) left top no-repeat;
-   font-size:60px;
-   font-weight:bold;
-   font-family:"Nanum Pen Script";
-   color:#fff;
+	margin:43px 0 0 0px;
+	padding:0px 0 0 70px;
+	background:url(images/logo.png) left top no-repeat;
+	font-size:60px;
+	font-weight:bold;
+	font-family:"Nanum Pen Script";
+	color:#fff;
 }
 
 h1 a{
-   color:#fff;
-   display:block;
+	color:#fff;
+	display:block;
 }
 
 h1 a:hover{
-   color:#fff;
+	color:#fff;
 }
 h1 a span{
-   font-size:16px;
-   font-weight:bold;
-   color:#cfe7f1;
-   display:block;
-   text-transform:uppercase;
-   font-weight:normal;
-   position:absolute;
+	font-size:16px;
+	font-weight:bold;
+	color:#cfe7f1;
+	display:block;
+	text-transform:uppercase;
+	font-weight:normal;
+	position:absolute;
 }
 
 #menu ul {
-   font-size:30px;
-   list-style:none;
-   color:#fffdbf;
-   text-align:center;
-   margin:100px 0 0 0;
+	font-size:30px;
+	list-style:none;
+	color:#fffdbf;
+	text-align:center;
+	margin:100px 0 0 0;
 }
 
 #menu ul li{
-   display:inline;
+	display:inline;
 }
 
 #menu ul li a{
-   color:#fffdbf;   
-   display:inline-block;
-   padding:12px 22px;
-   line-height:27px;
-   text-decoration:none;
+	color:#fffdbf;	
+	display:inline-block;
+	padding:12px 22px;
+	line-height:27px;
+	text-decoration:none;
 }
 
 #menu ul li a:hover{
-   color:#fff;   
+	color:#fff;	
 }
 
 #menu ul li.selected a{
-   color:#fffdbf;
-   background:url(images/menuhover.png) repeat;   
-   -moz-border-radius: 3px;
-   -webkit-border-radius: 3px;
+	color:#fffdbf;
+	background:url(images/menuhover.png) repeat;	
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
 
 }
 
 #footer {
-   background:url(images/footerline.jpg) left top repeat-x #0e1424;
-   clear:both;
-      margin:20px 0 0px 0;
+	background:url(images/footerline.jpg) left top repeat-x #0e1424;
+	clear:both;
+		margin:20px 0 0px 0;
 }
 
 #footer .content {
-   background:url(images/footer.jpg) center top no-repeat #0e1424;
-   padding:30px 0 115px 0;
+	background:url(images/footer.jpg) center top no-repeat #0e1424;
+	padding:30px 0 115px 0;
 }
 
 h3 {
-   font-size:22px;
-   color:#fefefe;
-   padding:0 0 10px 0;
+	font-size:22px;
+	color:#fefefe;
+	padding:0 0 10px 0;
 }
 
 #footer p {
-    font-size:20px;
-   color:#fefefe;
-   padding:5px 0;
+ 	font-size:20px;
+	color:#fefefe;
+	padding:5px 0;
 }
 
 #footer p a:hover{
-    text-decoration:underline;
-   color:#fefefe;
-   
+ 	text-decoration:underline;
+	color:#fefefe;
+	
 }
 
 #left {
-   float:left;
-   width:200px;
-   padding:0 100px 0 0;
+	float:left;
+	width:200px;
+	padding:0 100px 0 0;
 }
 
 #insidetop {
-   margin:0 auto;
-   width:840px;
+	margin:0 auto;
+	width:840px;
 }
 
 #footer .content a span.leftp {
-   font-size:11px;
-   color:#41536a;
-   float:left;
-   text-transform:uppercase;
-   margin:90px 0 15px 0;
+	font-size:11px;
+	color:#41536a;
+	float:left;
+	text-transform:uppercase;
+	margin:90px 0 15px 0;
 }
 
 #footer .content a span.rightp {
-   font-size:11px;
-   color:#41536a;
-   float:right;
-   text-transform:uppercase;
-   margin:90px 0 15px 0;
+	font-size:11px;
+	color:#41536a;
+	float:right;
+	text-transform:uppercase;
+	margin:90px 0 15px 0;
 }
 
 
 .login-box {
-   position: relative;
-   color: #fff;
-   font-size: 30px;
-   top: 210px;
-   left: 50%;
-   width: 800px;
-   padding: 40px;
-   transform: translate(-50%, -50%);
-   background: rgba(27, 27, 27, 0.5);
-   box-sizing: border-box;
-   box-shadow: 0 15px 25px rgba(0,0,0,.6);
-   border-radius: 10px;
+	position: relative;
+	color: #fff;
+	font-size: 30px;
+	top: 210px;
+	left: 50%;
+	width: 800px;
+	padding: 40px;
+	transform: translate(-50%, -50%);
+	background: rgba(27, 27, 27, 0.5);
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0,0,0,.6);
+	border-radius: 10px;
   }
   
   .login-box h2 {
-   margin: 0 0 30px;
-   padding: 0;
-   color: #fff;
-   text-align: center;
+	margin: 0 0 30px;
+	padding: 0;
+	color: #fff;
+	text-align: center;
   }
   
   .login-box .user-box {
-   position: relative;
+	position: relative;
   }
   
   .login-box .user-box input {
-   width: 100%;
-   padding: 10px 0;
-   font-size: 20px;
-   color: #fff;
-   margin-bottom: 30px;
-   border: none;
-   border-bottom: 1px solid #fff;
-   outline: none;
-   background: transparent;
+	width: 100%;
+	padding: 10px 0;
+	font-size: 20px;
+	color: #fff;
+	margin-bottom: 30px;
+	border: none;
+	border-bottom: 1px solid #fff;
+	outline: none;
+	background: transparent;
   }
   .login-box .user-box label {
-   position: absolute;
-   top:0;
-   left: 0;
-   padding: 10px 0;
-   font-size: 16px;
-   color: #fff;
-   pointer-events: none;
-   transition: .5s;
+	position: absolute;
+	top:0;
+	left: 0;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #fff;
+	pointer-events: none;
+	transition: .5s;
   }
   
   .login-box .user-box input:focus ~ label,
   .login-box .user-box input:valid ~ label {
-   top: -20px;
-   left: 0;
-   color: #03e9f4;
-   font-size: 12px;
-  }   
+	top: -20px;
+	left: 0;
+	color: #03e9f4;
+	font-size: 12px;
+  }	
   
 .view{
     position: absolute;
@@ -360,7 +364,7 @@ top {
 <body>
     <div id="top">
         <div><a href="cmLogout" class="view">
-      <span></span>
+		<span></span>
         <span></span>
         <span></span>
         <span></span>
@@ -385,7 +389,7 @@ top {
                 <div id="menu">
 
                     <ul>
-                       <li><a href="amGetMemberinfo" >회원 관리</a> </li>
+                    	<li><a href="amGetMemberinfo" >회원 관리</a> </li>
                         <li><a href="amGetBbList" >자유게시판 관리</a> </li>
                         <li><a href="amGetTsbList" >팀원찾기 게시판 관리</a> </li>
                     </ul>
@@ -393,18 +397,28 @@ top {
                 </div><!-- menu -->
 
             </div><!--header-->
-            <div class="login-box">
-                   <br>
-                   <br>
-                   <br>
-                   <br>
-                   <br>
-                   관리자계정입니다.
-                   <br>
-                   <br>
-                   <br>
-                   <br>
-                   <br>
+            <div class="login-box" >
+                  <table class="rwd-table" >
+					<tr height="30">
+						<th width="100">작성자</th>
+						<th width="100">제목</th>
+						<th width="100">내용</th>
+						<th width="100">플레이 시간</th>
+						<!--  			<th width="100">조회수</th>  -->
+					</tr>
+					<c:forEach var="board" items="${tsbList}">
+						<tr height="25">
+							<td align="center">${board.tsb_id} <button class = "tsbDelete" data-code = "${board.tsb_postNum}">게시글 삭제</button></td> 
+							<td align="center"><a href="#"
+								onclick="articleView(${board.tsb_postNum})">${board.tsb_title}</a></td>
+							<td align="center">${board.tsb_que} ${board.tsb_tier} 포지션 ${board.tsb_lane}</td>
+							<td align="center">${board.tsb_time}</td>
+							
+						</tr>
+					</c:forEach>
+
+			</table>
+				<h3>${tsbPaging}</h3>
             </div>
         </div><!--content-->
     </div><!--wrapper-->
@@ -438,5 +452,73 @@ top {
 
         </div><!--content-->
     </div><!--footer-->
+    
+    <script type="text/javascript">
+	
+	
+	$('.tsbDelete').click(function(){
+		var postNum = $(this).attr('data-code');
+		console.log(postNum);
+		$.ajax({
+			type : 'post',
+			url : 'amTsbDelete',
+			data : { "postNum" : postNum},
+			success : function (data){
+				console.log("삭제 성공");
+				location.reload();
+			},error : function (err){
+				console.log("삭제 실패");
+			}
+		})
+			
+		})
+</script>
+
+<script type="text/javascript">
+function articleView(postnum){
+	console.log(postnum)
+   $('#articleView_layer').addClass('open'); //모달박스 나타남
+   $.ajax({
+      type:'get',
+      url:'TsbContents',
+      data:{"postNum" : postnum},
+      dataType:'html', //생략 가능
+      success:function(data){
+         //console.log(data);
+         $('#contents_layer').html(data);
+      },
+      error:function(error){
+         console.log(error);
+      }
+      
+   }); //ajax End
+   $(function(){
+		$('#articleView_layer').fadeIn();
+	}
+			)
+}//end
+
+$(function(){  
+	
+	//모달박스 해제
+		var $layerWindow=$('#articleView_layer');
+		$layerWindow.find("#bg_layer").on('mousedown',function(evt){
+			console.log(evt);
+			$layerWindow.removeClass('open');
+		}); //on End
+		$(document).keydown(function(evt){
+			console.log(evt);
+			if(evt.keyCode!=27) return;
+			else if($layerWindow.hasClass('open')){
+				$layerWindow.removeClass('open');
+			}
+		}); //keydown End
+		
+	});//ready End
+
+
+</script>
+
+
 </body>
 </html>

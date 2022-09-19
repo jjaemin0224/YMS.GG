@@ -380,7 +380,7 @@ top {
      
             <div id="header">
 
-                <h1><a href="cmMyPageMv"><span>YMG.GG</span>MyPage()</a></h1>
+                <h1><a href="cmMyPageMv"><span>YMG.GG</span>MyPage</a></h1>
                 
                 <div id="menu">
 

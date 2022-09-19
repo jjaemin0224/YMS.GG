@@ -34,7 +34,7 @@
 	</select>
 	
 	<insert id="bbBoardWrite" parameterType="Board">
-		INSERT INTO BULLETINBOARD VALUES(bb_postNum_SEQ.nextval, #{bb_id}, #{bb_title}, #{bb_content}, default, default)
+		INSERT INTO BULLETINBOARD VALUES(bb_postNum_SEQ.nextval, #{bb_id}, #{bb_title}, #{bb_content}, default, default , null)
 	</insert>
 	
 	<select id="bbReplyView" parameterType="Integer" resultType="BbReply">

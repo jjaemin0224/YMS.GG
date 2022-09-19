@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	
+	
 	<div class="skillBuild_wrapper">
 		<p style="font-size:50px;">스킬빌드</p>
 	
@@ -17,7 +18,7 @@
 				<c:when test="${list eq 1}"> <div>Q</div> </c:when>	
 				<c:when test="${list eq 2}"> <div>W</div> </c:when>
 				<c:when test="${list eq 3}"> <div>E</div> </c:when>
-				<c:when test="${list eq 4}"> <div>R</div> </c:when>		
+				<c:when test="${list eq 4}"> <div style="color: yellow">R</div> </c:when>		
 			</c:choose>
 		</c:forEach>
 	</div>
